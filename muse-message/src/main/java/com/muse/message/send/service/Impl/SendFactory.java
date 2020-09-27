@@ -6,6 +6,7 @@ import com.muse.message.send.service.Impl.sms.SmsSendServiceImpl;
 import com.muse.message.send.service.Impl.wx.WxMsgSendServiceImpl;
 import com.muse.message.send.service.SendService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
