@@ -1,8 +1,8 @@
-package com.muse.dq.model;
+package com.muse.message.send.model;
 
 /**
  * * @Author: RyouA
- * * @Date: 2020/9/27
+ * * @Date: 2020/9/29
  **/
 public class Result<T> {
 

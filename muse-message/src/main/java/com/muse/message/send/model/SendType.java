@@ -6,6 +6,5 @@ package com.muse.message.send.model;
  **/
 public enum SendType {
     SMS,
-    EMAIL,
-    WX_MSG;
+    EMAIL;
 }
