@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * * @Date: 2020/9/29
  **/
 public class BaseController {
+    protected static final String TAG_TEMPLATE = "模板相关接口";
+
     @Autowired
     TemplateService templateService;
 
