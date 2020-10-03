@@ -1,4 +1,4 @@
-package com.muse.message.status;
+package status;
 
 
 /**

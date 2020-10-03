@@ -1,4 +1,4 @@
-package com.muse.message.model;
+package model;
 
 /**
  * 业务模板, 可以理解为实时发送

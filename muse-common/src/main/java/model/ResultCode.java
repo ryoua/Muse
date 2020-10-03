@@ -1,4 +1,4 @@
-package com.muse.message.send.model;
+package model;
 
 /**
  * * @Author: RyouA

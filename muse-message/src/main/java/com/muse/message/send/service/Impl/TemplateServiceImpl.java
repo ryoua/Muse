@@ -1,7 +1,7 @@
 package com.muse.message.send.service.Impl;
 
-import com.muse.message.model.BusinessTemplate;
-import com.muse.message.model.OperateTemplate;
+import model.BusinessTemplate;
+import model.OperateTemplate;
 import com.muse.message.send.service.TemplateService;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class TemplateServiceImpl implements TemplateService {
+
+
     @Override
     public int addBusinessTemplate(BusinessTemplate businessTemplate) {
         return 0;

@@ -1,7 +1,7 @@
 package com.muse.message.send.service;
 
-import com.muse.message.model.BusinessTemplate;
-import com.muse.message.model.OperateTemplate;
+import model.BusinessTemplate;
+import model.OperateTemplate;
 
 /**
  * * @Author: RyouA

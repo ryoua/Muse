@@ -21,7 +21,7 @@ public class SendFactory {
     @Resource
     private EmailSendServiceImpl emailSendService;
 
-    private SendService createSendClient(SendType sendType) {
+    public SendService createSendClient(SendType sendType) {
         switch (sendType) {
             case SMS:
                 return smsSendService;
