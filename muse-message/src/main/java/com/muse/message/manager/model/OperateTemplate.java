@@ -1,4 +1,4 @@
-package model;
+package com.muse.message.manager.model;
 
 /**
  * 运营模板, 可以理解为离线发送

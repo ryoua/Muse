@@ -1,4 +1,4 @@
-package config;
+package com.muse.message.manager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

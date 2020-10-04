@@ -1,8 +1,8 @@
-package model;
+package com.muse.message.manager.model;
 
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import status.TemplateStatus;
+import com.muse.message.manager.status.TemplateStatus;
 
 import javax.persistence.*;
 

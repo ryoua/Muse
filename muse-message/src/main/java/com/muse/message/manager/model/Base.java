@@ -1,4 +1,4 @@
-package model;
+package com.muse.message.manager.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;

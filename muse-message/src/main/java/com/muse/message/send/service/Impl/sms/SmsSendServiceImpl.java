@@ -3,7 +3,6 @@ package com.muse.message.send.service.Impl.sms;
 import com.muse.message.send.model.BatchSendParam;
 import com.muse.message.send.model.SendParam;
 import com.muse.message.send.service.BaseSendServiceImpl;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,4 +1,4 @@
-package model;
+package com.muse.message.manager.model;
 
 /**
  * 消息类型

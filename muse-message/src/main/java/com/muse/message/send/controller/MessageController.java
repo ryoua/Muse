@@ -1,8 +1,8 @@
 package com.muse.message.send.controller;
 
-import model.BusinessTemplate;
-import model.OperateTemplate;
-import model.Result;
+import com.muse.message.manager.model.BusinessTemplate;
+import com.muse.message.manager.model.OperateTemplate;
+import com.muse.message.manager.model.Result;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

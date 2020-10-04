@@ -1,7 +1,7 @@
 package com.muse.message.send.controller;
 
-import model.Result;
-import com.muse.message.send.service.TemplateService;
+import com.muse.message.manager.model.Result;
+import com.muse.message.manager.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
