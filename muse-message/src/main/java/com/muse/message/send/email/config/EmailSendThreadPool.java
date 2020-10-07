@@ -1,10 +1,10 @@
 package com.muse.message.send.email.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -18,8 +18,7 @@ public class EmailSendThreadPool {
     private static final int WAIT_QUEUE_SIZE = 1024;
     private static final int KEEP_ALIVE_TIME = 60;
 
-    @Bean("emailExecutor")
-    public Executor emailExecutor() {
+    private static ThreadPoolTaskExecutor emailExecutor() {
         ThreadPoolTaskExecutor threadPoolExecutor = new ThreadPoolTaskExecutor();
         threadPoolExecutor.setCorePoolSize(CORE_POOL_SIZE);
         threadPoolExecutor.setMaxPoolSize(MAX_POOL_SIZE);
@@ -32,5 +31,13 @@ public class EmailSendThreadPool {
         threadPoolExecutor.setWaitForTasksToCompleteOnShutdown(true);
         threadPoolExecutor.setAwaitTerminationSeconds(600);
         return threadPoolExecutor;
+    }
+
+    public static <V> Future<V> submit(Callable<V> task) {
+        return emailExecutor().submit(task);
+    }
+
+    public static void execute(Runnable task) {
+        emailExecutor().execute(task);
     }
 }
