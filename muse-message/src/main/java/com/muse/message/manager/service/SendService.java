@@ -1,7 +1,7 @@
-package com.muse.message.send.service;
+package com.muse.message.manager.service;
 
-import com.muse.message.send.model.BatchSendParam;
-import com.muse.message.send.model.SendParam;
+import com.muse.message.manager.model.BatchSendParam;
+import com.muse.message.manager.model.SendParam;
 
 /**
  * * @Author: RyouA

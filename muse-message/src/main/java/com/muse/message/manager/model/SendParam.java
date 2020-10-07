@@ -1,16 +1,14 @@
-package com.muse.message.send.model;
+package com.muse.message.manager.model;
 
 import lombok.Data;
 
-import java.util.List;
-
 /**
- * 群发不同消息时的消息参数体
+ * 群发单个消息时的消息体
  * * @Author: RyouA
  * * @Date: 2020/9/26
  **/
 @Data
-public class BatchSendParam {
+public class SendParam {
     /**
      * 模板ID
      */
@@ -19,5 +17,5 @@ public class BatchSendParam {
     /**
      * 消息参数
      */
-    private List<MsgParam> msgParam;
+    private MsgParam msgParam;
 }

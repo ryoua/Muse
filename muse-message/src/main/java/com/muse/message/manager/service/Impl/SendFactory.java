@@ -1,9 +1,9 @@
-package com.muse.message.send.service.Impl;
+package com.muse.message.manager.service.Impl;
 
-import com.muse.message.send.model.SendType;
-import com.muse.message.send.service.Impl.email.EmailSendServiceImpl;
-import com.muse.message.send.service.Impl.sms.SmsSendServiceImpl;
-import com.muse.message.send.service.SendService;
+import com.muse.message.manager.model.SendType;
+import com.muse.message.manager.service.Impl.email.EmailSendServiceImpl;
+import com.muse.message.manager.service.Impl.sms.SmsSendServiceImpl;
+import com.muse.message.manager.service.SendService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
