@@ -1,7 +1,7 @@
-package com.muse.message.transfer.service;
+package com.muse.message.dispatcher.service;
 
 import com.muse.manager.template.model.BatchSendParam;
-import com.muse.message.transfer.model.SendParam;
+import com.muse.message.dispatcher.model.SendParam;
 
 /**
  * * @Author: RyouA

@@ -1,8 +1,7 @@
-package com.muse.message.transfer.controller;
+package com.muse.message.dispatcher.controller;
 
 import com.muse.common.model.Result;
-import com.muse.message.transfer.dispatcher.MessageDisPatcher;
-import com.muse.message.transfer.model.SendParam;
+import com.muse.message.dispatcher.model.SendParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

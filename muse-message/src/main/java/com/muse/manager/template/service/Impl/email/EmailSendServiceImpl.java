@@ -1,8 +1,8 @@
 package com.muse.manager.template.service.Impl.email;
 
 import com.muse.manager.template.model.BatchSendParam;
-import com.muse.message.transfer.model.SendParam;
-import com.muse.message.transfer.service.BaseSendServiceImpl;
+import com.muse.message.dispatcher.model.SendParam;
+import com.muse.message.dispatcher.service.BaseSendServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

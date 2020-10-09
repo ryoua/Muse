@@ -1,4 +1,4 @@
-package com.muse.message.transfer.service;
+package com.muse.message.dispatcher.service;
 
 import com.muse.manager.template.service.SendService;
 import lombok.extern.slf4j.Slf4j;

@@ -28,7 +28,7 @@ public class Template {
      * 消息名称
      */
     @Column(nullable = false, length = 128)
-    private String messageName;
+    private String templateName;
 
     /**
      * 发送周期类型, 1:立即发送, 2:定时发送, 3:周期发送

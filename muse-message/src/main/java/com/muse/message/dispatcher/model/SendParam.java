@@ -1,4 +1,4 @@
-package com.muse.message.transfer.model;
+package com.muse.message.dispatcher.model;
 
 import lombok.Data;
 

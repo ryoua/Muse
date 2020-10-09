@@ -1,6 +1,6 @@
 package com.muse.manager.template.model;
 
-import com.muse.message.transfer.model.MsgParam;
+import com.muse.message.dispatcher.model.MsgParam;
 import lombok.Data;
 
 import java.util.List;
