@@ -11,6 +11,10 @@ import org.springframework.context.ConfigurableApplicationContext;
  * * @Date: 2020/10/9
  **/
 public class SpringUtil {
+    /**
+     * 动态注册rabbitmq队列到容器
+     * @param queueName
+     */
     public void registerQueueDynamic(String queueName) {
         ConfigurableApplicationContext configurableApplicationContext = (ConfigurableApplicationContext) SpringConfig.getApplicationContext();
         DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) configurableApplicationContext.getBeanFactory();
