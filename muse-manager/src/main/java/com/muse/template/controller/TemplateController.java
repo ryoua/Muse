@@ -1,6 +1,5 @@
 package com.muse.template.controller;
 
-import com.muse.common.model.Result;
 import com.muse.template.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

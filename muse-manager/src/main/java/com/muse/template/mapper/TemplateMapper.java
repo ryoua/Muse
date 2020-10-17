@@ -1,6 +1,6 @@
 package com.muse.template.mapper;
 
-import org.apache.ibatis.annotations.Param;
+import com.muse.model.Template;
 import org.mapstruct.Mapper;
 
 /**

@@ -1,8 +1,6 @@
 package com.muse.util;
 
 import com.muse.config.SpringConfig;
-import org.springframework.amqp.core.Queue;
-import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -18,8 +16,8 @@ public class SpringUtil {
     public void registerQueueDynamic(String queueName) {
         ConfigurableApplicationContext configurableApplicationContext = (ConfigurableApplicationContext) SpringConfig.getApplicationContext();
         DefaultListableBeanFactory defaultListableBeanFactory = (DefaultListableBeanFactory) configurableApplicationContext.getBeanFactory();
-        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(Queue.class);
-        builder.addConstructorArgValue(queueName);
-        defaultListableBeanFactory.registerBeanDefinition(queueName, builder.getBeanDefinition());
+//        BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(Queue.class);
+//        builder.addConstructorArgValue(queueName);
+//        defaultListableBeanFactory.registerBeanDefinition(queueName, builder.getBeanDefinition());
     }
 }

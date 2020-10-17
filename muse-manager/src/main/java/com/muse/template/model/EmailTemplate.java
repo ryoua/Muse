@@ -1,5 +1,6 @@
 package com.muse.template.model;
 
+import com.muse.model.Template;
 import lombok.Data;
 
 import java.io.File;

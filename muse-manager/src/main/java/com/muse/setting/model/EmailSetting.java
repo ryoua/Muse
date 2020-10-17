@@ -1,10 +1,15 @@
 package com.muse.setting.model;
 
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.muse.model.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -13,19 +18,31 @@ import java.util.Date;
  **/
 @Getter
 @Setter
-public class EmailSetting {
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "m_settings_email")
+@Entity
+public class EmailSetting extends BaseModel {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column
     private Long uid;
+    @Column
     private String name;
+    @Column
     private String address;
+    @Column
     private String port;
+    @Column
     private String account;
+    @Column
     private String username;
+    @Column
     private String password;
-    private Integer isSSL;
-    private Integer isTLS;
-    private Date createTime;
-    private Date updateTime;
-    private Integer valid;
+    @Column
+    private Boolean isSSL;
+    @Column
+    private Boolean isTLS;
+    @Column
     private String remark;
 }

@@ -10,6 +10,12 @@ spring:
     url: jdbc:mysql://111.229.44.186:1521/muse?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 824780260
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   mail:
     host: smtp.qq.com
     port: 465     #qq邮箱465、587
@@ -32,7 +38,7 @@ spring:
           sendmail: Javen
           sendname: Spring Boot
 server:
-  port: 9004
+  port: 9009
 
 management:
   endpoints:

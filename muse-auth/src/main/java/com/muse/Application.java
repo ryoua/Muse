@@ -6,8 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
- * @author ryoua
- */
+ * * @Author: RyouA
+ * * @Date: 2020/10/16
+ **/
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableDiscoveryClient
