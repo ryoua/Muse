@@ -16,19 +16,28 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Component
 public class RequestTimeFilter implements GlobalFilter, Ordered {
-    private static final String REQUEST_TIME_BEGIN = "requestTimeBegin";
+    private static final String START_TIME = "startTime";
 
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        return chain.filter(exchange).then(
-                Mono.fromRunnable(() -> {
-                    Long startTime = exchange.getAttribute(REQUEST_TIME_BEGIN);
-                    if (startTime != null) {
-                        log.info("请求路径："+exchange.getRequest().getURI().getRawPath() + "消耗时间: " + (System.currentTimeMillis() - startTime) + "ms");
-                    }
-                })
-        );
+        String info = String.format("Method:{%s} Host:{%s} Path:{%s} Query:{%s}",
+                exchange.getRequest().getMethod().name(),
+                exchange.getRequest().getURI().getHost(),
+                exchange.getRequest().getURI().getPath(),
+                exchange.getRequest().getQueryParams());
+
+        log.info(info);
+
+        exchange.getAttributes().put(START_TIME, System.currentTimeMillis());
+        return chain.filter(exchange).then( Mono.fromRunnable(() -> {
+            Long startTime = exchange.getAttribute(START_TIME);
+            if (startTime != null) {
+                long executeTime = (System.currentTimeMillis() - startTime);
+                log.info(exchange.getRequest().getURI().getRawPath() + " : " + executeTime + "ms");
+            }
+        }));
+
     }
 
     @Override
