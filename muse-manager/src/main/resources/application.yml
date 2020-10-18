@@ -38,7 +38,7 @@ spring:
           sendmail: Javen
           sendname: Spring Boot
 server:
-  port: 9009
+  port: 9002
 
 management:
   endpoints:

@@ -1,0 +1,15 @@
+server:
+  port: 8443
+spring:
+  application:
+    name: muse_gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: muse_send
+          uri: http://127.0.0.1:9001
+          predicates:
+            - Path=/api/**
