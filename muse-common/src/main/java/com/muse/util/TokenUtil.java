@@ -1,5 +1,6 @@
 package com.muse.util;
 
+import com.muse.config.JwtConfig;
 import com.muse.exception.MuseException;
 import com.muse.model.ResultCode;
 import com.muse.config.JwtIgnore;
@@ -20,7 +21,7 @@ import java.util.Date;
  * * @Date: 2020/10/16
  **/
 @Configuration
-@EnableConfigurationProperties(JwtIgnore.class)
+@EnableConfigurationProperties(JwtConfig.class)
 public class TokenUtil {
 
     private static Logger log = LoggerFactory.getLogger(TokenUtil.class);

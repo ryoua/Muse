@@ -1,31 +1,32 @@
 package com.muse.template.model;
 
-import com.muse.model.Template;
-import lombok.Data;
+import com.muse.model.BaseModel;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.io.File;
+import javax.persistence.*;
+
 
 /**
  * * @Author: RyouA
  * * @Date: 2020/10/10
  **/
-@Data
-public class EmailTemplate extends Template {
+@Getter
+@Setter
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "m_email_template")
+public class EmailTemplate extends BaseModel {
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column
+    private String templateName;
+    @Column
     private String title;
+    @Column
     private String copy;
-    private File attachment;
+    @Column
     private String content;
-
-    @Override
-    public String toString() {
-        return "{" + "\"title\":\"" +
-                title + '\"' +
-                ",\"copy\":\"" +
-                copy + '\"' +
-                ",\"attachment\":" +
-                attachment +
-                ",\"content\":\"" +
-                content + '\"' +
-                '}';
-    }
 }

@@ -1,7 +1,11 @@
 package com.muse.message.controller;
 
+import com.muse.message.model.vo.MessageSendVo;
+import com.muse.message.service.MessageService;
 import com.muse.model.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -10,8 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @RequestMapping("/manager/message")
 public class MessageController {
-//    @PostMapping("/send")
-//    public Result<?> send() {
-//
-//    }
+    @Autowired
+    private MessageService messageService;
+
+    @PostMapping("/send")
+    public Result<?> send(@RequestBody MessageSendVo messageSendVo) {
+        int result = messageService.send(messageSendVo);
+        if (messageSendVo.getParamTemplateId() == null || "".equals(messageSendVo.getParamTemplateId())) {
+
+        }
+    }
 }

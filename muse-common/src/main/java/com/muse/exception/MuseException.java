@@ -15,6 +15,10 @@ public class MuseException extends RuntimeException {
      */
     ResultCode resultCode;
 
+    public MuseException(String message) {
+        super(message);
+    }
+
     public MuseException(ResultCode resultCode){
         super(resultCode.message());
         this.resultCode = resultCode;

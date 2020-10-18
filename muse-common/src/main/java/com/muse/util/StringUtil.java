@@ -18,8 +18,7 @@ public class StringUtil {
         return sb.toString();
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(randomString());
+    public static boolean isNotNull(String param) {
+        return param != null && !"".equals(param);
     }
 }

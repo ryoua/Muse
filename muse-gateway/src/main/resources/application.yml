@@ -12,4 +12,8 @@ spring:
         - id: muse_send
           uri: http://127.0.0.1:9001
           predicates:
-            - Path=/api/**
+            - Path=/api/send/**
+        - id: muse_auth
+          uri: http://127.0.0.1:9005
+          predicates:
+            - Path=/api/auth/**

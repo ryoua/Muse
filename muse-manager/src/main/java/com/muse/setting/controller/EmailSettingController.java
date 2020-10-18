@@ -17,13 +17,13 @@ public class EmailSettingController {
     @Autowired
     EmailSettingService emailSettingService;
 
-    @PostMapping("/")
+    @PostMapping()
     public Result<?> addEmailSetting(@RequestBody EmailSetting emailSetting) {
         emailSettingService.addEmailSetting(emailSetting);
         return Result.SUCCESS();
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public Result<?> getAllEmailSetting() {
         return new Result<>(200, "ok", emailSettingService.getAllEmailSetting());
     }
