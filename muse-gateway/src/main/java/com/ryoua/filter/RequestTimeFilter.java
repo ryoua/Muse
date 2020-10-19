@@ -1,13 +1,14 @@
 package com.ryoua.filter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+
+import java.util.Objects;
 
 /**
  * * @Author: RyouA
@@ -22,7 +23,7 @@ public class RequestTimeFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String info = String.format("Method:{%s} Host:{%s} Path:{%s} Query:{%s}",
-                exchange.getRequest().getMethod().name(),
+                Objects.requireNonNull(exchange.getRequest().getMethod()).name(),
                 exchange.getRequest().getURI().getHost(),
                 exchange.getRequest().getURI().getPath(),
                 exchange.getRequest().getQueryParams());
