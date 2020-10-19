@@ -25,19 +25,17 @@ public class EmailSetting extends BaseModel {
     @Id
     @GeneratedValue
     private Long id;
-    @Column
-    private Long uid;
-    @Column
+    @Column(nullable = false, columnDefinition = "varchar(64) comment '邮箱名称'")
     private String name;
-    @Column
+    @Column(nullable = false, columnDefinition = "varchar(32) comment 'smtp服务器地址'")
     private String address;
-    @Column
+    @Column(nullable = false, columnDefinition = "varchar(32) comment 'smtp服务器端口'")
     private String port;
     @Column
     private String account;
-    @Column
+    @Column(nullable = false, columnDefinition = "varchar(32) comment '发件邮箱'")
     private String username;
-    @Column
+    @Column(nullable = false, columnDefinition = "varchar(32) comment '授权码'")
     private String password;
     @Column
     private Boolean isSSL;

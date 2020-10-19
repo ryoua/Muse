@@ -1,11 +1,10 @@
-package com.muse.handler;
+package com.muse.send.interceptor;
 
-import com.muse.exception.MuseException;
-import com.muse.model.Audience;
-import com.muse.model.ResultCode;
 import com.muse.config.JwtIgnore;
+import com.muse.exception.MuseException;
+import com.muse.model.ResultCode;
+import com.muse.send.util.TokenUtil;
 import com.muse.threadLocal.UserLocal;
-import com.muse.util.TokenUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 拦截器, 获取token来保存当前用户id
  * * @Author: RyouA
  * * @Date: 2020/10/16
  **/
@@ -32,7 +32,7 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("=================================");
+        // 排除带JwtIgnore注解的接口
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             JwtIgnore jwtIgnore = handlerMethod.getMethodAnnotation(JwtIgnore.class);
@@ -54,18 +54,14 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
             log.info("###=========用户未登录，请先登录===============###");
             throw new MuseException(ResultCode.USER_NOT_LOGGED_IN);        }
 
-        // 获取token
-        final String token = authHeader.substring(7);
-
         if(audience == null){
             BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
             audience = (Audience) factory.getBean("audience");
         }
 
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息
-        Claims claims = TokenUtil.parseJWT(token, audience.getBase64Secret());
-
-        UserLocal.setUserId(Long.parseLong(TokenUtil.getUserId(token, audience.getBase64Secret())));
+        Claims claims = TokenUtil.parseJWT(authHeader, audience.getBase64Secret());
+        UserLocal.setUserId(Long.parseLong(TokenUtil.getUserId(authHeader, audience.getBase64Secret())));
         return true;
     }
 

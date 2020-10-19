@@ -1,4 +1,4 @@
-package com.muse.model;
+package com.muse.send.interceptor;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
