@@ -19,9 +19,6 @@ public class MessageController {
 
     @PostMapping("/send")
     public Result<?> send(@RequestBody MessageSendVo messageSendVo) {
-        int result = messageService.send(messageSendVo);
-        if (messageSendVo.getParamTemplateId() == null || "".equals(messageSendVo.getParamTemplateId())) {
-
-        }
+        return Result.SUCCESS();
     }
 }

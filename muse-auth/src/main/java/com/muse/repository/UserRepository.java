@@ -1,6 +1,5 @@
 package com.muse.repository;
 
-import com.muse.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

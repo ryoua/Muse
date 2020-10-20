@@ -5,7 +5,6 @@ import com.muse.dispatcher.api.model.SendParam;
 import com.muse.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.muse.model.Template;
 
 /**
  * * @Author: RyouA

@@ -1,6 +1,5 @@
 package com.muse.controller;
 
-import com.muse.config.JwtIgnore;
 import com.muse.model.Result;
 import com.muse.model.User;
 import io.swagger.annotations.ApiImplicitParam;
@@ -22,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
     private static final String AUTH_TAG = "auth";
     @PostMapping("/login")
-    @JwtIgnore
     @ApiOperation(value = "登录", tags = AUTH_TAG, httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
@@ -33,7 +31,6 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    @JwtIgnore
     @ApiOperation(value = "注册", tags = AUTH_TAG, httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),

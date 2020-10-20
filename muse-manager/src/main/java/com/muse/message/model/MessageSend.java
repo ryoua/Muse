@@ -1,4 +1,4 @@
-package com.muse.message.model.dto;
+package com.muse.message.model;
 
 import com.muse.model.BaseModel;
 import lombok.Getter;
@@ -20,6 +20,8 @@ public class MessageSend extends BaseModel {
     @Id
     @GeneratedValue
     private Long id;
+    @Column
+    private Long uid;
     @Column
     private String messageType;
     @Column

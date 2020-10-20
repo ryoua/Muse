@@ -3,7 +3,6 @@ package com.muse.dispatcher.api.controller;
 import com.muse.dispatcher.api.model.SendParam;
 import com.muse.dispatcher.route.StandardUnifiedRouter;
 import com.muse.model.Result;
-import com.muse.util.ControllerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

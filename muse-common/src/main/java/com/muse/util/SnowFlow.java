@@ -4,7 +4,7 @@ package com.muse.util;
  * * @Author: RyouA
  * * @Date: 2020/10/18
  **/
-public class SnowIdWorker {
+public class SnowFlow {
     /**
      * 起始的时间戳:这个时间戳自己随意获取，比如自己代码的时间戳
      */
@@ -64,7 +64,7 @@ public class SnowIdWorker {
      * 1、私有化避免了通过new的方式进行调用，主要是解决了在for循环中通过new的方式调用产生的id不一定唯一问题问题，因为用于			 记录上一次时间戳的lastStmp永远无法得到比对；
      * 2、没有给出有参构造在第一点的基础上考虑了一套分布式系统产生的唯一序列号应该是基于相同的参数
      */
-    private SnowIdWorker() {
+    private SnowFlow() {
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.muse.message.repository;
 
-import com.muse.message.model.dto.MessageSend;
+import com.muse.message.model.MessageSend;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
