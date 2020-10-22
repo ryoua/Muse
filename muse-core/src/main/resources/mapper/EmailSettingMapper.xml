@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muse.manager.setting.mapper.EmailSettingMapper">
+
+    <select id="selectById" resultType="com.muse.manager.setting.model.EmailSetting">
+        select id, uid, name, address, port, account, username, password, isSSL, isTLS, createTime, updateTime, valid, remark
+        from m_email_setting where id = #{id} and uid = #{uid} and valid = 1
+    </select>
+
+    <delete id="deleteById">
+        update m_email_setting set valid = 0 where id = #{id} and uid = #{uid}
+    </delete>
+
+    <update id="update">
+        update m_email_setting set
+        name = #{name,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        port = #{port,jdbcType=VARCHAR},
+        account = #{account,jdbcType=VARCHAR},
+        username = #{username,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        isSSL = #{isSSL,jdbcType=BOOLEAN},
+        isTLS = #{isTLS,jdbcType=BOOLEAN},
+        updateTime = current_timestamp,
+        remark = #{remark,jdbcType=VARCHAR}
+    </update>
+</mapper>

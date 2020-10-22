@@ -20,5 +20,10 @@ public interface MessageSendService {
      */
     void sendMessage(Map<String, String> map);
 
+    /**
+     * 消息名是否存在
+     * @param sendName 消息名
+     * @return boolean
+     */
     boolean getSendNameIsExist(String sendName);
 }
