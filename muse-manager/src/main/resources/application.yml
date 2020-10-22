@@ -7,15 +7,9 @@ spring:
         server-addr: localhost:8848 #nacos server地址
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://111.229.44.186:1521/muse?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/muse?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
-    password: 824780260
-  jpa:
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    password: root
   mail:
     host: smtp.qq.com
     port: 465     #qq邮箱465、587

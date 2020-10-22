@@ -19,4 +19,6 @@ public interface MessageSendService {
      * @param map 参数
      */
     void sendMessage(Map<String, String> map);
+
+    boolean getSendNameIsExist(String sendName);
 }

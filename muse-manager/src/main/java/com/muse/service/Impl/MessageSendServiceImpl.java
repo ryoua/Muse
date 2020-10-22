@@ -9,6 +9,7 @@ import com.muse.threadLocal.UserLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,12 +31,19 @@ public class MessageSendServiceImpl implements MessageSendService {
     }
 
     @Override
+    public boolean getSendNameIsExist(String sendName) {
+        Long userid = UserLocal.getUserId();
+        String name = messageSendMapper.getMessageSendNameByName(sendName, userid);
+        return name != null && !"".equals(name);
+    }
+
+    @Override
     public void sendMessage(Map<String, String> map) {
         String messageType = map.get(MessageSendParam.MESSAGE_TYPE);
         String paramStr = map.get(MessageSendParam.PARAM);
         String receiverStr = map.get(MessageSendParam.RECEIVER);
 
-        ReceiverTemplate receiver = gson.fromJson(receiverStr, ReceiverTemplate.class);
+        int receiverType = (int) gson.fromJson(receiverStr, HashMap.class).get("type");
 
     }
 
