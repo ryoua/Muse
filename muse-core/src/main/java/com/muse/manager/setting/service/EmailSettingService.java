@@ -1,10 +1,12 @@
 package com.muse.manager.setting.service;
 
-import com.muse.manager.setting.mapper.EmailSettingMapper;
 import com.muse.manager.setting.model.EmailSetting;
 import com.muse.common.threadLocal.UserLocal;
+import com.muse.manager.setting.repository.EmailSettingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -14,20 +16,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailSettingService {
     @Autowired
-    private EmailSettingMapper emailSettingMapper;
+    private EmailSettingRepository emailSettingRepository;
 
-    public EmailSetting selectById(long id) {
+    public EmailSetting getEmailSettingById(long id) {
         long uid = UserLocal.getUserId();
-        return emailSettingMapper.selectById(id, uid);
+        return emailSettingRepository.findByIdAndUid(id, uid);
     }
 
-    public void deleteById(long id) {
+    public List<EmailSetting> getAllEmailSetting() {
         long uid = UserLocal.getUserId();
-        emailSettingMapper.deleteById(id, uid);
+        return emailSettingRepository.findAllByUid(uid);
     }
 
-    public void updateById(EmailSetting emailSetting) {
+    public void deleteEmailSettingById(long id) {
+        long uid = UserLocal.getUserId();
+        emailSettingRepository.deleteByIdAndUid(id, uid);
+    }
+
+    public void updateEmailSettingById(EmailSetting emailSetting) {
         emailSetting.setUid(UserLocal.getUserId());
-        emailSettingMapper.update(emailSetting);
+        emailSettingRepository.save(emailSetting);
+    }
+
+    public void addEmailSetting(EmailSetting emailSetting) {
+        emailSetting.setUid(UserLocal.getUserId());
+        emailSettingRepository.save(emailSetting);
     }
 }

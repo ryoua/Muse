@@ -65,11 +65,11 @@ public abstract class BaseQueueHelper<D, E extends ValueWrapper<D>, H extends Wo
      * 初始化
      */
     public void init() {
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("disruptorThreadPool").build();
-        disruptor = new Disruptor<E>(eventFactory(), getQueueSize(), threadFactory, ProducerType.SINGLE, getStrategy());
-        disruptor.setDefaultExceptionHandler();
-        disruptor.handleEventsWithWorkerPool(getHandler());
-        ringBuffer = disruptor.start();
+//        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("disruptorThreadPool").build();
+//        disruptor = new Disruptor<E>(eventFactory(), getQueueSize(), threadFactory, ProducerType.SINGLE, getStrategy());
+//        disruptor.setDefaultExceptionHandler();
+//        disruptor.handleEventsWithWorkerPool(getHandler());
+//        ringBuffer = disruptor.start();
     }
 
 }
