@@ -3,9 +3,8 @@ package com.muse.service.Impl;
 import com.google.gson.Gson;
 import com.muse.mapper.MessageSendMapper;
 import com.muse.model.MessageSendParam;
-import com.muse.model.ReceiverTemplate;
 import com.muse.service.MessageSendService;
-import com.muse.threadLocal.UserLocal;
+import com.muse.common.threadLocal.UserLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

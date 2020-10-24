@@ -9,7 +9,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class MessageSend extends BaseModel {
+public class MessageSend {
     private Long id;
     private Long uid;
 

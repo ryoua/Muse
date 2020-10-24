@@ -1,4 +1,4 @@
-package com.muse.threadLocal;
+package com.muse.common.threadLocal;
 
 /**
  * * @Author: RyouA

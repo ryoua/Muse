@@ -1,4 +1,4 @@
-package com.muse.model;
+package com.muse.common.model;
 
 
 /**
@@ -13,8 +13,11 @@ public enum ResultCode {
     /* 错误状态码 */
     FAIL(500, "操作失败！"),
 
+
     /* 用户错误：20001-29999*/
     USER_NOT_LOGGED_IN(20001, "用户未登录，请先登录"),
+
+    INVALID_PARAM(30001, "参数不正确"),
 
     /* 权限错误：70001-79999 */
     PERMISSION_TOKEN_EXPIRED(70004, "token已过期"),

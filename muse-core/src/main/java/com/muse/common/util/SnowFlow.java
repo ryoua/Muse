@@ -1,4 +1,4 @@
-package com.muse.util;
+package com.muse.common.util;
 
 /**
  * * @Author: RyouA

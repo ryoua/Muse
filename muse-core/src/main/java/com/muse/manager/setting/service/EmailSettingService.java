@@ -2,7 +2,7 @@ package com.muse.manager.setting.service;
 
 import com.muse.manager.setting.mapper.EmailSettingMapper;
 import com.muse.manager.setting.model.EmailSetting;
-import com.muse.threadLocal.UserLocal;
+import com.muse.common.threadLocal.UserLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class EmailSettingService {
         emailSettingMapper.deleteById(id, uid);
     }
 
-    public void modify(EmailSetting emailSetting) {
+    public void updateById(EmailSetting emailSetting) {
         emailSetting.setUid(UserLocal.getUserId());
         emailSettingMapper.update(emailSetting);
     }

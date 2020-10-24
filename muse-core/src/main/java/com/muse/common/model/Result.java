@@ -1,4 +1,4 @@
-package com.muse.model;
+package com.muse.common.model;
 
 
 /**

@@ -1,6 +1,6 @@
-package com.muse.exception;
+package com.muse.common.exception;
 
-import com.muse.model.ResultCode;
+import com.muse.common.model.ResultCode;
 
 import java.text.MessageFormat;
 
@@ -8,12 +8,17 @@ import java.text.MessageFormat;
  * * @Author: RyouA
  * * @Date: 2020/10/16
  **/
-public class MuseException extends RuntimeException {
+public class MuseException extends Exception {
 
     /**
      * 错误代码
      */
     ResultCode resultCode;
+
+    public MuseException() {
+        super();
+    }
+
 
     public MuseException(String message) {
         super(message);

@@ -1,4 +1,4 @@
-package com.muse.util;
+package com.muse.common.util;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;

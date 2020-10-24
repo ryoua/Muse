@@ -1,6 +1,6 @@
 package com.muse.service;
 
-import com.muse.exception.MuseException;
+import com.muse.common.exception.MuseException;
 import com.muse.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

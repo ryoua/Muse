@@ -1,17 +1,22 @@
 package com.muse.manager.setting.mapper;
 
 import com.muse.manager.setting.model.EmailSetting;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Mapper;
 
 
 /**
  * * @Author: RyouA
  * * @Date: 2020/10/22
  **/
+@Mapper
 public interface EmailSettingMapper {
-    EmailSetting selectById(@Param("id") long id, @Param("uid") long uid);
+    int deleteByPrimaryKey(Long id);
 
-    int deleteById(@Param("id") long id, @Param("uid") long uid);
+    int insertSelective(EmailSetting record);
 
-    int update(EmailSetting emailSetting);
+    EmailSetting selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(EmailSetting record);
+
+    int updateByPrimaryKey(EmailSetting record);
 }

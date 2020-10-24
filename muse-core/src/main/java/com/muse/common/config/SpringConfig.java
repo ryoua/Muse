@@ -1,4 +1,4 @@
-package com.muse.config;
+package com.muse.common.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
