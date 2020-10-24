@@ -1,4 +1,4 @@
-package com.muse.common.model;
+package com.muse.manager.template.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -19,7 +19,20 @@ import java.util.Date;
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class BaseModel {
+public class Template {
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(nullable = false, columnDefinition = "bigint comment '用户id'")
+    private long uid;
+
+    @Column(nullable = false, columnDefinition = "varchar(255) comment '模板名称'")
+    private String name;
+
+    @Column(nullable = false, columnDefinition = "int default 0 comment '状态, 默认0:待审核'")
+    private int status;
+
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")

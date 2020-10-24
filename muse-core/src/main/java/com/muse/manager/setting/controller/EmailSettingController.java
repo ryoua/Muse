@@ -61,7 +61,7 @@ public class EmailSettingController {
         return Result.SUCCESS();
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     @ApiOperation(value = "新增邮箱设置", tags = EMAIL_SETTING_TAG, httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "邮箱设置的参数", required = true, dataType = "EmailSetting"),

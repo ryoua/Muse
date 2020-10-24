@@ -45,12 +45,12 @@ public class EmailSetting extends BaseModel {
     @Column(nullable = false, columnDefinition = "varchar(32) comment '邮箱密码'")
     private String password;
 
-    @Column(nullable = false, columnDefinition = "bit comment '是否开启SSL'")
+    @Column(columnDefinition = "bit default 0 comment '是否开启SSL'")
     private Boolean isSSL;
 
-    @Column(nullable = false, columnDefinition = "bit comment '是否开启TLS'")
+    @Column(columnDefinition = "bit default 0 comment '是否开启TLS'")
     private Boolean isTLS;
 
-    @Column(nullable = false, columnDefinition = "varchar(255) comment '备注'")
+    @Column(columnDefinition = "varchar(255) comment '备注'")
     private String remark;
 }

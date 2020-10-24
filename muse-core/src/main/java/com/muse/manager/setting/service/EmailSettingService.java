@@ -38,8 +38,8 @@ public class EmailSettingService {
         emailSettingRepository.save(emailSetting);
     }
 
-    public void addEmailSetting(EmailSetting emailSetting) {
+    public long addEmailSetting(EmailSetting emailSetting) {
         emailSetting.setUid(UserLocal.getUserId());
-        emailSettingRepository.save(emailSetting);
+        return emailSettingRepository.save(emailSetting).getId();
     }
 }
