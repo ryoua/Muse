@@ -22,10 +22,10 @@ public class EmailSetting extends BaseModel {
     @Id
     @GeneratedValue
     @Column(nullable = false, columnDefinition = "bigint comment '主键'")
-    private Long id;
+    private long id;
 
     @Column(nullable = false, columnDefinition = "bigint comment '用户id'")
-    private Long uid;
+    private long uid;
 
     @Column(nullable = false, columnDefinition = "varchar(255) comment '邮箱名称'")
     private String name;

@@ -3,98 +3,83 @@ use muse;
 # 邮箱设置
 create table if not exists m_email_setting
 (
-    id         bigint auto_increment primary key comment '主键',
-    uid        bigint       not null comment '用户id',
-    name       varchar(255) not null comment '邮箱名称',
-    address    varchar(255) not null comment '邮箱服务器地址',
-    port       varchar(24)  not null comment '邮箱服务器端口',
-    account    varchar(64)  not null comment '发件人',
-    username   varchar(64)  not null comment '用户名',
-    password   varchar(64)  not null comment '密码',
-    isSSL      tinyint      not null default 0 comment '是否开启SSL',
-    isTLS      tinyint      not null default 0 comment '是否开启TLS',
+    id          bigint auto_increment primary key comment '主键',
+    uid         bigint       not null comment '用户id',
+    name        varchar(255) not null comment '邮箱名称',
+    address     varchar(255) not null comment '邮箱服务器地址',
+    port        varchar(24)  not null comment '邮箱服务器端口',
+    account     varchar(64)  not null comment '发件人',
+    username    varchar(64)  not null comment '用户名',
+    password    varchar(64)  not null comment '密码',
+    isSSL       tinyint      not null default 0 comment '是否开启SSL',
+    isTLS       tinyint      not null default 0 comment '是否开启TLS',
     create_time timestamp             default current_timestamp not null,
     update_time timestamp             default current_timestamp not null,
-    valid      tinyint      not null default 1,
-    remark     varchar(255)
+    valid       tinyint      not null default 1,
+    remark      varchar(255)
 ) engine = innodb;
 
 # 接受者模板
 create table if not exists m_receiver_template
 (
-    id bigint auto_increment primary key comment '主键',
-    uid bigint not null comment '用户id',
-    receivers text comment '字符串形式的用户',
-    `sql` text comment 'sql格式的用户',
-    file_url varchar(255) comment '文件形式的用户, 只保存url',
-    status int not null default 0 comment '状态, 0为待审核',
-    create_time timestamp             default current_timestamp not null,
-    update_time timestamp             default current_timestamp not null,
-    valid      tinyint      not null default 1,
-    remark     varchar(255)
+    id          bigint auto_increment primary key comment '主键',
+    uid         bigint  not null comment '用户id',
+    receivers   text comment '字符串形式的用户',
+    `sql`       text comment 'sql格式的用户',
+    file_url    varchar(255) comment '文件形式的用户, 只保存url',
+    status      int     not null default 0 comment '状态, 0为待审核',
+    create_time timestamp        default current_timestamp not null,
+    update_time timestamp        default current_timestamp not null,
+    valid       tinyint not null default 1,
+    remark      varchar(255)
 ) engine = innodb;
 
 # 消息参数模板
-create table if not exists m_email_template (
-    id bigint auto_increment primary key comment '主键',
-    uid bigint not null comment '用户id',
-    title varchar(255) not null comment '邮件标题',
-    copy varchar(255) comment '抄送',
+create table if not exists m_email_template
+(
+    id             bigint auto_increment primary key comment '主键',
+    uid            bigint       not null comment '用户id',
+    title          varchar(255) not null comment '邮件标题',
+    copy           varchar(255) comment '抄送',
     attachment_url varchar(255) comment '附件的url',
-    content text not null comment '邮件正文',
-    status int not null default 0 comment '状态, 0为待审核',
-    create_time timestamp             default current_timestamp not null,
-    update_time timestamp             default current_timestamp not null,
-    valid      tinyint      not null default 1,
-    remark     varchar(255)
+    content        text         not null comment '邮件正文',
+    status         int          not null default 0 comment '状态, 0为待审核',
+    create_time    timestamp             default current_timestamp not null,
+    update_time    timestamp             default current_timestamp not null,
+    valid          tinyint      not null default 1,
+    remark         varchar(255)
 ) engine = innodb;
 
-create table m_message (
-    id bigint auto_increment primary key comment '主键',
-    uid bigint not null comment '用户id',
-    name varchar(255) not null comment '消息名',
-    type int not null comment '消息类型',
-    param_template_id bigint comment '参数的模板id',
-    param_json text comment '参数的json格式',
+create table m_message
+(
+    id                   bigint auto_increment primary key comment '主键',
+    uid                  bigint       not null comment '用户id',
+    name                 varchar(255) not null comment '消息名',
+    type                 int          not null comment '消息类型',
+    param_template_id    bigint comment '参数的模板id',
+    param_json           text comment '参数的json格式',
     receiver_template_id bigint comment '接受者的模板id',
-    receiver_json text comment '接受者的json格式',
-    all_send bigint comment '总共需要发送的个数',
-    have_send bigint comment '已经发送的个数',
-    status int not null default 0 comment '状态, 0待发送',
-    create_time timestamp             default current_timestamp not null,
-    update_time timestamp             default current_timestamp not null,
-    valid      tinyint      not null default 1,
-    remark     varchar(255)
+    receiver_json        text comment '接受者的json格式',
+    all_send             bigint comment '总共需要发送的个数',
+    have_send            bigint comment '已经发送的个数',
+    status               int          not null default 0 comment '状态, 0待发送',
+    create_time          timestamp             default current_timestamp not null,
+    update_time          timestamp             default current_timestamp not null,
+    valid                tinyint      not null default 1,
+    remark               varchar(255)
 ) engine = innodb;
 
 # 消息发送详情
-create table m_send_detail (
-    id bigint auto_increment primary key ,
-    mid bigint not null ,
-    status int not null default 0 ,
-    receiver varchar(255) not null ,
-    create_time timestamp             default current_timestamp not null,
-    update_time timestamp             default current_timestamp not null,
-    remark     varchar(255)
+create table m_send_detail
+(
+    id          bigint auto_increment primary key,
+    mid         bigint                              not null,
+    status      int                                 not null default 0,
+    receiver    varchar(255)                        not null,
+    create_time timestamp default current_timestamp not null,
+    update_time timestamp default current_timestamp not null,
+    remark      varchar(255)
 ) engine = innodb;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -116,15 +101,15 @@ create table if not exists m_template
     type             int                                 not null comment '模板类型',
     name             varchar(255)                        not null comment '模板名称',
     send_cycle_type  int                                 not null comment '发送周期类型',
-    send_cycle  varchar(255)                                 not null comment '发送周期类型',
+    send_cycle       varchar(255)                        not null comment '发送周期类型',
     receiver_id_type int                                 not null comment '接受者id类型',
-    body            text not null ,
+    body             text                                not null,
     creator_name     varchar(255) comment '创建者姓名',
     creator_phone    varchar(32) comment '创建者电话',
     create_time      timestamp default current_timestamp not null,
     update_time      timestamp default current_timestamp not null,
-    valid            tinyint   default 1 ,
-    remark varchar(255)
+    valid            tinyint   default 1,
+    remark           varchar(255)
 ) engine = innodb;
 
 create table if not exists m_send_account
