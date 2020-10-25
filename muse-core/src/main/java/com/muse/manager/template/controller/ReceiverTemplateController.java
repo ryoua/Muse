@@ -21,6 +21,17 @@ public class ReceiverTemplateController {
     @Autowired
     private ReceiverTemplateService receiverTemplateService;
 
+    @PutMapping("/{id}")
+    @ApiOperation(value = "更新接收人群模板的状态", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "PUT")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "status", value = "状态", required = true, dataType = "int")
+    })
+    public Result<?> updateReceiverTemplateStatusById(@PathVariable("id") String id, @RequestParam("status") int status) {
+        receiverTemplateService.updateReceiverTemplateStatus(status, Long.parseLong(id));
+        return Result.SUCCESS();
+    }
+
     @GetMapping("/")
     @ApiOperation(value = "获取全部接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({

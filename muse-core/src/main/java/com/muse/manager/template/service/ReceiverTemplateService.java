@@ -42,4 +42,8 @@ public class ReceiverTemplateService {
         receiverTemplate.setUid(uid);
         return receiverTemplateRepository.save(receiverTemplate);
     }
+
+    public void updateReceiverTemplateStatus(int status, long id) {
+        receiverTemplateRepository.updateReceiverTemplateStatusById(status, id);
+    }
 }
