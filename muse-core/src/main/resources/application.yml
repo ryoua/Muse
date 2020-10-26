@@ -32,3 +32,4 @@ spring:
           sendmail: Javen
           sendname: Spring Boot
 server:
+  port: 8443

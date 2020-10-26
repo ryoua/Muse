@@ -32,7 +32,7 @@ public class ReceiverTemplateController {
         return Result.SUCCESS();
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     @ApiOperation(value = "获取全部接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "第几页", required = true, dataType = "int"),
@@ -53,7 +53,7 @@ public class ReceiverTemplateController {
         return Result.SUCCESS();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("")
     @ApiOperation(value = "新增接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ReceiverTemplate", value = "接收人群模板", required = true, dataType = "ReceiverTemplate"),
@@ -63,13 +63,13 @@ public class ReceiverTemplateController {
         return Result.SUCCESS();
     }
 
-    @PutMapping("/{id}")
-    @ApiOperation(value = "更新接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "PUT")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "ReceiverTemplate", value = "接收人群模板", required = true, dataType = "ReceiverTemplate"),
-    })
-    public Result<?> updateReceiverTemplateById(@RequestBody ReceiverTemplate receiverTemplate) {
-        receiverTemplateService.updateReceiverTemplate(receiverTemplate);
-        return Result.SUCCESS();
-    }
+//    @PutMapping("/{id}")
+//    @ApiOperation(value = "更新接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "PUT")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "ReceiverTemplate", value = "接收人群模板", required = true, dataType = "ReceiverTemplate"),
+//    })
+//    public Result<?> updateReceiverTemplateById(@RequestBody ReceiverTemplate receiverTemplate) {
+//        receiverTemplateService.updateReceiverTemplate(receiverTemplate);
+//        return Result.SUCCESS();
+//    }
 }

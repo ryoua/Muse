@@ -1,5 +1,6 @@
 package com.muse.manager.template.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,6 +28,7 @@ public class ReceiverTemplate extends Template {
     @Column(columnDefinition = "text comment '字符串形式的用户'")
     private String receivers;
 
+    @SerializedName("sql")
     @Lob
     @Column(columnDefinition = "text comment 'sql格式的用户'")
     private String sqlStr;

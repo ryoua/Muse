@@ -44,6 +44,6 @@ public class ReceiverTemplateService {
     }
 
     public void updateReceiverTemplateStatus(int status, long id) {
-        receiverTemplateRepository.updateReceiverTemplateStatusById(status, id);
+
     }
 }
