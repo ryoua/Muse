@@ -1,6 +1,5 @@
 package com.muse.manager.template.service;
 
-import com.muse.manager.template.repository.EmailTemplateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +9,4 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class ParamTemplateService {
-    @Autowired
-    private EmailTemplateRepository emailTemplateRepository;
 }

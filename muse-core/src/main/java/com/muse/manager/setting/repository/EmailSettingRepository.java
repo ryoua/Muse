@@ -1,8 +1,7 @@
 package com.muse.manager.setting.repository;
 
 import com.muse.manager.setting.model.EmailSetting;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -10,8 +9,8 @@ import java.util.List;
  * * @Author: RyouA
  * * @Date: 2020/10/24
  **/
-@Repository
-public interface EmailSettingRepository extends JpaRepository<EmailSetting, Long> {
+@Mapper
+public interface EmailSettingRepository {
     EmailSetting findByIdAndUid(long id, long uid);
 
     void deleteByIdAndUid(long id, long uid);

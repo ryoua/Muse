@@ -1,10 +1,16 @@
 package com.muse.dispatch.event;
 
+import java.util.List;
+
 /**
  * * @Author: RyouA
  * * @Date: 2020/10/26
  **/
 public class MessageData {
+
+
+
+    private String receiver;
 
     private String message;
 

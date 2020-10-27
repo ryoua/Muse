@@ -35,11 +35,12 @@ public class EmailSettingService {
 
     public void updateEmailSettingById(EmailSetting emailSetting) {
         emailSetting.setUid(UserLocal.getUserId());
-        emailSettingRepository.save(emailSetting);
+//        emailSettingRepository.save(emailSetting);
     }
 
     public long addEmailSetting(EmailSetting emailSetting) {
         emailSetting.setUid(UserLocal.getUserId());
-        return emailSettingRepository.save(emailSetting).getId();
+//        return emailSettingRepository.save(emailSetting).getId();
+        return 1L;
     }
 }

@@ -1,15 +1,16 @@
 package com.muse.manager.template.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.muse.common.threadLocal.UserLocal;
+import com.muse.manager.template.mapper.ReceiverTemplateMapper;
 import com.muse.manager.template.model.ReceiverTemplate;
-import com.muse.manager.template.repository.ReceiverTemplateRepository;
+import com.muse.manager.template.model.ReceiverTemplateExample;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 /**
  * * @Author: RyouA
@@ -18,32 +19,31 @@ import java.util.List;
 @Service
 public class ReceiverTemplateService {
     @Autowired
-    ReceiverTemplateRepository receiverTemplateRepository;
+    ReceiverTemplateMapper receiverTemplateMapper;
 
-    public List<ReceiverTemplate> getAllReceiverTemplate(int pageNo, int pageSize) {
-        long uid = UserLocal.getUserId();
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<ReceiverTemplate> all = receiverTemplateRepository.findAllByUid(uid, pageable);
-        return all.getContent();
+    public PageInfo<ReceiverTemplate> getAllReceiverTemplate(int pageNo, int pageSize) {
+        ReceiverTemplateExample example = new ReceiverTemplateExample();
+        PageHelper.startPage(pageNo, pageSize);
+        return PageInfo.of(receiverTemplateMapper.selectByExample(example));
     }
-
-    public void deleteReceiverTemplateById(long id) {
-        receiverTemplateRepository.deleteById(id);
-    }
-
-    public void updateReceiverTemplate(ReceiverTemplate receiverTemplate) {
-        long uid = UserLocal.getUserId();
-        receiverTemplate.setUid(uid);
-        receiverTemplateRepository.save(receiverTemplate);
-    }
-
-    public ReceiverTemplate addReceiverTemplate(ReceiverTemplate receiverTemplate) {
-        long uid = UserLocal.getUserId();
-        receiverTemplate.setUid(uid);
-        return receiverTemplateRepository.save(receiverTemplate);
-    }
-
-    public void updateReceiverTemplateStatus(int status, long id) {
-
-    }
+//
+//    public void deleteReceiverTemplateById(long id) {
+//        receiverTemplateRepository.deleteById(id);
+//    }
+//
+//    public void updateReceiverTemplate(ReceiverTemplate receiverTemplate) {
+//        long uid = UserLocal.getUserId();
+//        receiverTemplate.setUid(uid);
+//        receiverTemplateRepository.save(receiverTemplate);
+//    }
+//
+//    public ReceiverTemplate addReceiverTemplate(ReceiverTemplate receiverTemplate) {
+//        long uid = UserLocal.getUserId();
+//        receiverTemplate.setUid(uid);
+//        return receiverTemplateRepository.save(receiverTemplate);
+//    }
+//
+//    public void updateReceiverTemplateStatus(int status, long id) {
+//
+//    }
 }

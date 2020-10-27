@@ -1,15 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/muse?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
-  jpa:
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   mail:
     host: smtp.qq.com
     port: 465     #qq邮箱465、587
@@ -33,3 +27,19 @@ spring:
           sendname: Spring Boot
 server:
   port: 8443
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+pagehelper:
+  helper-dialect: mysql
+  auto-dialect: true
+  page-size-zero: false
+  reasonable: true
+  offset-as-page-num: false
+  row-bounds-with-count: false
+  auto-runtime-dialect: false
+  close-conn: true
+  default-count: false
+
+

@@ -24,10 +24,16 @@ create table if not exists m_receiver_template
 (
     id          bigint auto_increment primary key comment '主键',
     uid         bigint  not null comment '用户id',
+    name        varchar(255) not null comment '模板名称',
+
+    template_type int not null comment '模板类型',
+    receiver_type int not null comment '用户id类型',
     receivers   text comment '字符串形式的用户',
     `sql`       text comment 'sql格式的用户',
     file_url    varchar(255) comment '文件形式的用户, 只保存url',
+
     status      int     not null default 0 comment '状态, 0为待审核',
+    fail_reason varchar(255) comment '审核失败的原因',
     create_time timestamp        default current_timestamp not null,
     update_time timestamp        default current_timestamp not null,
     valid       tinyint not null default 1,

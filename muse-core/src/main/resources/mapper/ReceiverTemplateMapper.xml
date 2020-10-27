@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.muse.manager.template.mapper.ReceiverTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    <!--@Table muse.receiver_template-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="valid" jdbcType="BIT" property="valid" />
+    <result column="fileUrl" jdbcType="VARCHAR" property="fileurl" />
+    <result column="receiverType" jdbcType="INTEGER" property="receivertype" />
+    <result column="templateType" jdbcType="INTEGER" property="templatetype" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    <!--@Table muse.receiver_template-->
+    <result column="receivers" jdbcType="LONGVARCHAR" property="receivers" />
+    <result column="sqlStr" jdbcType="LONGVARCHAR" property="sqlstr" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, createTime, `name`, `status`, `uid`, updateTime, `valid`, fileUrl, receiverType, 
+    templateType
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--@mbg.generated-->
+    receivers, sqlStr
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultMap="ResultMapWithBLOBs">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from muse.receiver_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from muse.receiver_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from muse.receiver_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from muse.receiver_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample">
+    <!--@mbg.generated-->
+    delete from muse.receiver_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    insert into muse.receiver_template (id, createTime, `name`, 
+      `status`, `uid`, updateTime, 
+      `valid`, fileUrl, receiverType, 
+      templateType, receivers, sqlStr
+      )
+    values (#{id,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{valid,jdbcType=BIT}, #{fileurl,jdbcType=VARCHAR}, #{receivertype,jdbcType=INTEGER}, 
+      #{templatetype,jdbcType=INTEGER}, #{receivers,jdbcType=LONGVARCHAR}, #{sqlstr,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    insert into muse.receiver_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="valid != null">
+        `valid`,
+      </if>
+      <if test="fileurl != null">
+        fileUrl,
+      </if>
+      <if test="receivertype != null">
+        receiverType,
+      </if>
+      <if test="templatetype != null">
+        templateType,
+      </if>
+      <if test="receivers != null">
+        receivers,
+      </if>
+      <if test="sqlstr != null">
+        sqlStr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valid != null">
+        #{valid,jdbcType=BIT},
+      </if>
+      <if test="fileurl != null">
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="receivertype != null">
+        #{receivertype,jdbcType=INTEGER},
+      </if>
+      <if test="templatetype != null">
+        #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="receivers != null">
+        #{receivers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sqlstr != null">
+        #{sqlstr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from muse.receiver_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createtime != null">
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null">
+        `uid` = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.updatetime != null">
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.valid != null">
+        `valid` = #{record.valid,jdbcType=BIT},
+      </if>
+      <if test="record.fileurl != null">
+        fileUrl = #{record.fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivertype != null">
+        receiverType = #{record.receivertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.templatetype != null">
+        templateType = #{record.templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivers != null">
+        receivers = #{record.receivers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.sqlstr != null">
+        sqlStr = #{record.sqlstr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    set id = #{record.id,jdbcType=BIGINT},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER},
+      `uid` = #{record.uid,jdbcType=BIGINT},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      `valid` = #{record.valid,jdbcType=BIT},
+      fileUrl = #{record.fileurl,jdbcType=VARCHAR},
+      receiverType = #{record.receivertype,jdbcType=INTEGER},
+      templateType = #{record.templatetype,jdbcType=INTEGER},
+      receivers = #{record.receivers,jdbcType=LONGVARCHAR},
+      sqlStr = #{record.sqlstr,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    set id = #{record.id,jdbcType=BIGINT},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER},
+      `uid` = #{record.uid,jdbcType=BIGINT},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      `valid` = #{record.valid,jdbcType=BIT},
+      fileUrl = #{record.fileurl,jdbcType=VARCHAR},
+      receiverType = #{record.receivertype,jdbcType=INTEGER},
+      templateType = #{record.templatetype,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    <set>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valid != null">
+        `valid` = #{valid,jdbcType=BIT},
+      </if>
+      <if test="fileurl != null">
+        fileUrl = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="receivertype != null">
+        receiverType = #{receivertype,jdbcType=INTEGER},
+      </if>
+      <if test="templatetype != null">
+        templateType = #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="receivers != null">
+        receivers = #{receivers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sqlstr != null">
+        sqlStr = #{sqlstr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      `name` = #{name,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      `uid` = #{uid,jdbcType=BIGINT},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      `valid` = #{valid,jdbcType=BIT},
+      fileUrl = #{fileurl,jdbcType=VARCHAR},
+      receiverType = #{receivertype,jdbcType=INTEGER},
+      templateType = #{templatetype,jdbcType=INTEGER},
+      receivers = #{receivers,jdbcType=LONGVARCHAR},
+      sqlStr = #{sqlstr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      `name` = #{name,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      `uid` = #{uid,jdbcType=BIGINT},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      `valid` = #{valid,jdbcType=BIT},
+      fileUrl = #{fileurl,jdbcType=VARCHAR},
+      receiverType = #{receivertype,jdbcType=INTEGER},
+      templateType = #{templatetype,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update muse.receiver_template
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="createTime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createtime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`uid` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.uid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="updateTime = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updatetime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="`valid` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.valid,jdbcType=BIT}
+        </foreach>
+      </trim>
+      <trim prefix="fileUrl = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.fileurl,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="receiverType = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.receivertype,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="templateType = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.templatetype,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="receivers = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.receivers,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sqlStr = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sqlstr,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into muse.receiver_template
+    (id, createTime, `name`, `status`, `uid`, updateTime, `valid`, fileUrl, receiverType, 
+      templateType, receivers, sqlStr)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.createtime,jdbcType=TIMESTAMP}, #{item.name,jdbcType=VARCHAR}, 
+        #{item.status,jdbcType=INTEGER}, #{item.uid,jdbcType=BIGINT}, #{item.updatetime,jdbcType=TIMESTAMP}, 
+        #{item.valid,jdbcType=BIT}, #{item.fileurl,jdbcType=VARCHAR}, #{item.receivertype,jdbcType=INTEGER}, 
+        #{item.templatetype,jdbcType=INTEGER}, #{item.receivers,jdbcType=LONGVARCHAR}, 
+        #{item.sqlstr,jdbcType=LONGVARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    insert into muse.receiver_template
+    (id, createTime, `name`, `status`, `uid`, updateTime, `valid`, fileUrl, receiverType, 
+      templateType)
+    values
+    (#{id,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{valid,jdbcType=BIT}, #{fileurl,jdbcType=VARCHAR}, #{receivertype,jdbcType=INTEGER}, 
+      #{templatetype,jdbcType=INTEGER})
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    createTime = #{createtime,jdbcType=TIMESTAMP}, 
+    `name` = #{name,jdbcType=VARCHAR}, 
+    `status` = #{status,jdbcType=INTEGER}, 
+    `uid` = #{uid,jdbcType=BIGINT}, 
+    updateTime = #{updatetime,jdbcType=TIMESTAMP}, 
+    `valid` = #{valid,jdbcType=BIT}, 
+    fileUrl = #{fileurl,jdbcType=VARCHAR}, 
+    receiverType = #{receivertype,jdbcType=INTEGER}, 
+    templateType = #{templatetype,jdbcType=INTEGER}
+  </insert>
+  <insert id="insertOrUpdateWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    insert into muse.receiver_template
+    (id, createTime, `name`, `status`, `uid`, updateTime, `valid`, fileUrl, receiverType, 
+      templateType, receivers, sqlStr)
+    values
+    (#{id,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{uid,jdbcType=BIGINT}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{valid,jdbcType=BIT}, #{fileurl,jdbcType=VARCHAR}, #{receivertype,jdbcType=INTEGER}, 
+      #{templatetype,jdbcType=INTEGER}, #{receivers,jdbcType=LONGVARCHAR}, #{sqlstr,jdbcType=LONGVARCHAR}
+      )
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    createTime = #{createtime,jdbcType=TIMESTAMP}, 
+    `name` = #{name,jdbcType=VARCHAR}, 
+    `status` = #{status,jdbcType=INTEGER}, 
+    `uid` = #{uid,jdbcType=BIGINT}, 
+    updateTime = #{updatetime,jdbcType=TIMESTAMP}, 
+    `valid` = #{valid,jdbcType=BIT}, 
+    fileUrl = #{fileurl,jdbcType=VARCHAR}, 
+    receiverType = #{receivertype,jdbcType=INTEGER}, 
+    templateType = #{templatetype,jdbcType=INTEGER}, 
+    receivers = #{receivers,jdbcType=LONGVARCHAR}, 
+    sqlStr = #{sqlstr,jdbcType=LONGVARCHAR}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+    <!--@mbg.generated-->
+    insert into muse.receiver_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="valid != null">
+        `valid`,
+      </if>
+      <if test="fileurl != null">
+        fileUrl,
+      </if>
+      <if test="receivertype != null">
+        receiverType,
+      </if>
+      <if test="templatetype != null">
+        templateType,
+      </if>
+      <if test="receivers != null">
+        receivers,
+      </if>
+      <if test="sqlstr != null">
+        sqlStr,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valid != null">
+        #{valid,jdbcType=BIT},
+      </if>
+      <if test="fileurl != null">
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="receivertype != null">
+        #{receivertype,jdbcType=INTEGER},
+      </if>
+      <if test="templatetype != null">
+        #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="receivers != null">
+        #{receivers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sqlstr != null">
+        #{sqlstr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        `uid` = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valid != null">
+        `valid` = #{valid,jdbcType=BIT},
+      </if>
+      <if test="fileurl != null">
+        fileUrl = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="receivertype != null">
+        receiverType = #{receivertype,jdbcType=INTEGER},
+      </if>
+      <if test="templatetype != null">
+        templateType = #{templatetype,jdbcType=INTEGER},
+      </if>
+      <if test="receivers != null">
+        receivers = #{receivers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sqlstr != null">
+        sqlStr = #{sqlstr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
