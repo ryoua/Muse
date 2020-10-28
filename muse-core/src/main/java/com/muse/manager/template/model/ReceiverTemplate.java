@@ -4,23 +4,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
 ** @Author: RyouA
-** @Date: 2020/10/27
+** @Date: 2020/10/28
 **/
 @ApiModel(value="com-muse-manager-template-model-ReceiverTemplate")
-@Data
+@Getter
+@Setter
+@ToString
 public class ReceiverTemplate implements Serializable {
     @ApiModelProperty(value="")
     private Long id;
 
     /**
-    * 创建时间
+    * 用户id
     */
-    @ApiModelProperty(value="创建时间")
-    private Date createtime;
+    @ApiModelProperty(value="用户id")
+    private Long uid;
 
     /**
     * 模板名称
@@ -35,10 +39,22 @@ public class ReceiverTemplate implements Serializable {
     private Integer status;
 
     /**
-    * 用户id
+    * 模板类型
     */
-    @ApiModelProperty(value="用户id")
-    private Long uid;
+    @ApiModelProperty(value="模板类型")
+    private Integer templatetype;
+
+    /**
+    * 用户id类型
+    */
+    @ApiModelProperty(value="用户id类型")
+    private Integer receivertype;
+
+    /**
+     * 模板内容
+     */
+    @ApiModelProperty(value="模板内容")
+    private String content;
 
     /**
     * 更新时间
@@ -53,34 +69,18 @@ public class ReceiverTemplate implements Serializable {
     private Boolean valid;
 
     /**
-    * 文件形式的用户, 只保存url
+    * 创建时间
     */
-    @ApiModelProperty(value="文件形式的用户, 只保存url")
-    private String fileurl;
+    @ApiModelProperty(value="创建时间")
+    private Date createtime;
 
     /**
-    * 用户id类型
+    * 备注
     */
-    @ApiModelProperty(value="用户id类型")
-    private Integer receivertype;
+    @ApiModelProperty(value="备注")
+    private String remark;
 
-    /**
-    * 模板类型
-    */
-    @ApiModelProperty(value="模板类型")
-    private Integer templatetype;
 
-    /**
-    * 字符串形式的用户
-    */
-    @ApiModelProperty(value="字符串形式的用户")
-    private String receivers;
-
-    /**
-    * sql格式的用户
-    */
-    @ApiModelProperty(value="sql格式的用户")
-    private String sqlstr;
 
     private static final long serialVersionUID = 1L;
 }

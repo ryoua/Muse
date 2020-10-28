@@ -9,8 +9,6 @@ import com.muse.manager.template.model.ReceiverTemplateExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 
 /**
  * * @Author: RyouA
@@ -23,27 +21,25 @@ public class ReceiverTemplateService {
 
     public PageInfo<ReceiverTemplate> getAllReceiverTemplate(int pageNo, int pageSize) {
         ReceiverTemplateExample example = new ReceiverTemplateExample();
+        example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
+        example.setOrderByClause("id desc");
         PageHelper.startPage(pageNo, pageSize);
         return PageInfo.of(receiverTemplateMapper.selectByExample(example));
     }
-//
-//    public void deleteReceiverTemplateById(long id) {
-//        receiverTemplateRepository.deleteById(id);
-//    }
-//
-//    public void updateReceiverTemplate(ReceiverTemplate receiverTemplate) {
-//        long uid = UserLocal.getUserId();
-//        receiverTemplate.setUid(uid);
-//        receiverTemplateRepository.save(receiverTemplate);
-//    }
-//
-//    public ReceiverTemplate addReceiverTemplate(ReceiverTemplate receiverTemplate) {
-//        long uid = UserLocal.getUserId();
-//        receiverTemplate.setUid(uid);
-//        return receiverTemplateRepository.save(receiverTemplate);
-//    }
-//
-//    public void updateReceiverTemplateStatus(int status, long id) {
-//
-//    }
+
+    public void deleteReceiverTemplateById(long id) {
+        receiverTemplateMapper.deleteByPrimaryKey(id);
+    }
+
+    public void updateReceiverTemplate(ReceiverTemplate receiverTemplate) {
+        long uid = UserLocal.getUserId();
+        receiverTemplate.setUid(uid);
+        receiverTemplateMapper.updateByPrimaryKey(receiverTemplate);
+    }
+
+    public void addReceiverTemplate(ReceiverTemplate receiverTemplate) {
+        long uid = UserLocal.getUserId();
+        receiverTemplate.setUid(uid);
+        receiverTemplateMapper.insertSelective(receiverTemplate);
+    }
 }

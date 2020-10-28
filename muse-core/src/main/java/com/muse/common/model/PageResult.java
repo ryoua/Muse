@@ -1,5 +1,7 @@
 package com.muse.common.model;
 
+import com.github.pagehelper.PageInfo;
+
 /**
  * * @Author: RyouA
  * * @Date: 2020/10/27
@@ -11,14 +13,6 @@ public class PageResult<T> {
      */
     int code;
 
-    private int pageNo;
-
-    private int pageSize;
-
-    private long totalCount;
-
-    private int totalPage;
-
     /**
      * 提示信息
      */
@@ -29,67 +23,94 @@ public class PageResult<T> {
      */
     T data;
 
-    public PageResult(int code, String message, int pageNo, int pageSize, long totalCount) {
+    int pageSize;
+    int pageNo;
+    long totalCount;
+    int totalPage;
+
+    public PageResult(int code, String message) {
         this.code = code;
         this.message = message;
-        this.pageNo = pageNo;
-        this.pageSize = pageSize;
-        this.totalCount = totalCount;
-        this.totalPage = (int) (totalCount / pageSize) + 1;
     }
 
-    public PageResult(int code, String message, T data, int pageNo, int pageSize, long totalCount) {
+    public PageResult(int code, String message, T data) {
         this.code = code;
         this.message = message;
-        this.data = data;
-        this.pageNo = pageNo;
-        this.pageSize = pageSize;
-        this.totalCount = totalCount;
-        this.totalPage = (int) (totalCount / pageSize) + 1;
+        PageInfo pageInfo = (PageInfo) data;
+        this.data = (T) pageInfo.getList();
+        this.pageNo = pageInfo.getPageNum();
+        this.pageSize = pageInfo.getPageSize();
+        this.totalCount = pageInfo.getTotal();
+        this.totalPage = pageInfo.getPages();
     }
 
 
-    public PageResult(ResultCode resultCode, int pageNo, int pageSize, long totalCount) {
+    public PageResult(ResultCode resultCode) {
         this.code = resultCode.code();
         this.message = resultCode.message();
-        this.pageNo = pageNo;
-        this.pageSize = pageSize;
-        this.totalCount = totalCount;
-        this.totalPage = (int) (totalCount / pageSize) + 1;
     }
 
-    public PageResult(ResultCode resultCode, T data, int pageNo, int pageSize, long totalCount) {
+    public PageResult(ResultCode resultCode, T data) {
         this.code = resultCode.code();
         this.message = resultCode.message();
-        this.data = data;
-        this.pageSize = pageSize;
-        this.pageNo = pageNo;
-        this.totalCount = totalCount;
-        this.totalPage = (int) (totalCount / pageSize) + 1;
+        PageInfo pageInfo = (PageInfo) data;
+        this.data = (T) pageInfo.getList();
+        this.pageNo = pageInfo.getPageNum();
+        this.pageSize = pageInfo.getPageSize();
+        this.totalCount = pageInfo.getTotal();
+        this.totalPage = pageInfo.getPages();
     }
 
-    public PageResult(String message, int pageNo, int pageSize, long totalCount) {
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(int pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public long getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(long totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public PageResult(String message) {
         this.message = message;
-        this.pageSize = pageSize;
-        this.pageNo = pageNo;
-        this.totalCount = totalCount;
-        this.totalPage = (int) (totalCount / pageSize) + 1;
     }
 
-    public static com.muse.common.model.Result<ResultCode> SUCCESS() {
-        return new com.muse.common.model.Result<>(ResultCode.SUCCESS);
+    public static Result<ResultCode> SUCCESS() {
+        return new Result<>(ResultCode.SUCCESS);
     }
 
-    public static <T> com.muse.common.model.Result<?> SUCCESS(T data) {
-        return new com.muse.common.model.Result<>(ResultCode.SUCCESS, data);
+    public static <T> Result<?> SUCCESS(T data) {
+        return new Result<>(ResultCode.SUCCESS, data);
     }
 
-    public static com.muse.common.model.Result<ResultCode> FAIL() {
-        return new com.muse.common.model.Result<>(ResultCode.FAIL);
+    public static Result<ResultCode> FAIL() {
+        return new Result<>(ResultCode.FAIL);
     }
 
-    public static com.muse.common.model.Result<?> FAIL(String message) {
-        return new com.muse.common.model.Result<>(message);
+    public static Result<?> FAIL(String message) {
+        return new Result<>(message);
     }
 
     public int getCode() {
@@ -104,30 +125,6 @@ public class PageResult<T> {
         return message;
     }
 
-    public int getPageNo() {
-        return pageNo;
-    }
-
-    public void setPageNo(int pageNo) {
-        this.pageNo = pageNo;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public long getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(long totalCount) {
-        this.totalCount = totalCount;
-    }
-
     public void setMessage(String message) {
         this.message = message;
     }
@@ -138,13 +135,5 @@ public class PageResult<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
     }
 }

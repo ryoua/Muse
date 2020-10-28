@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
 ** @Author: RyouA
-** @Date: 2020/10/27
+** @Date: 2020/10/28
 **/
 public class ReceiverTemplateExample {
     protected String orderByClause;
@@ -169,63 +169,63 @@ public class ReceiverTemplateExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNull() {
-            addCriterion("createTime is null");
+        public Criteria andUidIsNull() {
+            addCriterion("`uid` is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIsNotNull() {
-            addCriterion("createTime is not null");
+        public Criteria andUidIsNotNull() {
+            addCriterion("`uid` is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeEqualTo(Date value) {
-            addCriterion("createTime =", value, "createtime");
+        public Criteria andUidEqualTo(Long value) {
+            addCriterion("`uid` =", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotEqualTo(Date value) {
-            addCriterion("createTime <>", value, "createtime");
+        public Criteria andUidNotEqualTo(Long value) {
+            addCriterion("`uid` <>", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThan(Date value) {
-            addCriterion("createTime >", value, "createtime");
+        public Criteria andUidGreaterThan(Long value) {
+            addCriterion("`uid` >", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("createTime >=", value, "createtime");
+        public Criteria andUidGreaterThanOrEqualTo(Long value) {
+            addCriterion("`uid` >=", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThan(Date value) {
-            addCriterion("createTime <", value, "createtime");
+        public Criteria andUidLessThan(Long value) {
+            addCriterion("`uid` <", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
-            addCriterion("createTime <=", value, "createtime");
+        public Criteria andUidLessThanOrEqualTo(Long value) {
+            addCriterion("`uid` <=", value, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeIn(List<Date> values) {
-            addCriterion("createTime in", values, "createtime");
+        public Criteria andUidIn(List<Long> values) {
+            addCriterion("`uid` in", values, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotIn(List<Date> values) {
-            addCriterion("createTime not in", values, "createtime");
+        public Criteria andUidNotIn(List<Long> values) {
+            addCriterion("`uid` not in", values, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeBetween(Date value1, Date value2) {
-            addCriterion("createTime between", value1, value2, "createtime");
+        public Criteria andUidBetween(Long value1, Long value2) {
+            addCriterion("`uid` between", value1, value2, "uid");
             return (Criteria) this;
         }
 
-        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
-            addCriterion("createTime not between", value1, value2, "createtime");
+        public Criteria andUidNotBetween(Long value1, Long value2) {
+            addCriterion("`uid` not between", value1, value2, "uid");
             return (Criteria) this;
         }
 
@@ -359,63 +359,123 @@ public class ReceiverTemplateExample {
             return (Criteria) this;
         }
 
-        public Criteria andUidIsNull() {
-            addCriterion("`uid` is null");
+        public Criteria andTemplatetypeIsNull() {
+            addCriterion("templateType is null");
             return (Criteria) this;
         }
 
-        public Criteria andUidIsNotNull() {
-            addCriterion("`uid` is not null");
+        public Criteria andTemplatetypeIsNotNull() {
+            addCriterion("templateType is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUidEqualTo(Long value) {
-            addCriterion("`uid` =", value, "uid");
+        public Criteria andTemplatetypeEqualTo(Integer value) {
+            addCriterion("templateType =", value, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotEqualTo(Long value) {
-            addCriterion("`uid` <>", value, "uid");
+        public Criteria andTemplatetypeNotEqualTo(Integer value) {
+            addCriterion("templateType <>", value, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidGreaterThan(Long value) {
-            addCriterion("`uid` >", value, "uid");
+        public Criteria andTemplatetypeGreaterThan(Integer value) {
+            addCriterion("templateType >", value, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidGreaterThanOrEqualTo(Long value) {
-            addCriterion("`uid` >=", value, "uid");
+        public Criteria andTemplatetypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("templateType >=", value, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidLessThan(Long value) {
-            addCriterion("`uid` <", value, "uid");
+        public Criteria andTemplatetypeLessThan(Integer value) {
+            addCriterion("templateType <", value, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidLessThanOrEqualTo(Long value) {
-            addCriterion("`uid` <=", value, "uid");
+        public Criteria andTemplatetypeLessThanOrEqualTo(Integer value) {
+            addCriterion("templateType <=", value, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidIn(List<Long> values) {
-            addCriterion("`uid` in", values, "uid");
+        public Criteria andTemplatetypeIn(List<Integer> values) {
+            addCriterion("templateType in", values, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotIn(List<Long> values) {
-            addCriterion("`uid` not in", values, "uid");
+        public Criteria andTemplatetypeNotIn(List<Integer> values) {
+            addCriterion("templateType not in", values, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidBetween(Long value1, Long value2) {
-            addCriterion("`uid` between", value1, value2, "uid");
+        public Criteria andTemplatetypeBetween(Integer value1, Integer value2) {
+            addCriterion("templateType between", value1, value2, "templatetype");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotBetween(Long value1, Long value2) {
-            addCriterion("`uid` not between", value1, value2, "uid");
+        public Criteria andTemplatetypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("templateType not between", value1, value2, "templatetype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeIsNull() {
+            addCriterion("receiverType is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeIsNotNull() {
+            addCriterion("receiverType is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeEqualTo(Integer value) {
+            addCriterion("receiverType =", value, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeNotEqualTo(Integer value) {
+            addCriterion("receiverType <>", value, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeGreaterThan(Integer value) {
+            addCriterion("receiverType >", value, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("receiverType >=", value, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeLessThan(Integer value) {
+            addCriterion("receiverType <", value, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeLessThanOrEqualTo(Integer value) {
+            addCriterion("receiverType <=", value, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeIn(List<Integer> values) {
+            addCriterion("receiverType in", values, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeNotIn(List<Integer> values) {
+            addCriterion("receiverType not in", values, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeBetween(Integer value1, Integer value2) {
+            addCriterion("receiverType between", value1, value2, "receivertype");
+            return (Criteria) this;
+        }
+
+        public Criteria andReceivertypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("receiverType not between", value1, value2, "receivertype");
             return (Criteria) this;
         }
 
@@ -539,193 +599,133 @@ public class ReceiverTemplateExample {
             return (Criteria) this;
         }
 
-        public Criteria andFileurlIsNull() {
-            addCriterion("fileUrl is null");
+        public Criteria andCreatetimeIsNull() {
+            addCriterion("createTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlIsNotNull() {
-            addCriterion("fileUrl is not null");
+        public Criteria andCreatetimeIsNotNull() {
+            addCriterion("createTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlEqualTo(String value) {
-            addCriterion("fileUrl =", value, "fileurl");
+        public Criteria andCreatetimeEqualTo(Date value) {
+            addCriterion("createTime =", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlNotEqualTo(String value) {
-            addCriterion("fileUrl <>", value, "fileurl");
+        public Criteria andCreatetimeNotEqualTo(Date value) {
+            addCriterion("createTime <>", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlGreaterThan(String value) {
-            addCriterion("fileUrl >", value, "fileurl");
+        public Criteria andCreatetimeGreaterThan(Date value) {
+            addCriterion("createTime >", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlGreaterThanOrEqualTo(String value) {
-            addCriterion("fileUrl >=", value, "fileurl");
+        public Criteria andCreatetimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("createTime >=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlLessThan(String value) {
-            addCriterion("fileUrl <", value, "fileurl");
+        public Criteria andCreatetimeLessThan(Date value) {
+            addCriterion("createTime <", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlLessThanOrEqualTo(String value) {
-            addCriterion("fileUrl <=", value, "fileurl");
+        public Criteria andCreatetimeLessThanOrEqualTo(Date value) {
+            addCriterion("createTime <=", value, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlLike(String value) {
-            addCriterion("fileUrl like", value, "fileurl");
+        public Criteria andCreatetimeIn(List<Date> values) {
+            addCriterion("createTime in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlNotLike(String value) {
-            addCriterion("fileUrl not like", value, "fileurl");
+        public Criteria andCreatetimeNotIn(List<Date> values) {
+            addCriterion("createTime not in", values, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlIn(List<String> values) {
-            addCriterion("fileUrl in", values, "fileurl");
+        public Criteria andCreatetimeBetween(Date value1, Date value2) {
+            addCriterion("createTime between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlNotIn(List<String> values) {
-            addCriterion("fileUrl not in", values, "fileurl");
+        public Criteria andCreatetimeNotBetween(Date value1, Date value2) {
+            addCriterion("createTime not between", value1, value2, "createtime");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlBetween(String value1, String value2) {
-            addCriterion("fileUrl between", value1, value2, "fileurl");
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
             return (Criteria) this;
         }
 
-        public Criteria andFileurlNotBetween(String value1, String value2) {
-            addCriterion("fileUrl not between", value1, value2, "fileurl");
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeIsNull() {
-            addCriterion("receiverType is null");
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeIsNotNull() {
-            addCriterion("receiverType is not null");
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeEqualTo(Integer value) {
-            addCriterion("receiverType =", value, "receivertype");
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeNotEqualTo(Integer value) {
-            addCriterion("receiverType <>", value, "receivertype");
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeGreaterThan(Integer value) {
-            addCriterion("receiverType >", value, "receivertype");
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("receiverType >=", value, "receivertype");
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeLessThan(Integer value) {
-            addCriterion("receiverType <", value, "receivertype");
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeLessThanOrEqualTo(Integer value) {
-            addCriterion("receiverType <=", value, "receivertype");
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeIn(List<Integer> values) {
-            addCriterion("receiverType in", values, "receivertype");
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeNotIn(List<Integer> values) {
-            addCriterion("receiverType not in", values, "receivertype");
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeBetween(Integer value1, Integer value2) {
-            addCriterion("receiverType between", value1, value2, "receivertype");
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andReceivertypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("receiverType not between", value1, value2, "receivertype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeIsNull() {
-            addCriterion("templateType is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeIsNotNull() {
-            addCriterion("templateType is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeEqualTo(Integer value) {
-            addCriterion("templateType =", value, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeNotEqualTo(Integer value) {
-            addCriterion("templateType <>", value, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeGreaterThan(Integer value) {
-            addCriterion("templateType >", value, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("templateType >=", value, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeLessThan(Integer value) {
-            addCriterion("templateType <", value, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeLessThanOrEqualTo(Integer value) {
-            addCriterion("templateType <=", value, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeIn(List<Integer> values) {
-            addCriterion("templateType in", values, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeNotIn(List<Integer> values) {
-            addCriterion("templateType not in", values, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeBetween(Integer value1, Integer value2) {
-            addCriterion("templateType between", value1, value2, "templatetype");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplatetypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("templateType not between", value1, value2, "templatetype");
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
     }

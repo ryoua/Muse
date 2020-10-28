@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
 ** @Author: RyouA
-** @Date: 2020/10/27
+** @Date: 2020/10/28
 **/
 @Mapper
 public interface ReceiverTemplateMapper {

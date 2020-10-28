@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class WebLogAspect {
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.muse.*.*(..))")
+    @Pointcut("execution(* com.muse.manager.template..*.*(..))")
     public void webLog() {}
 
     @Before("webLog()")
@@ -39,7 +39,6 @@ public class WebLogAspect {
         log.info("IP: " + request.getRemoteAddr());
         log.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         log.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
-        log.info("\n\n\n\n");
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
