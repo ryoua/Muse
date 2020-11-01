@@ -8,6 +8,9 @@ import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverTemplateExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 
 /**
@@ -19,16 +22,29 @@ public class ReceiverTemplateService {
     @Autowired
     ReceiverTemplateMapper receiverTemplateMapper;
 
-    public PageInfo<ReceiverTemplate> getAllReceiverTemplate(int pageNo, int pageSize) {
+    public PageInfo<ReceiverTemplate> getAllReceiverTemplate(int pageNo, int pageSize, ReceiverTemplate receiverTemplate) {
         ReceiverTemplateExample example = new ReceiverTemplateExample();
-        example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
+        ReceiverTemplateExample.Criteria criteria = example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
+        example.or(addSelectiveQueryParam(receiverTemplate, criteria));
         example.setOrderByClause("id desc");
         PageHelper.startPage(pageNo, pageSize);
-        return PageInfo.of(receiverTemplateMapper.selectByExample(example));
+        return PageInfo.of(receiverTemplateMapper.selectByExampleWithBLOBs(example));
     }
 
     public void deleteReceiverTemplateById(long id) {
-        receiverTemplateMapper.deleteByPrimaryKey(id);
+        ReceiverTemplate receiverTemplate = new ReceiverTemplate();
+        receiverTemplate.setId(id);
+        receiverTemplate.setValid(false);
+        receiverTemplateMapper.updateByPrimaryKeySelective(receiverTemplate);
+    }
+
+    public void deleteReceiverTemplateByIds(List<Long> ids) {
+        ids.forEach(id -> {
+            ReceiverTemplate receiverTemplate = new ReceiverTemplate();
+            receiverTemplate.setId(id);
+            receiverTemplate.setValid(false);
+            receiverTemplateMapper.updateByPrimaryKeySelective(receiverTemplate);
+        });
     }
 
     public void updateReceiverTemplate(ReceiverTemplate receiverTemplate) {
@@ -41,5 +57,24 @@ public class ReceiverTemplateService {
         long uid = UserLocal.getUserId();
         receiverTemplate.setUid(uid);
         receiverTemplateMapper.insertSelective(receiverTemplate);
+    }
+
+    public ReceiverTemplateExample.Criteria addSelectiveQueryParam (ReceiverTemplate receiverTemplate, ReceiverTemplateExample.Criteria criteria) {
+        if (!StringUtils.isEmpty(receiverTemplate.getName())) {
+            criteria.andNameLike("%" + receiverTemplate.getName() + "%");
+        }
+        if (!StringUtils.isEmpty(receiverTemplate.getId())) {
+            criteria.andIdEqualTo(receiverTemplate.getId());
+        }
+        if (!StringUtils.isEmpty(receiverTemplate.getReceivertype())) {
+            criteria.andReceivertypeEqualTo(receiverTemplate.getReceivertype());
+        }
+        if (!StringUtils.isEmpty(receiverTemplate.getTemplatetype())) {
+            criteria.andTemplatetypeEqualTo(receiverTemplate.getTemplatetype());
+        }
+        if (!StringUtils.isEmpty(receiverTemplate.getStatus())) {
+            criteria.andStatusEqualTo(receiverTemplate.getStatus());
+        }
+        return criteria;
     }
 }

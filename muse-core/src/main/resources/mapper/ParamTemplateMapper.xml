@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.muse.manager.template.mapper.ReceiverTemplateMapper">
-  <resultMap id="BaseResultMap" type="com.muse.manager.template.model.ReceiverTemplate">
+<mapper namespace="com.muse.manager.template.mapper.ParamTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.muse.manager.template.model.ParamTemplate">
     <!--@mbg.generated-->
-    <!--@Table muse.receiver_template-->
+    <!--@Table muse.param_template-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="uid" jdbcType="BIGINT" property="uid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="template_type" jdbcType="INTEGER" property="templateType" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="templateType" jdbcType="INTEGER" property="templatetype" />
-    <result column="receiverType" jdbcType="INTEGER" property="receivertype" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="valid" jdbcType="BIT" property="valid" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="valid" jdbcType="TINYINT" property="valid" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.template.model.ReceiverTemplate">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.template.model.ParamTemplate">
     <!--@mbg.generated-->
-    <!--@Table muse.receiver_template-->
+    <!--@Table muse.param_template-->
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,14 +81,13 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, `uid`, `name`, `status`, templateType, receiverType, updateTime, `valid`, createTime, 
-    remark
+    id, `uid`, `name`, template_type, `status`, create_time, update_time, `valid`, remark
   </sql>
   <sql id="Blob_Column_List">
     <!--@mbg.generated-->
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.template.model.ParamTemplateExample" resultMap="ResultMapWithBLOBs">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -98,7 +96,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from muse.receiver_template
+    from muse.param_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -106,14 +104,14 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.muse.manager.template.model.ParamTemplateExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from muse.receiver_template
+    from muse.param_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -121,112 +119,62 @@
       order by ${orderByClause}
     </if>
   </select>
-
-  <select id="selectByExampleWithParam" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultType="com.muse.manager.template.model.ReceiverTemplate">
-    select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from muse.receiver_template where valid = 1 and
-    <trim >
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.uid != null">
-        `uid` = #{record.uid,jdbcType=BIGINT},
-      </if>
-      <if test="record.name != null">
-        `name` = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        `status` = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.templatetype != null">
-        templateType = #{record.templatetype,jdbcType=INTEGER},
-      </if>
-      <if test="record.receivertype != null">
-        receiverType = #{record.receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.valid != null">
-        `valid` = #{record.valid,jdbcType=BIT},
-      </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </select>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from muse.receiver_template
+    from muse.param_template
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from muse.receiver_template
+    delete from muse.param_template
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample">
+  <delete id="deleteByExample" parameterType="com.muse.manager.template.model.ParamTemplateExample">
     <!--@mbg.generated-->
-    delete from muse.receiver_template
+    delete from muse.param_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ParamTemplate" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into muse.receiver_template (id, `uid`, `name`, 
-      `status`, templateType, receiverType, 
-      updateTime, `valid`, createTime, 
-      remark, content)
-    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{templatetype,jdbcType=INTEGER}, #{receivertype,jdbcType=INTEGER}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{remark,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+    insert into muse.param_template (`uid`, `name`, template_type, 
+      `status`, create_time, update_time, 
+      `valid`, remark, content
+      )
+    values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{templateType,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{valid,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ParamTemplate" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
+    insert into muse.param_template
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="uid != null">
         `uid`,
       </if>
       <if test="name != null">
         `name`,
       </if>
+      <if test="templateType != null">
+        template_type,
+      </if>
       <if test="status != null">
         `status`,
       </if>
-      <if test="templatetype != null">
-        templateType,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="receivertype != null">
-        receiverType,
-      </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="updateTime != null">
+        update_time,
       </if>
       <if test="valid != null">
         `valid`,
-      </if>
-      <if test="createtime != null">
-        createTime,
       </if>
       <if test="remark != null">
         remark,
@@ -236,32 +184,26 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="uid != null">
         #{uid,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="templateType != null">
+        #{templateType,jdbcType=INTEGER},
+      </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="templatetype != null">
-        #{templatetype,jdbcType=INTEGER},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="receivertype != null">
-        #{receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="valid != null">
-        #{valid,jdbcType=BIT},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+        #{valid,jdbcType=TINYINT},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -271,16 +213,16 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.muse.manager.template.model.ParamTemplateExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from muse.receiver_template
+    select count(*) from muse.param_template
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -291,23 +233,20 @@
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.templateType != null">
+        template_type = #{record.templateType,jdbcType=INTEGER},
+      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.templatetype != null">
-        templateType = #{record.templatetype,jdbcType=INTEGER},
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.receivertype != null">
-        receiverType = #{record.receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.valid != null">
-        `valid` = #{record.valid,jdbcType=BIT},
-      </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+        `valid` = #{record.valid,jdbcType=TINYINT},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -322,16 +261,15 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     set id = #{record.id,jdbcType=BIGINT},
       `uid` = #{record.uid,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
+      template_type = #{record.templateType,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
-      templateType = #{record.templatetype,jdbcType=INTEGER},
-      receiverType = #{record.receivertype,jdbcType=INTEGER},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      `valid` = #{record.valid,jdbcType=BIT},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      `valid` = #{record.valid,jdbcType=TINYINT},
       remark = #{record.remark,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -340,24 +278,23 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     set id = #{record.id,jdbcType=BIGINT},
       `uid` = #{record.uid,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
+      template_type = #{record.templateType,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
-      templateType = #{record.templatetype,jdbcType=INTEGER},
-      receiverType = #{record.receivertype,jdbcType=INTEGER},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      `valid` = #{record.valid,jdbcType=BIT},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      `valid` = #{record.valid,jdbcType=TINYINT},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <update id="updateByPrimaryKeySelective" parameterType="com.muse.manager.template.model.ParamTemplate">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     <set>
       <if test="uid != null">
         `uid` = #{uid,jdbcType=BIGINT},
@@ -365,23 +302,20 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="templateType != null">
+        template_type = #{templateType,jdbcType=INTEGER},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
-      <if test="templatetype != null">
-        templateType = #{templatetype,jdbcType=INTEGER},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="receivertype != null">
-        receiverType = #{receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="valid != null">
-        `valid` = #{valid,jdbcType=BIT},
-      </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+        `valid` = #{valid,jdbcType=TINYINT},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -392,38 +326,36 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.manager.template.model.ParamTemplate">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     set `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},
-      templateType = #{templatetype,jdbcType=INTEGER},
-      receiverType = #{receivertype,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      `valid` = #{valid,jdbcType=BIT},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `valid` = #{valid,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <update id="updateByPrimaryKey" parameterType="com.muse.manager.template.model.ParamTemplate">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     set `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER},
-      templateType = #{templatetype,jdbcType=INTEGER},
-      receiverType = #{receivertype,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      `valid` = #{valid,jdbcType=BIT},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `valid` = #{valid,jdbcType=TINYINT},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateBatch" parameterType="java.util.List">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.param_template
     <trim prefix="set" suffixOverrides=",">
       <trim prefix="`uid` = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
@@ -435,34 +367,29 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
         </foreach>
       </trim>
+      <trim prefix="template_type = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.templateType,jdbcType=INTEGER}
+        </foreach>
+      </trim>
       <trim prefix="`status` = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
         </foreach>
       </trim>
-      <trim prefix="templateType = case" suffix="end,">
+      <trim prefix="create_time = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.templatetype,jdbcType=INTEGER}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
         </foreach>
       </trim>
-      <trim prefix="receiverType = case" suffix="end,">
+      <trim prefix="update_time = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.receivertype,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-      <trim prefix="updateTime = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.updatetime,jdbcType=TIMESTAMP}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
         </foreach>
       </trim>
       <trim prefix="`valid` = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.valid,jdbcType=BIT}
-        </foreach>
-      </trim>
-      <trim prefix="createTime = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.createtime,jdbcType=TIMESTAMP}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.valid,jdbcType=TINYINT}
         </foreach>
       </trim>
       <trim prefix="remark = case" suffix="end,">
@@ -481,67 +408,115 @@
       #{item.id,jdbcType=BIGINT}
     </foreach>
   </update>
-  <insert id="batchInsert" parameterType="map">
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
-    (id, `uid`, `name`, `status`, templateType, receiverType, updateTime, `valid`, createTime, 
-      remark, content)
+    insert into muse.param_template
+    (`uid`, `name`, template_type, `status`, create_time, update_time, `valid`, remark, 
+      content)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.id,jdbcType=BIGINT}, #{item.uid,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, 
-        #{item.status,jdbcType=INTEGER}, #{item.templatetype,jdbcType=INTEGER}, #{item.receivertype,jdbcType=INTEGER}, 
-        #{item.updatetime,jdbcType=TIMESTAMP}, #{item.valid,jdbcType=BIT}, #{item.createtime,jdbcType=TIMESTAMP}, 
-        #{item.remark,jdbcType=VARCHAR}, #{item.content,jdbcType=LONGVARCHAR})
+      (#{item.uid,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.templateType,jdbcType=INTEGER}, 
+        #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
+        #{item.valid,jdbcType=TINYINT}, #{item.remark,jdbcType=VARCHAR}, #{item.content,jdbcType=LONGVARCHAR}
+        )
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ParamTemplate" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
-    (id, `uid`, `name`, `status`, templateType, receiverType, updateTime, `valid`, createTime, 
-      remark)
+    insert into muse.param_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `uid`,
+      `name`,
+      template_type,
+      `status`,
+      create_time,
+      update_time,
+      `valid`,
+      remark,
+    </trim>
     values
-    (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{templatetype,jdbcType=INTEGER}, #{receivertype,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{valid,jdbcType=BIT}, #{createtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
-      )
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{uid,jdbcType=BIGINT},
+      #{name,jdbcType=VARCHAR},
+      #{templateType,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{valid,jdbcType=TINYINT},
+      #{remark,jdbcType=VARCHAR},
+    </trim>
     on duplicate key update 
-    id = #{id,jdbcType=BIGINT}, 
-    `uid` = #{uid,jdbcType=BIGINT}, 
-    `name` = #{name,jdbcType=VARCHAR}, 
-    `status` = #{status,jdbcType=INTEGER}, 
-    templateType = #{templatetype,jdbcType=INTEGER}, 
-    receiverType = #{receivertype,jdbcType=INTEGER}, 
-    updateTime = #{updatetime,jdbcType=TIMESTAMP}, 
-    `valid` = #{valid,jdbcType=BIT}, 
-    createTime = #{createtime,jdbcType=TIMESTAMP}, 
-    remark = #{remark,jdbcType=VARCHAR}
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      `uid` = #{uid,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `valid` = #{valid,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+    </trim>
   </insert>
-  <insert id="insertOrUpdateWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <insert id="insertOrUpdateWithBLOBs" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ParamTemplate" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
-    (id, `uid`, `name`, `status`, templateType, receiverType, updateTime, `valid`, createTime, 
-      remark, content)
+    insert into muse.param_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `uid`,
+      `name`,
+      template_type,
+      `status`,
+      create_time,
+      update_time,
+      `valid`,
+      remark,
+      content,
+    </trim>
     values
-    (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{templatetype,jdbcType=INTEGER}, #{receivertype,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{valid,jdbcType=BIT}, #{createtime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR})
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{uid,jdbcType=BIGINT},
+      #{name,jdbcType=VARCHAR},
+      #{templateType,jdbcType=INTEGER},
+      #{status,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},
+      #{valid,jdbcType=TINYINT},
+      #{remark,jdbcType=VARCHAR},
+      #{content,jdbcType=LONGVARCHAR},
+    </trim>
     on duplicate key update 
-    id = #{id,jdbcType=BIGINT}, 
-    `uid` = #{uid,jdbcType=BIGINT}, 
-    `name` = #{name,jdbcType=VARCHAR}, 
-    `status` = #{status,jdbcType=INTEGER}, 
-    templateType = #{templatetype,jdbcType=INTEGER}, 
-    receiverType = #{receivertype,jdbcType=INTEGER}, 
-    updateTime = #{updatetime,jdbcType=TIMESTAMP}, 
-    `valid` = #{valid,jdbcType=BIT}, 
-    createTime = #{createtime,jdbcType=TIMESTAMP}, 
-    remark = #{remark,jdbcType=VARCHAR}, 
-    content = #{content,jdbcType=LONGVARCHAR}
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      `uid` = #{uid,jdbcType=BIGINT},
+      `name` = #{name,jdbcType=VARCHAR},
+      template_type = #{templateType,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `valid` = #{valid,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+    </trim>
   </insert>
-  <insert id="insertOrUpdateSelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ParamTemplate" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
+    insert into muse.param_template
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -552,23 +527,20 @@
       <if test="name != null">
         `name`,
       </if>
+      <if test="templateType != null">
+        template_type,
+      </if>
       <if test="status != null">
         `status`,
       </if>
-      <if test="templatetype != null">
-        templateType,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="receivertype != null">
-        receiverType,
-      </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="updateTime != null">
+        update_time,
       </if>
       <if test="valid != null">
         `valid`,
-      </if>
-      <if test="createtime != null">
-        createTime,
       </if>
       <if test="remark != null">
         remark,
@@ -588,23 +560,20 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="templateType != null">
+        #{templateType,jdbcType=INTEGER},
+      </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="templatetype != null">
-        #{templatetype,jdbcType=INTEGER},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="receivertype != null">
-        #{receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="valid != null">
-        #{valid,jdbcType=BIT},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+        #{valid,jdbcType=TINYINT},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -624,23 +593,20 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="templateType != null">
+        template_type = #{templateType,jdbcType=INTEGER},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
-      <if test="templatetype != null">
-        templateType = #{templatetype,jdbcType=INTEGER},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="receivertype != null">
-        receiverType = #{receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="valid != null">
-        `valid` = #{valid,jdbcType=BIT},
-      </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+        `valid` = #{valid,jdbcType=TINYINT},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},

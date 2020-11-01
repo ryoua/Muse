@@ -47,6 +47,8 @@ public interface ReceiverTemplateMapper {
 
     List<ReceiverTemplate> selectByExample(ReceiverTemplateExample example);
 
+    List<ReceiverTemplate> selectByExampleWithParam(ReceiverTemplateExample example);
+
     /**
      * select by primary key
      * @param id primary key

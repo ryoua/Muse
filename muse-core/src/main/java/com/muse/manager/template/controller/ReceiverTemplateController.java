@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * * @Author: RyouA
  * * @Date: 2020/10/24
@@ -23,19 +25,21 @@ public class ReceiverTemplateController {
     @Autowired
     private ReceiverTemplateService receiverTemplateService;
 
-    @GetMapping("")
+    @PostMapping("/getAll")
     @ApiOperation(value = "获取全部接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "第几页", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "pageSize", value = "每页的个数", required = true, dataType = "int")
+            @ApiImplicitParam(name = "pageSize", value = "每页的个数", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "ReceiverTemplate", value = "接收人群模板", required = false, dataType = "ReceiverTemplate"),
     })
     public PageResult<?> getAllReceiverTemplate(@RequestParam("pageNo") int pageNo,
-                                                @RequestParam("pageSize") int pageSize) {
-        PageInfo<ReceiverTemplate> allReceiverTemplate = receiverTemplateService.getAllReceiverTemplate(pageNo, pageSize);
+                                                @RequestParam("pageSize") int pageSize,
+                                                @RequestBody ReceiverTemplate receiverTemplate) {
+        PageInfo<ReceiverTemplate> allReceiverTemplate = receiverTemplateService.getAllReceiverTemplate(pageNo, pageSize, receiverTemplate);
         return new PageResult<>(200, "ok", allReceiverTemplate);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/delete/{id}")
     @ApiOperation(value = "根据ID删除接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "DELETE")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String"),
@@ -45,7 +49,18 @@ public class ReceiverTemplateController {
         return Result.SUCCESS();
     }
 
-    @PostMapping("")
+    @PostMapping("/delete/batch")
+    @ApiOperation(value = "根据ID批量删除接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "DELETE")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String"),
+    })
+    public Result<?> deleteReceiverTemplateByIds(@RequestBody List<Long> ids) {
+        receiverTemplateService.deleteReceiverTemplateByIds(ids);
+        return Result.SUCCESS();
+    }
+
+
+    @PostMapping("/add")
     @ApiOperation(value = "新增接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ReceiverTemplate", value = "接收人群模板", required = true, dataType = "ReceiverTemplate"),
@@ -55,7 +70,7 @@ public class ReceiverTemplateController {
         return Result.SUCCESS();
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/update")
     @ApiOperation(value = "更新接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "PUT")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ReceiverTemplate", value = "接收人群模板", required = true, dataType = "ReceiverTemplate"),
