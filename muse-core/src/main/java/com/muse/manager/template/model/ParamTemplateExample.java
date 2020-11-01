@@ -549,52 +549,52 @@ public class ParamTemplateExample {
             return (Criteria) this;
         }
 
-        public Criteria andValidEqualTo(Byte value) {
+        public Criteria andValidEqualTo(Boolean value) {
             addCriterion("`valid` =", value, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidNotEqualTo(Byte value) {
+        public Criteria andValidNotEqualTo(Boolean value) {
             addCriterion("`valid` <>", value, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidGreaterThan(Byte value) {
+        public Criteria andValidGreaterThan(Boolean value) {
             addCriterion("`valid` >", value, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidGreaterThanOrEqualTo(Byte value) {
+        public Criteria andValidGreaterThanOrEqualTo(Boolean value) {
             addCriterion("`valid` >=", value, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidLessThan(Byte value) {
+        public Criteria andValidLessThan(Boolean value) {
             addCriterion("`valid` <", value, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidLessThanOrEqualTo(Byte value) {
+        public Criteria andValidLessThanOrEqualTo(Boolean value) {
             addCriterion("`valid` <=", value, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidIn(List<Byte> values) {
+        public Criteria andValidIn(List<Boolean> values) {
             addCriterion("`valid` in", values, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidNotIn(List<Byte> values) {
+        public Criteria andValidNotIn(List<Boolean> values) {
             addCriterion("`valid` not in", values, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidBetween(Byte value1, Byte value2) {
+        public Criteria andValidBetween(Boolean value1, Boolean value2) {
             addCriterion("`valid` between", value1, value2, "valid");
             return (Criteria) this;
         }
 
-        public Criteria andValidNotBetween(Byte value1, Byte value2) {
+        public Criteria andValidNotBetween(Boolean value1, Boolean value2) {
             addCriterion("`valid` not between", value1, value2, "valid");
             return (Criteria) this;
         }

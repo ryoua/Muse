@@ -54,7 +54,7 @@ public class ParamTemplate implements Serializable {
     private Date updateTime;
 
     @ApiModelProperty(value="")
-    private Byte valid;
+    private Boolean valid;
 
     @ApiModelProperty(value="")
     private String remark;
