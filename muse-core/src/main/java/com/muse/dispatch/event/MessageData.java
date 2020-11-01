@@ -1,31 +1,30 @@
 package com.muse.dispatch.event;
 
-import java.util.List;
 
 /**
  * * @Author: RyouA
- * * @Date: 2020/10/26
+ * * @Date: 2020/11/1
  **/
 public class MessageData {
+    private long messageId;
 
+    /**
+     * 消息名称
+     */
+    private String name;
 
+    /**
+     * 消息类型
+     */
+    private int type;
 
-    private String receiver;
-
+    /**
+     * 内容参数
+     */
     private String message;
 
-    public MessageData() {
-    }
-
-    public MessageData(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    /**
+     * 接受者
+     */
+    private String receiver;
 }

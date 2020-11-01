@@ -7,6 +7,7 @@ import com.muse.dispatch.event.EventFactory;
 import com.muse.dispatch.event.MessageData;
 import com.muse.dispatch.event.MessageDataEvent;
 import com.muse.dispatch.consumer.SmsEventConsumer;
+import com.muse.manager.message.model.MessageSend;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 

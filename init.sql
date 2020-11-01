@@ -1,23 +1,23 @@
 create database if not exists muse;
 use muse;
 # 邮箱设置
-# create table if not exists m_email_setting
-# (
-#     id          bigint auto_increment primary key comment '主键',
-#     uid         bigint       not null comment '用户id',
-#     name        varchar(255) not null comment '邮箱名称',
-#     address     varchar(255) not null comment '邮箱服务器地址',
-#     port        varchar(24)  not null comment '邮箱服务器端口',
-#     account     varchar(64)  not null comment '发件人',
-#     username    varchar(64)  not null comment '用户名',
-#     password    varchar(64)  not null comment '密码',
-#     isSSL       tinyint      not null default 0 comment '是否开启SSL',
-#     isTLS       tinyint      not null default 0 comment '是否开启TLS',
-#     create_time timestamp             default current_timestamp not null,
-#     update_time timestamp             default current_timestamp not null,
-#     valid       tinyint      not null default 1,
-#     remark      varchar(255)
-# ) engine = innodb;
+create table if not exists email_setting
+(
+    id          bigint auto_increment primary key comment '主键',
+    uid         bigint       not null comment '用户id',
+    name        varchar(255) not null comment '邮箱名称',
+    address     varchar(255) not null comment '邮箱服务器地址',
+    port        varchar(24)  not null comment '邮箱服务器端口',
+    account     varchar(64)  not null comment '发件人',
+    username    varchar(64)  not null comment '用户名',
+    password    varchar(64)  not null comment '密码',
+    isSSL       tinyint      not null default 0 comment '是否开启SSL',
+    isTLS       tinyint      not null default 0 comment '是否开启TLS',
+    create_time timestamp             default current_timestamp not null,
+    update_time timestamp             default current_timestamp not null,
+    valid       tinyint      not null default 1,
+    remark      varchar(255)
+) engine = innodb;
 
 # 接受者模板
 create table if not exists m_receiver_template
@@ -37,8 +37,8 @@ create table if not exists m_receiver_template
     remark      varchar(255)
 ) engine = innodb;
 
-# 消息参数模板
-create table if not exists m_param_template
+# 消息模板
+create table if not exists message_template
 (
     id             bigint auto_increment primary key comment '主键',
     uid            bigint       not null comment '用户id',
