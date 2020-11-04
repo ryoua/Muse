@@ -104,6 +104,15 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectTemplateShort" parameterType="long" resultType="com.muse.manager.template.model.TemplateShort">
+    select id, name from muse.param_template where uid = #{uid} and valid = 1 order by id desc
+  </select>
+
+  <select id="selectParamTemplateNameLike"  parameterType="com.muse.manager.template.model.ParamTemplate" resultType="com.muse.manager.template.model.TemplateShort">
+    select id, name from muse.param_template where uid = #{uid} and valid = 1 and name like #{name}
+  </select>
+
   <select id="selectByExample" parameterType="com.muse.manager.template.model.ParamTemplateExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select

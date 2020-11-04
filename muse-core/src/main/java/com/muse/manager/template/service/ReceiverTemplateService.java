@@ -4,8 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.muse.common.threadLocal.UserLocal;
 import com.muse.manager.template.mapper.ReceiverTemplateMapper;
+import com.muse.manager.template.model.ParamTemplate;
 import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverTemplateExample;
+import com.muse.manager.template.model.TemplateShort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -21,6 +23,17 @@ import java.util.List;
 public class ReceiverTemplateService {
     @Autowired
     ReceiverTemplateMapper receiverTemplateMapper;
+
+    public List<TemplateShort> selectParamTemplateNameLike(String likeName) {
+        ReceiverTemplate receiverTemplate = new ReceiverTemplate();
+        receiverTemplate.setUid(UserLocal.getUserId());
+        receiverTemplate.setName("%" + likeName + "%");
+        return receiverTemplateMapper.selectReceiverTemplateNameLike(receiverTemplate);
+    }
+
+    public List<TemplateShort> getAllParamTemplateName() {
+        return receiverTemplateMapper.selectTemplateShort(UserLocal.getUserId());
+    }
 
     public PageInfo<ReceiverTemplate> getAllReceiverTemplate(int pageNo, int pageSize, ReceiverTemplate receiverTemplate) {
         ReceiverTemplateExample example = new ReceiverTemplateExample();

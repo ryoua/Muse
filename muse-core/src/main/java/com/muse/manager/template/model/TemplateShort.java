@@ -1,4 +1,4 @@
-package com.muse.manager.template.controller;
+package com.muse.manager.template.model;
 
 /**
  * * @Author: RyouA

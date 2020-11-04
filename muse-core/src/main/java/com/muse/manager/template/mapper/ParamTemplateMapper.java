@@ -1,5 +1,6 @@
 package com.muse.manager.template.mapper;
 
+import com.muse.manager.template.model.TemplateShort;
 import com.muse.manager.template.model.ParamTemplate;
 import com.muse.manager.template.model.ParamTemplateExample;
 import java.util.List;
@@ -44,6 +45,10 @@ public interface ParamTemplateMapper {
     int insertSelective(ParamTemplate record);
 
     List<ParamTemplate> selectByExampleWithBLOBs(ParamTemplateExample example);
+
+    List<TemplateShort> selectTemplateShort(long uid);
+
+    List<TemplateShort> selectParamTemplateNameLike(ParamTemplate template);
 
     List<ParamTemplate> selectByExample(ParamTemplateExample example);
 

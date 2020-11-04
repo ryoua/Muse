@@ -1,8 +1,11 @@
 package com.muse.manager.template.mapper;
 
+import com.muse.manager.template.model.ParamTemplate;
 import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverTemplateExample;
 import java.util.List;
+
+import com.muse.manager.template.model.TemplateShort;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,7 +50,9 @@ public interface ReceiverTemplateMapper {
 
     List<ReceiverTemplate> selectByExample(ReceiverTemplateExample example);
 
-    List<ReceiverTemplate> selectByExampleWithParam(ReceiverTemplateExample example);
+    List<TemplateShort> selectTemplateShort(long uid);
+
+    List<TemplateShort> selectReceiverTemplateNameLike(ReceiverTemplate template);
 
     /**
      * select by primary key

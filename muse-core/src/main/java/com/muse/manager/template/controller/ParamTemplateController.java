@@ -4,7 +4,6 @@ import com.github.pagehelper.PageInfo;
 import com.muse.common.model.PageResult;
 import com.muse.common.model.Result;
 import com.muse.manager.template.model.ParamTemplate;
-import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.service.ParamTemplateService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,12 +25,20 @@ public class ParamTemplateController {
     @Autowired
     private ParamTemplateService paramTemplateService;
 
-    @PostMapping("/getAllTemplateName")
+    @GetMapping("/getAllTemplateName")
     @ApiOperation(value = "获取全部参数模板名称", tags = PARAM_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
     })
-    public PageResult<?> getAllReceiverTemplate() {
-        return new PageResult<>(200, "ok", paramTemplateService.getAllParamTemplateName());
+    public Result<?> getAllReceiverTemplate() {
+        return new Result<>(200, "ok", paramTemplateService.getAllParamTemplateName());
+    }
+
+    @GetMapping("/getTemplateNameLike")
+    @ApiOperation(value = "模糊查询参数模板名称", tags = PARAM_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public Result<?> getParamTemplateNameLike(@RequestParam("name") String likeName) {
+        return new Result<>(200, "ok", paramTemplateService.selectParamTemplateNameLike(likeName));
     }
 
     @PostMapping("/getAll")

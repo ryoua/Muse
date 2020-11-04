@@ -4,10 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.muse.common.threadLocal.UserLocal;
 import com.muse.manager.template.mapper.ParamTemplateMapper;
-import com.muse.manager.template.model.ParamTemplate;
-import com.muse.manager.template.model.ParamTemplateExample;
-import com.muse.manager.template.model.ReceiverTemplate;
-import com.muse.manager.template.model.ReceiverTemplateExample;
+import com.muse.manager.template.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -23,11 +20,15 @@ public class ParamTemplateService {
     @Autowired
     private ParamTemplateMapper paramTemplateMapper;
 
-    public List<ParamTemplate> getAllParamTemplateName() {
-        ParamTemplateExample example = new ParamTemplateExample();
-        example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
-        example.setOrderByClause("id desc");
-        return paramTemplateMapper.selectByExampleWithBLOBs(example);
+    public List<TemplateShort> selectParamTemplateNameLike(String likeName) {
+        ParamTemplate paramTemplate = new ParamTemplate();
+        paramTemplate.setUid(UserLocal.getUserId());
+        paramTemplate.setName("%" + likeName + "%");
+        return paramTemplateMapper.selectParamTemplateNameLike(paramTemplate);
+    }
+
+    public List<TemplateShort> getAllParamTemplateName() {
+        return paramTemplateMapper.selectTemplateShort(UserLocal.getUserId());
     }
 
     public PageInfo<ParamTemplate> getAllParamTemplate(int pageNo, int pageSize, ParamTemplate paramTemplate) {

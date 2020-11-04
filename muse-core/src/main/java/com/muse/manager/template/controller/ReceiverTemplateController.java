@@ -25,6 +25,22 @@ public class ReceiverTemplateController {
     @Autowired
     private ReceiverTemplateService receiverTemplateService;
 
+    @GetMapping("/getAllTemplateName")
+    @ApiOperation(value = "获取全部参数模板名称", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public Result<?> getAllReceiverTemplate() {
+        return new Result<>(200, "ok", receiverTemplateService.getAllParamTemplateName());
+    }
+
+    @GetMapping("/getTemplateNameLike")
+    @ApiOperation(value = "模糊查询参数模板名称", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public Result<?> getParamTemplateNameLike(@RequestParam("name") String likeName) {
+        return new Result<>(200, "ok", receiverTemplateService.selectParamTemplateNameLike(likeName));
+    }
+
     @PostMapping("/getAll")
     @ApiOperation(value = "获取全部接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
@@ -58,7 +74,6 @@ public class ReceiverTemplateController {
         receiverTemplateService.deleteReceiverTemplateByIds(ids);
         return Result.SUCCESS();
     }
-
 
     @PostMapping("/add")
     @ApiOperation(value = "新增接收人群模板", tags = RECEIVER_TEMPLATE_TAG, httpMethod = "POST")

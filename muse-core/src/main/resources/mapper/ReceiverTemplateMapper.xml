@@ -122,47 +122,12 @@
     </if>
   </select>
 
-  <select id="selectByExampleWithParam" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultType="com.muse.manager.template.model.ReceiverTemplate">
-    select
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from muse.receiver_template where valid = 1 and
-    <trim >
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.uid != null">
-        `uid` = #{record.uid,jdbcType=BIGINT},
-      </if>
-      <if test="record.name != null">
-        `name` = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        `status` = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.templatetype != null">
-        templateType = #{record.templatetype,jdbcType=INTEGER},
-      </if>
-      <if test="record.receivertype != null">
-        receiverType = #{record.receivertype,jdbcType=INTEGER},
-      </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.valid != null">
-        `valid` = #{record.valid,jdbcType=BIT},
-      </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
+  <select id="selectTemplateShort" parameterType="long" resultType="com.muse.manager.template.model.TemplateShort">
+    select id, name from muse.receiver_template where uid = #{uid} and valid = 1 order by id desc
+  </select>
+
+  <select id="selectReceiverTemplateNameLike"  parameterType="com.muse.manager.template.model.ReceiverTemplate" resultType="com.muse.manager.template.model.TemplateShort">
+    select id, name from muse.receiver_template where uid = #{uid} and valid = 1 and name like #{name}
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
