@@ -26,6 +26,14 @@ public class ParamTemplateController {
     @Autowired
     private ParamTemplateService paramTemplateService;
 
+    @PostMapping("/getAllTemplateName")
+    @ApiOperation(value = "获取全部参数模板名称", tags = PARAM_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public PageResult<?> getAllReceiverTemplate() {
+        return new PageResult<>(200, "ok", paramTemplateService.getAllParamTemplateName());
+    }
+
     @PostMapping("/getAll")
     @ApiOperation(value = "获取全部参数模板", tags = PARAM_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({

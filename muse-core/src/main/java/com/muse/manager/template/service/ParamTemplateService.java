@@ -23,6 +23,13 @@ public class ParamTemplateService {
     @Autowired
     private ParamTemplateMapper paramTemplateMapper;
 
+    public List<ParamTemplate> getAllParamTemplateName() {
+        ParamTemplateExample example = new ParamTemplateExample();
+        example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
+        example.setOrderByClause("id desc");
+        return paramTemplateMapper.selectByExampleWithBLOBs(example);
+    }
+
     public PageInfo<ParamTemplate> getAllParamTemplate(int pageNo, int pageSize, ParamTemplate paramTemplate) {
         ParamTemplateExample example = new ParamTemplateExample();
         ParamTemplateExample.Criteria criteria = example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
