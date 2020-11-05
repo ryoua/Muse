@@ -1,4 +1,4 @@
-package com.muse.manager.message.model;
+package com.muse.manager.template.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,14 +8,14 @@ import java.util.List;
 ** @Author: RyouA
 ** @Date: 2020/11/5
 **/
-public class MessageSendExample {
+public class MessageTemplateExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public MessageSendExample() {
+    public MessageTemplateExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -359,303 +359,63 @@ public class MessageSendExample {
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeIsNull() {
-            addCriterion("message_type is null");
+        public Criteria andStatusIsNull() {
+            addCriterion("`status` is null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeIsNotNull() {
-            addCriterion("message_type is not null");
+        public Criteria andStatusIsNotNull() {
+            addCriterion("`status` is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeEqualTo(Integer value) {
-            addCriterion("message_type =", value, "messageType");
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("`status` =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeNotEqualTo(Integer value) {
-            addCriterion("message_type <>", value, "messageType");
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("`status` <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeGreaterThan(Integer value) {
-            addCriterion("message_type >", value, "messageType");
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("`status` >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("message_type >=", value, "messageType");
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("`status` >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeLessThan(Integer value) {
-            addCriterion("message_type <", value, "messageType");
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("`status` <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("message_type <=", value, "messageType");
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("`status` <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeIn(List<Integer> values) {
-            addCriterion("message_type in", values, "messageType");
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("`status` in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeNotIn(List<Integer> values) {
-            addCriterion("message_type not in", values, "messageType");
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("`status` not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeBetween(Integer value1, Integer value2) {
-            addCriterion("message_type between", value1, value2, "messageType");
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("`status` between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andMessageTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("message_type not between", value1, value2, "messageType");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateIsNull() {
-            addCriterion("message_is_template is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateIsNotNull() {
-            addCriterion("message_is_template is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateEqualTo(Boolean value) {
-            addCriterion("message_is_template =", value, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateNotEqualTo(Boolean value) {
-            addCriterion("message_is_template <>", value, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateGreaterThan(Boolean value) {
-            addCriterion("message_is_template >", value, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("message_is_template >=", value, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateLessThan(Boolean value) {
-            addCriterion("message_is_template <", value, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateLessThanOrEqualTo(Boolean value) {
-            addCriterion("message_is_template <=", value, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateIn(List<Boolean> values) {
-            addCriterion("message_is_template in", values, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateNotIn(List<Boolean> values) {
-            addCriterion("message_is_template not in", values, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateBetween(Boolean value1, Boolean value2) {
-            addCriterion("message_is_template between", value1, value2, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andMessageIsTemplateNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("message_is_template not between", value1, value2, "messageIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeIsNull() {
-            addCriterion("receiver_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeIsNotNull() {
-            addCriterion("receiver_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeEqualTo(Integer value) {
-            addCriterion("receiver_type =", value, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeNotEqualTo(Integer value) {
-            addCriterion("receiver_type <>", value, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeGreaterThan(Integer value) {
-            addCriterion("receiver_type >", value, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("receiver_type >=", value, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeLessThan(Integer value) {
-            addCriterion("receiver_type <", value, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("receiver_type <=", value, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeIn(List<Integer> values) {
-            addCriterion("receiver_type in", values, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeNotIn(List<Integer> values) {
-            addCriterion("receiver_type not in", values, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeBetween(Integer value1, Integer value2) {
-            addCriterion("receiver_type between", value1, value2, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("receiver_type not between", value1, value2, "receiverType");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateIsNull() {
-            addCriterion("receiver_is_template is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateIsNotNull() {
-            addCriterion("receiver_is_template is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateEqualTo(Boolean value) {
-            addCriterion("receiver_is_template =", value, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateNotEqualTo(Boolean value) {
-            addCriterion("receiver_is_template <>", value, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateGreaterThan(Boolean value) {
-            addCriterion("receiver_is_template >", value, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("receiver_is_template >=", value, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateLessThan(Boolean value) {
-            addCriterion("receiver_is_template <", value, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateLessThanOrEqualTo(Boolean value) {
-            addCriterion("receiver_is_template <=", value, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateIn(List<Boolean> values) {
-            addCriterion("receiver_is_template in", values, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateNotIn(List<Boolean> values) {
-            addCriterion("receiver_is_template not in", values, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateBetween(Boolean value1, Boolean value2) {
-            addCriterion("receiver_is_template between", value1, value2, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andReceiverIsTemplateNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("receiver_is_template not between", value1, value2, "receiverIsTemplate");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepIsNull() {
-            addCriterion("step is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepIsNotNull() {
-            addCriterion("step is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepEqualTo(Integer value) {
-            addCriterion("step =", value, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepNotEqualTo(Integer value) {
-            addCriterion("step <>", value, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepGreaterThan(Integer value) {
-            addCriterion("step >", value, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepGreaterThanOrEqualTo(Integer value) {
-            addCriterion("step >=", value, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepLessThan(Integer value) {
-            addCriterion("step <", value, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepLessThanOrEqualTo(Integer value) {
-            addCriterion("step <=", value, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepIn(List<Integer> values) {
-            addCriterion("step in", values, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepNotIn(List<Integer> values) {
-            addCriterion("step not in", values, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepBetween(Integer value1, Integer value2) {
-            addCriterion("step between", value1, value2, "step");
-            return (Criteria) this;
-        }
-
-        public Criteria andStepNotBetween(Integer value1, Integer value2) {
-            addCriterion("step not between", value1, value2, "step");
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
 

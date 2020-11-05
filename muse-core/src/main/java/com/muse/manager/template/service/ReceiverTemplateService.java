@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.muse.common.threadLocal.UserLocal;
 import com.muse.manager.template.mapper.ReceiverTemplateMapper;
-import com.muse.manager.template.model.ParamTemplate;
 import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverTemplateExample;
 import com.muse.manager.template.model.TemplateShort;

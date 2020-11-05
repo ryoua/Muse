@@ -1,4 +1,4 @@
-package com.muse.manager.template.model;
+package com.muse.manager.message.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,16 +6,16 @@ import java.util.List;
 
 /**
 ** @Author: RyouA
-** @Date: 2020/11/1
+** @Date: 2020/11/5
 **/
-public class ParamTemplateExample {
+public class MessageSendDetailExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ParamTemplateExample() {
+    public MessageSendDetailExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -166,196 +166,6 @@ public class ParamTemplateExample {
 
         public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidIsNull() {
-            addCriterion("`uid` is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidIsNotNull() {
-            addCriterion("`uid` is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidEqualTo(Long value) {
-            addCriterion("`uid` =", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidNotEqualTo(Long value) {
-            addCriterion("`uid` <>", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidGreaterThan(Long value) {
-            addCriterion("`uid` >", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidGreaterThanOrEqualTo(Long value) {
-            addCriterion("`uid` >=", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidLessThan(Long value) {
-            addCriterion("`uid` <", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidLessThanOrEqualTo(Long value) {
-            addCriterion("`uid` <=", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidIn(List<Long> values) {
-            addCriterion("`uid` in", values, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidNotIn(List<Long> values) {
-            addCriterion("`uid` not in", values, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidBetween(Long value1, Long value2) {
-            addCriterion("`uid` between", value1, value2, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidNotBetween(Long value1, Long value2) {
-            addCriterion("`uid` not between", value1, value2, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIsNull() {
-            addCriterion("`name` is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIsNotNull() {
-            addCriterion("`name` is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("`name` =", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("`name` <>", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("`name` >", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("`name` >=", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameLessThan(String value) {
-            addCriterion("`name` <", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("`name` <=", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameLike(String value) {
-            addCriterion("`name` like", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotLike(String value) {
-            addCriterion("`name` not like", value, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("`name` in", values, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("`name` not in", values, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("`name` between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("`name` not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeIsNull() {
-            addCriterion("template_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeIsNotNull() {
-            addCriterion("template_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeEqualTo(Integer value) {
-            addCriterion("template_type =", value, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeNotEqualTo(Integer value) {
-            addCriterion("template_type <>", value, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeGreaterThan(Integer value) {
-            addCriterion("template_type >", value, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("template_type >=", value, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeLessThan(Integer value) {
-            addCriterion("template_type <", value, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("template_type <=", value, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeIn(List<Integer> values) {
-            addCriterion("template_type in", values, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeNotIn(List<Integer> values) {
-            addCriterion("template_type not in", values, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeBetween(Integer value1, Integer value2) {
-            addCriterion("template_type between", value1, value2, "templateType");
-            return (Criteria) this;
-        }
-
-        public Criteria andTemplateTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("template_type not between", value1, value2, "templateType");
             return (Criteria) this;
         }
 
@@ -599,73 +409,73 @@ public class ParamTemplateExample {
             return (Criteria) this;
         }
 
-        public Criteria andRemarkIsNull() {
-            addCriterion("remark is null");
+        public Criteria andDescriptionIsNull() {
+            addCriterion("description is null");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkIsNotNull() {
-            addCriterion("remark is not null");
+        public Criteria andDescriptionIsNotNull() {
+            addCriterion("description is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkEqualTo(String value) {
-            addCriterion("remark =", value, "remark");
+        public Criteria andDescriptionEqualTo(String value) {
+            addCriterion("description =", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkNotEqualTo(String value) {
-            addCriterion("remark <>", value, "remark");
+        public Criteria andDescriptionNotEqualTo(String value) {
+            addCriterion("description <>", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkGreaterThan(String value) {
-            addCriterion("remark >", value, "remark");
+        public Criteria andDescriptionGreaterThan(String value) {
+            addCriterion("description >", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
-            addCriterion("remark >=", value, "remark");
+        public Criteria andDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("description >=", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkLessThan(String value) {
-            addCriterion("remark <", value, "remark");
+        public Criteria andDescriptionLessThan(String value) {
+            addCriterion("description <", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkLessThanOrEqualTo(String value) {
-            addCriterion("remark <=", value, "remark");
+        public Criteria andDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("description <=", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkLike(String value) {
-            addCriterion("remark like", value, "remark");
+        public Criteria andDescriptionLike(String value) {
+            addCriterion("description like", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkNotLike(String value) {
-            addCriterion("remark not like", value, "remark");
+        public Criteria andDescriptionNotLike(String value) {
+            addCriterion("description not like", value, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkIn(List<String> values) {
-            addCriterion("remark in", values, "remark");
+        public Criteria andDescriptionIn(List<String> values) {
+            addCriterion("description in", values, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkNotIn(List<String> values) {
-            addCriterion("remark not in", values, "remark");
+        public Criteria andDescriptionNotIn(List<String> values) {
+            addCriterion("description not in", values, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkBetween(String value1, String value2) {
-            addCriterion("remark between", value1, value2, "remark");
+        public Criteria andDescriptionBetween(String value1, String value2) {
+            addCriterion("description between", value1, value2, "description");
             return (Criteria) this;
         }
 
-        public Criteria andRemarkNotBetween(String value1, String value2) {
-            addCriterion("remark not between", value1, value2, "remark");
+        public Criteria andDescriptionNotBetween(String value1, String value2) {
+            addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
     }

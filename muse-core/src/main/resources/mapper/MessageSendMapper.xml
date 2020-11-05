@@ -8,20 +8,21 @@
     <result column="uid" jdbcType="BIGINT" property="uid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="param_template_id" jdbcType="BIGINT" property="paramTemplateId" />
-    <result column="receiver_template_id" jdbcType="BIGINT" property="receiverTemplateId" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="message_type" jdbcType="INTEGER" property="messageType" />
+    <result column="message_is_template" jdbcType="BIT" property="messageIsTemplate" />
+    <result column="receiver_type" jdbcType="INTEGER" property="receiverType" />
+    <result column="receiver_is_template" jdbcType="BIT" property="receiverIsTemplate" />
     <result column="step" jdbcType="INTEGER" property="step" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="valid" jdbcType="BIT" property="valid" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.message.model.MessageSend">
     <!--@mbg.generated-->
     <!--@Table muse.message_send-->
-    <result column="param_json" jdbcType="LONGVARCHAR" property="paramJson" />
-    <result column="receiver_json" jdbcType="LONGVARCHAR" property="receiverJson" />
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
+    <result column="receiver" jdbcType="LONGVARCHAR" property="receiver" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -85,12 +86,12 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, `uid`, `name`, `type`, param_template_id, receiver_template_id, `status`, step, 
-    create_time, update_time, `valid`, remark
+    id, `uid`, `name`, `type`, message_type, message_is_template, receiver_type, receiver_is_template, 
+    step, create_time, update_time, `valid`, description
   </sql>
   <sql id="Blob_Column_List">
     <!--@mbg.generated-->
-    param_json, receiver_json
+    message, receiver
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendExample" resultMap="ResultMapWithBLOBs">
     <!--@mbg.generated-->
@@ -148,15 +149,15 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.message.model.MessageSend" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into muse.message_send (`uid`, `name`, `type`, 
-      param_template_id, receiver_template_id, `status`, 
-      step, create_time, update_time, 
-      `valid`, remark, param_json, 
-      receiver_json)
+      message_type, message_is_template, receiver_type, 
+      receiver_is_template, step, create_time, 
+      update_time, `valid`, description, 
+      message, receiver)
     values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{paramTemplateId,jdbcType=BIGINT}, #{receiverTemplateId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
-      #{step,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{valid,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{paramJson,jdbcType=LONGVARCHAR}, 
-      #{receiverJson,jdbcType=LONGVARCHAR})
+      #{messageType,jdbcType=INTEGER}, #{messageIsTemplate,jdbcType=BIT}, #{receiverType,jdbcType=INTEGER}, 
+      #{receiverIsTemplate,jdbcType=BIT}, #{step,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
+      #{message,jdbcType=LONGVARCHAR}, #{receiver,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.message.model.MessageSend" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -171,14 +172,17 @@
       <if test="type != null">
         `type`,
       </if>
-      <if test="paramTemplateId != null">
-        param_template_id,
+      <if test="messageType != null">
+        message_type,
       </if>
-      <if test="receiverTemplateId != null">
-        receiver_template_id,
+      <if test="messageIsTemplate != null">
+        message_is_template,
       </if>
-      <if test="status != null">
-        `status`,
+      <if test="receiverType != null">
+        receiver_type,
+      </if>
+      <if test="receiverIsTemplate != null">
+        receiver_is_template,
       </if>
       <if test="step != null">
         step,
@@ -192,14 +196,14 @@
       <if test="valid != null">
         `valid`,
       </if>
-      <if test="remark != null">
-        remark,
+      <if test="description != null">
+        description,
       </if>
-      <if test="paramJson != null">
-        param_json,
+      <if test="message != null">
+        message,
       </if>
-      <if test="receiverJson != null">
-        receiver_json,
+      <if test="receiver != null">
+        receiver,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -212,14 +216,17 @@
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="paramTemplateId != null">
-        #{paramTemplateId,jdbcType=BIGINT},
+      <if test="messageType != null">
+        #{messageType,jdbcType=INTEGER},
       </if>
-      <if test="receiverTemplateId != null">
-        #{receiverTemplateId,jdbcType=BIGINT},
+      <if test="messageIsTemplate != null">
+        #{messageIsTemplate,jdbcType=BIT},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
+      <if test="receiverType != null">
+        #{receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="receiverIsTemplate != null">
+        #{receiverIsTemplate,jdbcType=BIT},
       </if>
       <if test="step != null">
         #{step,jdbcType=INTEGER},
@@ -233,14 +240,14 @@
       <if test="valid != null">
         #{valid,jdbcType=BIT},
       </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
       </if>
-      <if test="paramJson != null">
-        #{paramJson,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        #{message,jdbcType=LONGVARCHAR},
       </if>
-      <if test="receiverJson != null">
-        #{receiverJson,jdbcType=LONGVARCHAR},
+      <if test="receiver != null">
+        #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -267,14 +274,17 @@
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.paramTemplateId != null">
-        param_template_id = #{record.paramTemplateId,jdbcType=BIGINT},
+      <if test="record.messageType != null">
+        message_type = #{record.messageType,jdbcType=INTEGER},
       </if>
-      <if test="record.receiverTemplateId != null">
-        receiver_template_id = #{record.receiverTemplateId,jdbcType=BIGINT},
+      <if test="record.messageIsTemplate != null">
+        message_is_template = #{record.messageIsTemplate,jdbcType=BIT},
       </if>
-      <if test="record.status != null">
-        `status` = #{record.status,jdbcType=INTEGER},
+      <if test="record.receiverType != null">
+        receiver_type = #{record.receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="record.receiverIsTemplate != null">
+        receiver_is_template = #{record.receiverIsTemplate,jdbcType=BIT},
       </if>
       <if test="record.step != null">
         step = #{record.step,jdbcType=INTEGER},
@@ -288,14 +298,14 @@
       <if test="record.valid != null">
         `valid` = #{record.valid,jdbcType=BIT},
       </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=VARCHAR},
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.paramJson != null">
-        param_json = #{record.paramJson,jdbcType=LONGVARCHAR},
+      <if test="record.message != null">
+        message = #{record.message,jdbcType=LONGVARCHAR},
       </if>
-      <if test="record.receiverJson != null">
-        receiver_json = #{record.receiverJson,jdbcType=LONGVARCHAR},
+      <if test="record.receiver != null">
+        receiver = #{record.receiver,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -309,16 +319,17 @@
       `uid` = #{record.uid,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
-      param_template_id = #{record.paramTemplateId,jdbcType=BIGINT},
-      receiver_template_id = #{record.receiverTemplateId,jdbcType=BIGINT},
-      `status` = #{record.status,jdbcType=INTEGER},
+      message_type = #{record.messageType,jdbcType=INTEGER},
+      message_is_template = #{record.messageIsTemplate,jdbcType=BIT},
+      receiver_type = #{record.receiverType,jdbcType=INTEGER},
+      receiver_is_template = #{record.receiverIsTemplate,jdbcType=BIT},
       step = #{record.step,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       `valid` = #{record.valid,jdbcType=BIT},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      param_json = #{record.paramJson,jdbcType=LONGVARCHAR},
-      receiver_json = #{record.receiverJson,jdbcType=LONGVARCHAR}
+      description = #{record.description,jdbcType=VARCHAR},
+      message = #{record.message,jdbcType=LONGVARCHAR},
+      receiver = #{record.receiver,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,14 +341,15 @@
       `uid` = #{record.uid,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
-      param_template_id = #{record.paramTemplateId,jdbcType=BIGINT},
-      receiver_template_id = #{record.receiverTemplateId,jdbcType=BIGINT},
-      `status` = #{record.status,jdbcType=INTEGER},
+      message_type = #{record.messageType,jdbcType=INTEGER},
+      message_is_template = #{record.messageIsTemplate,jdbcType=BIT},
+      receiver_type = #{record.receiverType,jdbcType=INTEGER},
+      receiver_is_template = #{record.receiverIsTemplate,jdbcType=BIT},
       step = #{record.step,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       `valid` = #{record.valid,jdbcType=BIT},
-      remark = #{record.remark,jdbcType=VARCHAR}
+      description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -355,14 +367,17 @@
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="paramTemplateId != null">
-        param_template_id = #{paramTemplateId,jdbcType=BIGINT},
+      <if test="messageType != null">
+        message_type = #{messageType,jdbcType=INTEGER},
       </if>
-      <if test="receiverTemplateId != null">
-        receiver_template_id = #{receiverTemplateId,jdbcType=BIGINT},
+      <if test="messageIsTemplate != null">
+        message_is_template = #{messageIsTemplate,jdbcType=BIT},
       </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+      <if test="receiverType != null">
+        receiver_type = #{receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="receiverIsTemplate != null">
+        receiver_is_template = #{receiverIsTemplate,jdbcType=BIT},
       </if>
       <if test="step != null">
         step = #{step,jdbcType=INTEGER},
@@ -376,14 +391,14 @@
       <if test="valid != null">
         `valid` = #{valid,jdbcType=BIT},
       </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="paramJson != null">
-        param_json = #{paramJson,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        message = #{message,jdbcType=LONGVARCHAR},
       </if>
-      <if test="receiverJson != null">
-        receiver_json = #{receiverJson,jdbcType=LONGVARCHAR},
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -394,16 +409,17 @@
     set `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      param_template_id = #{paramTemplateId,jdbcType=BIGINT},
-      receiver_template_id = #{receiverTemplateId,jdbcType=BIGINT},
-      `status` = #{status,jdbcType=INTEGER},
+      message_type = #{messageType,jdbcType=INTEGER},
+      message_is_template = #{messageIsTemplate,jdbcType=BIT},
+      receiver_type = #{receiverType,jdbcType=INTEGER},
+      receiver_is_template = #{receiverIsTemplate,jdbcType=BIT},
       step = #{step,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
-      remark = #{remark,jdbcType=VARCHAR},
-      param_json = #{paramJson,jdbcType=LONGVARCHAR},
-      receiver_json = #{receiverJson,jdbcType=LONGVARCHAR}
+      description = #{description,jdbcType=VARCHAR},
+      message = #{message,jdbcType=LONGVARCHAR},
+      receiver = #{receiver,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.muse.manager.message.model.MessageSend">
@@ -412,14 +428,15 @@
     set `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      param_template_id = #{paramTemplateId,jdbcType=BIGINT},
-      receiver_template_id = #{receiverTemplateId,jdbcType=BIGINT},
-      `status` = #{status,jdbcType=INTEGER},
+      message_type = #{messageType,jdbcType=INTEGER},
+      message_is_template = #{messageIsTemplate,jdbcType=BIT},
+      receiver_type = #{receiverType,jdbcType=INTEGER},
+      receiver_is_template = #{receiverIsTemplate,jdbcType=BIT},
       step = #{step,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
-      remark = #{remark,jdbcType=VARCHAR}
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateBatch" parameterType="java.util.List">
@@ -441,19 +458,24 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
         </foreach>
       </trim>
-      <trim prefix="param_template_id = case" suffix="end,">
+      <trim prefix="message_type = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.paramTemplateId,jdbcType=BIGINT}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.messageType,jdbcType=INTEGER}
         </foreach>
       </trim>
-      <trim prefix="receiver_template_id = case" suffix="end,">
+      <trim prefix="message_is_template = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.receiverTemplateId,jdbcType=BIGINT}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.messageIsTemplate,jdbcType=BIT}
         </foreach>
       </trim>
-      <trim prefix="`status` = case" suffix="end,">
+      <trim prefix="receiver_type = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.receiverType,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="receiver_is_template = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.receiverIsTemplate,jdbcType=BIT}
         </foreach>
       </trim>
       <trim prefix="step = case" suffix="end,">
@@ -476,19 +498,19 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.valid,jdbcType=BIT}
         </foreach>
       </trim>
-      <trim prefix="remark = case" suffix="end,">
+      <trim prefix="description = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.remark,jdbcType=VARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
         </foreach>
       </trim>
-      <trim prefix="param_json = case" suffix="end,">
+      <trim prefix="message = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.paramJson,jdbcType=LONGVARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.message,jdbcType=LONGVARCHAR}
         </foreach>
       </trim>
-      <trim prefix="receiver_json = case" suffix="end,">
+      <trim prefix="receiver = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.receiverJson,jdbcType=LONGVARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.receiver,jdbcType=LONGVARCHAR}
         </foreach>
       </trim>
     </trim>
@@ -500,16 +522,15 @@
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into muse.message_send
-    (`uid`, `name`, `type`, param_template_id, receiver_template_id, `status`, step, 
-      create_time, update_time, `valid`, remark, param_json, receiver_json)
+    (`uid`, `name`, `type`, message_type, message_is_template, receiver_type, receiver_is_template, 
+      step, create_time, update_time, `valid`, description, message, receiver)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.uid,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, 
-        #{item.paramTemplateId,jdbcType=BIGINT}, #{item.receiverTemplateId,jdbcType=BIGINT}, 
-        #{item.status,jdbcType=INTEGER}, #{item.step,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
-        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.valid,jdbcType=BIT}, #{item.remark,jdbcType=VARCHAR}, 
-        #{item.paramJson,jdbcType=LONGVARCHAR}, #{item.receiverJson,jdbcType=LONGVARCHAR}
-        )
+        #{item.messageType,jdbcType=INTEGER}, #{item.messageIsTemplate,jdbcType=BIT}, #{item.receiverType,jdbcType=INTEGER}, 
+        #{item.receiverIsTemplate,jdbcType=BIT}, #{item.step,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
+        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.valid,jdbcType=BIT}, #{item.description,jdbcType=VARCHAR}, 
+        #{item.message,jdbcType=LONGVARCHAR}, #{item.receiver,jdbcType=LONGVARCHAR})
     </foreach>
   </insert>
   <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.message.model.MessageSend" useGeneratedKeys="true">
@@ -522,14 +543,15 @@
       `uid`,
       `name`,
       `type`,
-      param_template_id,
-      receiver_template_id,
-      `status`,
+      message_type,
+      message_is_template,
+      receiver_type,
+      receiver_is_template,
       step,
       create_time,
       update_time,
       `valid`,
-      remark,
+      description,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -539,14 +561,15 @@
       #{uid,jdbcType=BIGINT},
       #{name,jdbcType=VARCHAR},
       #{type,jdbcType=INTEGER},
-      #{paramTemplateId,jdbcType=BIGINT},
-      #{receiverTemplateId,jdbcType=BIGINT},
-      #{status,jdbcType=INTEGER},
+      #{messageType,jdbcType=INTEGER},
+      #{messageIsTemplate,jdbcType=BIT},
+      #{receiverType,jdbcType=INTEGER},
+      #{receiverIsTemplate,jdbcType=BIT},
       #{step,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP},
       #{valid,jdbcType=BIT},
-      #{remark,jdbcType=VARCHAR},
+      #{description,jdbcType=VARCHAR},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -556,14 +579,15 @@
       `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      param_template_id = #{paramTemplateId,jdbcType=BIGINT},
-      receiver_template_id = #{receiverTemplateId,jdbcType=BIGINT},
-      `status` = #{status,jdbcType=INTEGER},
+      message_type = #{messageType,jdbcType=INTEGER},
+      message_is_template = #{messageIsTemplate,jdbcType=BIT},
+      receiver_type = #{receiverType,jdbcType=INTEGER},
+      receiver_is_template = #{receiverIsTemplate,jdbcType=BIT},
       step = #{step,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
-      remark = #{remark,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
     </trim>
   </insert>
   <insert id="insertOrUpdateWithBLOBs" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.message.model.MessageSend" useGeneratedKeys="true">
@@ -576,16 +600,17 @@
       `uid`,
       `name`,
       `type`,
-      param_template_id,
-      receiver_template_id,
-      `status`,
+      message_type,
+      message_is_template,
+      receiver_type,
+      receiver_is_template,
       step,
       create_time,
       update_time,
       `valid`,
-      remark,
-      param_json,
-      receiver_json,
+      description,
+      message,
+      receiver,
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -595,16 +620,17 @@
       #{uid,jdbcType=BIGINT},
       #{name,jdbcType=VARCHAR},
       #{type,jdbcType=INTEGER},
-      #{paramTemplateId,jdbcType=BIGINT},
-      #{receiverTemplateId,jdbcType=BIGINT},
-      #{status,jdbcType=INTEGER},
+      #{messageType,jdbcType=INTEGER},
+      #{messageIsTemplate,jdbcType=BIT},
+      #{receiverType,jdbcType=INTEGER},
+      #{receiverIsTemplate,jdbcType=BIT},
       #{step,jdbcType=INTEGER},
       #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP},
       #{valid,jdbcType=BIT},
-      #{remark,jdbcType=VARCHAR},
-      #{paramJson,jdbcType=LONGVARCHAR},
-      #{receiverJson,jdbcType=LONGVARCHAR},
+      #{description,jdbcType=VARCHAR},
+      #{message,jdbcType=LONGVARCHAR},
+      #{receiver,jdbcType=LONGVARCHAR},
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
@@ -614,16 +640,17 @@
       `uid` = #{uid,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      param_template_id = #{paramTemplateId,jdbcType=BIGINT},
-      receiver_template_id = #{receiverTemplateId,jdbcType=BIGINT},
-      `status` = #{status,jdbcType=INTEGER},
+      message_type = #{messageType,jdbcType=INTEGER},
+      message_is_template = #{messageIsTemplate,jdbcType=BIT},
+      receiver_type = #{receiverType,jdbcType=INTEGER},
+      receiver_is_template = #{receiverIsTemplate,jdbcType=BIT},
       step = #{step,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
-      remark = #{remark,jdbcType=VARCHAR},
-      param_json = #{paramJson,jdbcType=LONGVARCHAR},
-      receiver_json = #{receiverJson,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      message = #{message,jdbcType=LONGVARCHAR},
+      receiver = #{receiver,jdbcType=LONGVARCHAR},
     </trim>
   </insert>
   <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.message.model.MessageSend" useGeneratedKeys="true">
@@ -642,14 +669,17 @@
       <if test="type != null">
         `type`,
       </if>
-      <if test="paramTemplateId != null">
-        param_template_id,
+      <if test="messageType != null">
+        message_type,
       </if>
-      <if test="receiverTemplateId != null">
-        receiver_template_id,
+      <if test="messageIsTemplate != null">
+        message_is_template,
       </if>
-      <if test="status != null">
-        `status`,
+      <if test="receiverType != null">
+        receiver_type,
+      </if>
+      <if test="receiverIsTemplate != null">
+        receiver_is_template,
       </if>
       <if test="step != null">
         step,
@@ -663,14 +693,14 @@
       <if test="valid != null">
         `valid`,
       </if>
-      <if test="remark != null">
-        remark,
+      <if test="description != null">
+        description,
       </if>
-      <if test="paramJson != null">
-        param_json,
+      <if test="message != null">
+        message,
       </if>
-      <if test="receiverJson != null">
-        receiver_json,
+      <if test="receiver != null">
+        receiver,
       </if>
     </trim>
     values
@@ -687,14 +717,17 @@
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="paramTemplateId != null">
-        #{paramTemplateId,jdbcType=BIGINT},
+      <if test="messageType != null">
+        #{messageType,jdbcType=INTEGER},
       </if>
-      <if test="receiverTemplateId != null">
-        #{receiverTemplateId,jdbcType=BIGINT},
+      <if test="messageIsTemplate != null">
+        #{messageIsTemplate,jdbcType=BIT},
       </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
+      <if test="receiverType != null">
+        #{receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="receiverIsTemplate != null">
+        #{receiverIsTemplate,jdbcType=BIT},
       </if>
       <if test="step != null">
         #{step,jdbcType=INTEGER},
@@ -708,14 +741,14 @@
       <if test="valid != null">
         #{valid,jdbcType=BIT},
       </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
       </if>
-      <if test="paramJson != null">
-        #{paramJson,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        #{message,jdbcType=LONGVARCHAR},
       </if>
-      <if test="receiverJson != null">
-        #{receiverJson,jdbcType=LONGVARCHAR},
+      <if test="receiver != null">
+        #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </trim>
     on duplicate key update 
@@ -732,14 +765,17 @@
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="paramTemplateId != null">
-        param_template_id = #{paramTemplateId,jdbcType=BIGINT},
+      <if test="messageType != null">
+        message_type = #{messageType,jdbcType=INTEGER},
       </if>
-      <if test="receiverTemplateId != null">
-        receiver_template_id = #{receiverTemplateId,jdbcType=BIGINT},
+      <if test="messageIsTemplate != null">
+        message_is_template = #{messageIsTemplate,jdbcType=BIT},
       </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+      <if test="receiverType != null">
+        receiver_type = #{receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="receiverIsTemplate != null">
+        receiver_is_template = #{receiverIsTemplate,jdbcType=BIT},
       </if>
       <if test="step != null">
         step = #{step,jdbcType=INTEGER},
@@ -753,14 +789,14 @@
       <if test="valid != null">
         `valid` = #{valid,jdbcType=BIT},
       </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="paramJson != null">
-        param_json = #{paramJson,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        message = #{message,jdbcType=LONGVARCHAR},
       </if>
-      <if test="receiverJson != null">
-        receiver_json = #{receiverJson,jdbcType=LONGVARCHAR},
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>

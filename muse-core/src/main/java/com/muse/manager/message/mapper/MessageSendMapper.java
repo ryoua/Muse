@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
-** @Author: RyouA
-** @Date: 2020/10/31
-**/
+ * * @Author: RyouA
+ * * @Date: 2020/11/5
+ **/
 @Mapper
 public interface MessageSendMapper {
     long countByExample(MessageSendExample example);
@@ -18,6 +18,7 @@ public interface MessageSendMapper {
 
     /**
      * delete by primary key
+     *
      * @param id primaryKey
      * @return deleteCount
      */
@@ -25,6 +26,7 @@ public interface MessageSendMapper {
 
     /**
      * insert record to table
+     *
      * @param record the record
      * @return insert count
      */
@@ -38,6 +40,7 @@ public interface MessageSendMapper {
 
     /**
      * insert record to table selective
+     *
      * @param record the record
      * @return insert count
      */
@@ -49,6 +52,7 @@ public interface MessageSendMapper {
 
     /**
      * select by primary key
+     *
      * @param id primary key
      * @return object by primary key
      */
@@ -62,6 +66,7 @@ public interface MessageSendMapper {
 
     /**
      * update record selective
+     *
      * @param record the updated record
      * @return update count
      */
@@ -71,6 +76,7 @@ public interface MessageSendMapper {
 
     /**
      * update record
+     *
      * @param record the updated record
      * @return update count
      */

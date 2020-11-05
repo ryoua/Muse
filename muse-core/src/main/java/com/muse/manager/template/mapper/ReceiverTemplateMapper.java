@@ -1,18 +1,15 @@
 package com.muse.manager.template.mapper;
 
-import com.muse.manager.template.model.ParamTemplate;
 import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverTemplateExample;
 import java.util.List;
-
-import com.muse.manager.template.model.TemplateShort;
-import org.apache.ibatis.annotations.Mapper;
+import com.muse.manager.template.model.TemplateShort;import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
-** @Author: RyouA
-** @Date: 2020/10/28
-**/
+ * * @Author: RyouA
+ * * @Date: 2020/11/5
+ **/
 @Mapper
 public interface ReceiverTemplateMapper {
     long countByExample(ReceiverTemplateExample example);
@@ -21,6 +18,7 @@ public interface ReceiverTemplateMapper {
 
     /**
      * delete by primary key
+     *
      * @param id primaryKey
      * @return deleteCount
      */
@@ -28,6 +26,7 @@ public interface ReceiverTemplateMapper {
 
     /**
      * insert record to table
+     *
      * @param record the record
      * @return insert count
      */
@@ -41,6 +40,7 @@ public interface ReceiverTemplateMapper {
 
     /**
      * insert record to table selective
+     *
      * @param record the record
      * @return insert count
      */
@@ -50,12 +50,9 @@ public interface ReceiverTemplateMapper {
 
     List<ReceiverTemplate> selectByExample(ReceiverTemplateExample example);
 
-    List<TemplateShort> selectTemplateShort(long uid);
-
-    List<TemplateShort> selectReceiverTemplateNameLike(ReceiverTemplate template);
-
     /**
      * select by primary key
+     *
      * @param id primary key
      * @return object by primary key
      */
@@ -69,6 +66,7 @@ public interface ReceiverTemplateMapper {
 
     /**
      * update record selective
+     *
      * @param record the updated record
      * @return update count
      */
@@ -78,6 +76,7 @@ public interface ReceiverTemplateMapper {
 
     /**
      * update record
+     *
      * @param record the updated record
      * @return update count
      */
@@ -86,4 +85,8 @@ public interface ReceiverTemplateMapper {
     int updateBatch(List<ReceiverTemplate> list);
 
     int batchInsert(@Param("list") List<ReceiverTemplate> list);
+
+    List<TemplateShort> selectTemplateShort(long uid);
+
+    List<TemplateShort> selectReceiverTemplateNameLike(ReceiverTemplate template);
 }

@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.muse.manager.template.mapper.ReceiverTemplateMapper">
-  <resultMap id="BaseResultMap" type="com.muse.manager.template.model.ReceiverTemplate">
+<mapper namespace="com.muse.manager.message.mapper.MessageSendDetailMapper">
+  <resultMap id="BaseResultMap" type="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    <!--@Table muse.receiver_template-->
+    <!--@Table muse.message_send_detail-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="uid" jdbcType="BIGINT" property="uid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="receiver_type" jdbcType="INTEGER" property="receiverType" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="valid" jdbcType="BIT" property="valid" />
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.template.model.ReceiverTemplate">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    <!--@Table muse.receiver_template-->
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <!--@Table muse.message_send_detail-->
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
+    <result column="receiver" jdbcType="LONGVARCHAR" property="receiver" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -82,14 +79,13 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, `uid`, `name`, `type`, receiver_type, `status`, create_time, update_time, `valid`, 
-    description
+    id, `status`, create_time, update_time, `valid`, description
   </sql>
   <sql id="Blob_Column_List">
     <!--@mbg.generated-->
-    content
+    message, receiver
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendDetailExample" resultMap="ResultMapWithBLOBs">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -98,7 +94,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from muse.receiver_template
+    from muse.message_send_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -106,14 +102,14 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.muse.manager.message.model.MessageSendDetailExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from muse.receiver_template
+    from muse.message_send_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -127,47 +123,36 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from muse.receiver_template
+    from muse.message_send_detail
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from muse.receiver_template
+    delete from muse.message_send_detail
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample">
+  <delete id="deleteByExample" parameterType="com.muse.manager.message.model.MessageSendDetailExample">
     <!--@mbg.generated-->
-    delete from muse.receiver_template
+    delete from muse.message_send_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ReceiverTemplate" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    insert into muse.receiver_template (`uid`, `name`, `type`, 
-      receiver_type, `status`, create_time, 
+    insert into muse.message_send_detail (id, `status`, create_time, 
       update_time, `valid`, description, 
-      content)
-    values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{receiverType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      message, receiver)
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{message,jdbcType=LONGVARCHAR}, #{receiver,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ReceiverTemplate" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
+    insert into muse.message_send_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uid != null">
-        `uid`,
-      </if>
-      <if test="name != null">
-        `name`,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="receiverType != null">
-        receiver_type,
+      <if test="id != null">
+        id,
       </if>
       <if test="status != null">
         `status`,
@@ -184,22 +169,16 @@
       <if test="description != null">
         description,
       </if>
-      <if test="content != null">
-        content,
+      <if test="message != null">
+        message,
+      </if>
+      <if test="receiver != null">
+        receiver,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uid != null">
-        #{uid,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="receiverType != null">
-        #{receiverType,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -216,36 +195,27 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        #{message,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.muse.manager.template.model.ReceiverTemplateExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.muse.manager.message.model.MessageSendDetailExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from muse.receiver_template
+    select count(*) from muse.message_send_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.message_send_detail
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.uid != null">
-        `uid` = #{record.uid,jdbcType=BIGINT},
-      </if>
-      <if test="record.name != null">
-        `name` = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.type != null">
-        `type` = #{record.type,jdbcType=INTEGER},
-      </if>
-      <if test="record.receiverType != null">
-        receiver_type = #{record.receiverType,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
@@ -262,8 +232,11 @@
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=LONGVARCHAR},
+      <if test="record.message != null">
+        message = #{record.message,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.receiver != null">
+        receiver = #{record.receiver,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -272,30 +245,23 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.message_send_detail
     set id = #{record.id,jdbcType=BIGINT},
-      `uid` = #{record.uid,jdbcType=BIGINT},
-      `name` = #{record.name,jdbcType=VARCHAR},
-      `type` = #{record.type,jdbcType=INTEGER},
-      receiver_type = #{record.receiverType,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       `valid` = #{record.valid,jdbcType=BIT},
       description = #{record.description,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=LONGVARCHAR}
+      message = #{record.message,jdbcType=LONGVARCHAR},
+      receiver = #{record.receiver,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.message_send_detail
     set id = #{record.id,jdbcType=BIGINT},
-      `uid` = #{record.uid,jdbcType=BIGINT},
-      `name` = #{record.name,jdbcType=VARCHAR},
-      `type` = #{record.type,jdbcType=INTEGER},
-      receiver_type = #{record.receiverType,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -305,22 +271,10 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <update id="updateByPrimaryKeySelective" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.message_send_detail
     <set>
-      <if test="uid != null">
-        `uid` = #{uid,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="receiverType != null">
-        receiver_type = #{receiverType,jdbcType=INTEGER},
-      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
@@ -336,35 +290,31 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        message = #{message,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    update muse.receiver_template
-    set `uid` = #{uid,jdbcType=BIGINT},
-      `name` = #{name,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      receiver_type = #{receiverType,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=INTEGER},
+    update muse.message_send_detail
+    set `status` = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
       description = #{description,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
+      message = #{message,jdbcType=LONGVARCHAR},
+      receiver = #{receiver,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.muse.manager.template.model.ReceiverTemplate">
+  <update id="updateByPrimaryKey" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    update muse.receiver_template
-    set `uid` = #{uid,jdbcType=BIGINT},
-      `name` = #{name,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      receiver_type = #{receiverType,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=INTEGER},
+    update muse.message_send_detail
+    set `status` = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
@@ -373,28 +323,8 @@
   </update>
   <update id="updateBatch" parameterType="java.util.List">
     <!--@mbg.generated-->
-    update muse.receiver_template
+    update muse.message_send_detail
     <trim prefix="set" suffixOverrides=",">
-      <trim prefix="`uid` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.uid,jdbcType=BIGINT}
-        </foreach>
-      </trim>
-      <trim prefix="`name` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
-        </foreach>
-      </trim>
-      <trim prefix="`type` = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.type,jdbcType=INTEGER}
-        </foreach>
-      </trim>
-      <trim prefix="receiver_type = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.receiverType,jdbcType=INTEGER}
-        </foreach>
-      </trim>
       <trim prefix="`status` = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
@@ -420,9 +350,14 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
         </foreach>
       </trim>
-      <trim prefix="content = case" suffix="end,">
+      <trim prefix="message = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.content,jdbcType=LONGVARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.message,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="receiver = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.receiver,jdbcType=LONGVARCHAR}
         </foreach>
       </trim>
     </trim>
@@ -431,136 +366,57 @@
       #{item.id,jdbcType=BIGINT}
     </foreach>
   </update>
-  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+  <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
-    (`uid`, `name`, `type`, receiver_type, `status`, create_time, update_time, `valid`, 
-      description, content)
+    insert into muse.message_send_detail
+    (id, `status`, create_time, update_time, `valid`, description, message, receiver)
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.uid,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.type,jdbcType=INTEGER}, 
-        #{item.receiverType,jdbcType=INTEGER}, #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
+      (#{item.id,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
         #{item.updateTime,jdbcType=TIMESTAMP}, #{item.valid,jdbcType=BIT}, #{item.description,jdbcType=VARCHAR}, 
-        #{item.content,jdbcType=LONGVARCHAR})
+        #{item.message,jdbcType=LONGVARCHAR}, #{item.receiver,jdbcType=LONGVARCHAR})
     </foreach>
   </insert>
-  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ReceiverTemplate" useGeneratedKeys="true">
+  <insert id="insertOrUpdate" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      `uid`,
-      `name`,
-      `type`,
-      receiver_type,
-      `status`,
-      create_time,
-      update_time,
-      `valid`,
-      description,
-    </trim>
+    insert into muse.message_send_detail
+    (id, `status`, create_time, update_time, `valid`, description)
     values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      #{uid,jdbcType=BIGINT},
-      #{name,jdbcType=VARCHAR},
-      #{type,jdbcType=INTEGER},
-      #{receiverType,jdbcType=INTEGER},
-      #{status,jdbcType=INTEGER},
-      #{createTime,jdbcType=TIMESTAMP},
-      #{updateTime,jdbcType=TIMESTAMP},
-      #{valid,jdbcType=BIT},
-      #{description,jdbcType=VARCHAR},
-    </trim>
+    (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}
+      )
     on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        id = #{id,jdbcType=BIGINT},
-      </if>
-      `uid` = #{uid,jdbcType=BIGINT},
-      `name` = #{name,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      receiver_type = #{receiverType,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      `valid` = #{valid,jdbcType=BIT},
-      description = #{description,jdbcType=VARCHAR},
-    </trim>
+    id = #{id,jdbcType=BIGINT}, 
+    `status` = #{status,jdbcType=INTEGER}, 
+    create_time = #{createTime,jdbcType=TIMESTAMP}, 
+    update_time = #{updateTime,jdbcType=TIMESTAMP}, 
+    `valid` = #{valid,jdbcType=BIT}, 
+    description = #{description,jdbcType=VARCHAR}
   </insert>
-  <insert id="insertOrUpdateWithBLOBs" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ReceiverTemplate" useGeneratedKeys="true">
+  <insert id="insertOrUpdateWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      `uid`,
-      `name`,
-      `type`,
-      receiver_type,
-      `status`,
-      create_time,
-      update_time,
-      `valid`,
-      description,
-      content,
-    </trim>
+    insert into muse.message_send_detail
+    (id, `status`, create_time, update_time, `valid`, description, message, receiver)
     values
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      #{uid,jdbcType=BIGINT},
-      #{name,jdbcType=VARCHAR},
-      #{type,jdbcType=INTEGER},
-      #{receiverType,jdbcType=INTEGER},
-      #{status,jdbcType=INTEGER},
-      #{createTime,jdbcType=TIMESTAMP},
-      #{updateTime,jdbcType=TIMESTAMP},
-      #{valid,jdbcType=BIT},
-      #{description,jdbcType=VARCHAR},
-      #{content,jdbcType=LONGVARCHAR},
-    </trim>
+    (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
+      #{message,jdbcType=LONGVARCHAR}, #{receiver,jdbcType=LONGVARCHAR})
     on duplicate key update 
-    <trim suffixOverrides=",">
-      <if test="id != null">
-        id = #{id,jdbcType=BIGINT},
-      </if>
-      `uid` = #{uid,jdbcType=BIGINT},
-      `name` = #{name,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      receiver_type = #{receiverType,jdbcType=INTEGER},
-      `status` = #{status,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      `valid` = #{valid,jdbcType=BIT},
-      description = #{description,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR},
-    </trim>
+    id = #{id,jdbcType=BIGINT}, 
+    `status` = #{status,jdbcType=INTEGER}, 
+    create_time = #{createTime,jdbcType=TIMESTAMP}, 
+    update_time = #{updateTime,jdbcType=TIMESTAMP}, 
+    `valid` = #{valid,jdbcType=BIT}, 
+    description = #{description,jdbcType=VARCHAR}, 
+    message = #{message,jdbcType=LONGVARCHAR}, 
+    receiver = #{receiver,jdbcType=LONGVARCHAR}
   </insert>
-  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.template.model.ReceiverTemplate" useGeneratedKeys="true">
+  <insert id="insertOrUpdateSelective" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    insert into muse.receiver_template
+    insert into muse.message_send_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
-      </if>
-      <if test="uid != null">
-        `uid`,
-      </if>
-      <if test="name != null">
-        `name`,
-      </if>
-      <if test="type != null">
-        `type`,
-      </if>
-      <if test="receiverType != null">
-        receiver_type,
       </if>
       <if test="status != null">
         `status`,
@@ -577,26 +433,17 @@
       <if test="description != null">
         description,
       </if>
-      <if test="content != null">
-        content,
+      <if test="message != null">
+        message,
+      </if>
+      <if test="receiver != null">
+        receiver,
       </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
-      </if>
-      <if test="uid != null">
-        #{uid,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="receiverType != null">
-        #{receiverType,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -613,26 +460,17 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        #{message,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
       <if test="id != null">
         id = #{id,jdbcType=BIGINT},
-      </if>
-      <if test="uid != null">
-        `uid` = #{uid,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
-      </if>
-      <if test="receiverType != null">
-        receiver_type = #{receiverType,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
@@ -649,17 +487,12 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=LONGVARCHAR},
+      <if test="message != null">
+        message = #{message,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-
-  <select id="selectTemplateShort" parameterType="long" resultType="com.muse.manager.template.model.TemplateShort">
-    select id, name from muse.receiver_template where uid = #{uid} and valid = 1 order by id desc
-  </select>
-
-  <select id="selectReceiverTemplateNameLike" parameterType="com.muse.manager.template.model.ReceiverTemplate" resultType="com.muse.manager.template.model.TemplateShort">
-    select id, name from muse.receiver_template where uid = #{uid} and valid = 1 and name like #{name}
-  </select>
 </mapper>

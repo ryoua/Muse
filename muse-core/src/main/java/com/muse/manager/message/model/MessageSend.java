@@ -9,85 +9,79 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
-** @Author: RyouA
-** @Date: 2020/10/31
-**/
-@ApiModel(value="com-muse-manager-message-model-MessageSend")
+ * * @Author: RyouA
+ * * @Date: 2020/11/5
+ **/
+@ApiModel(value = "com-muse-manager-message-model-MessageSend")
 @Getter
 @Setter
 @ToString
 public class MessageSend implements Serializable {
-    /**
-    * 主键
-    */
-    @ApiModelProperty(value="主键")
+    @ApiModelProperty(value = "")
     private Long id;
 
-    /**
-    * 用户id
-    */
-    @ApiModelProperty(value="用户id")
+    @ApiModelProperty(value = "")
     private Long uid;
 
-    /**
-    * 消息名称
-    */
-    @ApiModelProperty(value="消息名称")
+    @ApiModelProperty(value = "")
     private String name;
 
-    /**
-    * 消息类型
-    */
-    @ApiModelProperty(value="消息类型")
+    @ApiModelProperty(value = "")
     private Integer type;
 
     /**
-    * 参数的模板id
-    */
-    @ApiModelProperty(value="参数的模板id")
-    private Long paramTemplateId;
+     * 消息类型
+     */
+    @ApiModelProperty(value = "消息类型")
+    private Integer messageType;
 
     /**
-    * 接受者的模板id
-    */
-    @ApiModelProperty(value="接受者的模板id")
-    private Long receiverTemplateId;
+     * 是否选用模板，默认选用
+     */
+    @ApiModelProperty(value = "是否选用模板，默认选用")
+    private Boolean messageIsTemplate;
 
     /**
-    * 状态, 0待发送
-    */
-    @ApiModelProperty(value="状态, 0待发送")
-    private Integer status;
+     * 接收者类型
+     */
+    @ApiModelProperty(value = "接收者类型")
+    private Integer receiverType;
 
     /**
-    * 处于哪一步, 默认0, 管理层,刚生成
-    */
-    @ApiModelProperty(value="处于哪一步, 默认0, 管理层,刚生成")
+     * 是否选用模板，默认选用
+     */
+    @ApiModelProperty(value = "是否选用模板，默认选用")
+    private Boolean receiverIsTemplate;
+
+    /**
+     * 执行步骤
+     */
+    @ApiModelProperty(value = "执行步骤")
     private Integer step;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Date createTime;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Date updateTime;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Boolean valid;
 
-    @ApiModelProperty(value="")
-    private String remark;
+    @ApiModelProperty(value = "")
+    private String description;
 
     /**
-    * 参数的json格式
-    */
-    @ApiModelProperty(value="参数的json格式")
-    private String paramJson;
+     * 消息内容
+     */
+    @ApiModelProperty(value = "消息内容")
+    private String message;
 
     /**
-    * 接受者的json格式
-    */
-    @ApiModelProperty(value="接受者的json格式")
-    private String receiverJson;
+     * 接收者
+     */
+    @ApiModelProperty(value = "接收者")
+    private String receiver;
 
     private static final long serialVersionUID = 1L;
 }
