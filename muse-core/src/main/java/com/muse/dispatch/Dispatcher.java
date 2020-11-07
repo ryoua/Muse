@@ -20,9 +20,7 @@ public class Dispatcher {
     SmsEventWorker smsEventWorker;
 
     public void dispatch(MessageSend messageSend) {
-        String receiverJson = messageSend.getReceiverJson();
-        ReceiverTemplate receiverTemplate = gson.fromJson(receiverJson, ReceiverTemplate.class);
-        receiverTemplate.getTemplatetype();
+
     }
 
 }

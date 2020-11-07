@@ -21,14 +21,24 @@ public enum MessageStatus {
     SENDING(3),
 
     /**
+     * 发送成功
+     */
+    SUCCESS(4),
+
+    /**
+     * 发送失败
+     */
+    FAILED(5),
+
+    /**
      * 下发结束
      */
-    FINISHED(4),
+    FINISHED(6),
 
     /**
      * 中止
      */
-    ABORT(5);
+    ABORT(7);
 
     private int status;
 

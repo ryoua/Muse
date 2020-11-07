@@ -78,11 +78,8 @@ public class ReceiverTemplateService {
         if (!StringUtils.isEmpty(receiverTemplate.getId())) {
             criteria.andIdEqualTo(receiverTemplate.getId());
         }
-        if (!StringUtils.isEmpty(receiverTemplate.getReceivertype())) {
-            criteria.andReceivertypeEqualTo(receiverTemplate.getReceivertype());
-        }
-        if (!StringUtils.isEmpty(receiverTemplate.getTemplatetype())) {
-            criteria.andTemplatetypeEqualTo(receiverTemplate.getTemplatetype());
+        if (!StringUtils.isEmpty(receiverTemplate.getType())) {
+            criteria.andTypeEqualTo(receiverTemplate.getType());
         }
         if (!StringUtils.isEmpty(receiverTemplate.getStatus())) {
             criteria.andStatusEqualTo(receiverTemplate.getStatus());

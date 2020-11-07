@@ -26,29 +26,38 @@ public class MessageTemplateController {
     private MessageTemplateService messageTemplateService;
 
     @GetMapping("/getAllTemplateName")
-    @ApiOperation(value = "获取全部参数模板名称", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiOperation(value = "获取全部消息模板名称", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
     })
-    public Result<?> getAllReceiverTemplate() {
+    public Result<?> getAllMessageTemplate() {
         return new Result<>(200, "ok", messageTemplateService.getAllMessageTemplateName());
     }
 
     @GetMapping("/getTemplateNameLike")
-    @ApiOperation(value = "模糊查询参数模板名称", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiOperation(value = "模糊查询消息模板名称", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
     })
-    public Result<?> getParamTemplateNameLike(@RequestParam("name") String likeName) {
+    public Result<?> getMessageTemplateNameLike(@RequestParam("name") String likeName) {
         return new Result<>(200, "ok", messageTemplateService.selectMessageTemplateNameLike(likeName));
     }
 
+    @GetMapping("/detail/{id}")
+    @ApiOperation(value = "查看消息模板详情", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "int")
+    })
+    public Result<?> getMessageTemplateDetail(@PathVariable("id") long id) {
+        return new Result<>(200, "ok", messageTemplateService.selectMessageTemplateDetail(id));
+    }
+
     @PostMapping("/getAll")
-    @ApiOperation(value = "获取全部参数模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiOperation(value = "获取全部消息模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "第几页", required = true, dataType = "int"),
             @ApiImplicitParam(name = "pageSize", value = "每页的个数", required = true, dataType = "int"),
             @ApiImplicitParam(name = "ReceiverTemplate", value = "参数模板", required = false, dataType = "ReceiverTemplate"),
     })
-    public PageResult<?> getAllReceiverTemplate(@RequestParam("pageNo") int pageNo,
+    public PageResult<?> getAllMessageTemplate(@RequestParam("pageNo") int pageNo,
                                                 @RequestParam("pageSize") int pageSize,
                                                 @RequestBody MessageTemplate messageTemplate) {
         PageInfo<MessageTemplate> allParamTemplate = messageTemplateService.getAllMessageTemplate(pageNo, pageSize, messageTemplate);
@@ -56,42 +65,42 @@ public class MessageTemplateController {
     }
 
     @PostMapping("/delete/{id}")
-    @ApiOperation(value = "根据ID删除参数模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "DELETE")
+    @ApiOperation(value = "根据ID删除消息模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "DELETE")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String"),
     })
-    public Result<?> deleteReceiverTemplateById(@PathVariable("id") String id) {
+    public Result<?> deleteMessageTemplateById(@PathVariable("id") String id) {
         messageTemplateService.deleteMessageTemplateById(Long.parseLong(id));
         return Result.SUCCESS();
     }
 
     @PostMapping("/delete/batch")
-    @ApiOperation(value = "根据ID批量删除参数模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "DELETE")
+    @ApiOperation(value = "根据ID批量删除消息模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "DELETE")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String"),
     })
-    public Result<?> deleteReceiverTemplateByIds(@RequestBody List<Long> ids) {
+    public Result<?> deleteMessageTemplateByIds(@RequestBody List<Long> ids) {
         messageTemplateService.deleteMessageTemplateByIds(ids);
         return Result.SUCCESS();
     }
 
 
     @PostMapping("/add")
-    @ApiOperation(value = "新增接收人群模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "POST")
+    @ApiOperation(value = "新增消息模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ParamTemplate", value = "参数模板", required = true, dataType = "ParamTemplate"),
     })
-    public Result<?> addReceiverTemplateById(@RequestBody MessageTemplate messageTemplate) {
+    public Result<?> addMessageTemplateById(@RequestBody MessageTemplate messageTemplate) {
         messageTemplateService.addMessageTemplate(messageTemplate);
         return Result.SUCCESS();
     }
 
     @PostMapping("/update")
-    @ApiOperation(value = "更新参数模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "PUT")
+    @ApiOperation(value = "更新消息模板", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "PUT")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ParamTemplate", value = "参数模板", required = true, dataType = "ParamTemplate"),
     })
-    public Result<?> updateReceiverTemplateById(@RequestBody MessageTemplate messageTemplate) {
+    public Result<?> updateMessageTemplateById(@RequestBody MessageTemplate messageTemplate) {
         messageTemplateService.updateMessageTemplate(messageTemplate);
         return Result.SUCCESS();
     }

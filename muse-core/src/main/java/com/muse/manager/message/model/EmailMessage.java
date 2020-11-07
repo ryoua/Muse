@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 public class EmailMessage {
     private String title;
-    private String copy;
+    private String[] copy;
     private String content;
-    private String[] annex;
+    private String[] attachment;
     private int type;
 }

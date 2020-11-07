@@ -27,6 +27,10 @@ public class MessageTemplateService {
         return messageTemplateMapper.selectMessageTemplateNameLike(messageTemplate);
     }
 
+    public MessageTemplate selectMessageTemplateDetail(long id) {
+        return messageTemplateMapper.selectByPrimaryKey(id);
+    }
+
     public List<TemplateShort> getAllMessageTemplateName() {
         return messageTemplateMapper.selectTemplateShort(UserLocal.getUserId());
     }
@@ -34,7 +38,7 @@ public class MessageTemplateService {
     public PageInfo<MessageTemplate> getAllMessageTemplate(int pageNo, int pageSize, MessageTemplate messageTemplate) {
         MessageTemplateExample example = new MessageTemplateExample();
         MessageTemplateExample.Criteria criteria = example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
-        example.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
+        example.or(addSelectiveQueryParam(messageTemplate, criteria));
         example.setOrderByClause("id desc");
         PageHelper.startPage(pageNo, pageSize);
         return PageInfo.of(messageTemplateMapper.selectByExampleWithBLOBs(example));
