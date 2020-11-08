@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>muse-core</module>
+        <module>muse-delayQueue</module>
     </modules>
 
     <repositories>
