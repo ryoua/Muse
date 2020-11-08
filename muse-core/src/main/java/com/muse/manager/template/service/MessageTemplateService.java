@@ -20,6 +20,10 @@ public class MessageTemplateService {
     @Autowired
     private MessageTemplateMapper messageTemplateMapper;
 
+    public MessageTemplate getMessageTemplateById(Long id) {
+        return messageTemplateMapper.selectByPrimaryKey(id);
+    }
+
     public List<TemplateShort> selectMessageTemplateNameLike(String likeName) {
         MessageTemplate messageTemplate = new MessageTemplate();
         messageTemplate.setUid(UserLocal.getUserId());

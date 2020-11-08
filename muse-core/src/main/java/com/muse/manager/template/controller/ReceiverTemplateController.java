@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * 接收人群模板接口
  * * @Author: RyouA
  * * @Date: 2020/10/24
  **/
