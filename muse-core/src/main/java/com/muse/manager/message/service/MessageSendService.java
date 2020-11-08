@@ -3,6 +3,7 @@ package com.muse.manager.message.service;
 import com.google.gson.Gson;
 import com.muse.common.exception.MuseException;
 import com.muse.common.threadLocal.UserLocal;
+import com.muse.dispatch.Dispatcher;
 import com.muse.manager.message.mapper.MessageSendMapper;
 import com.muse.manager.message.model.MessageSend;
 import com.muse.manager.message.model.MessageSendVo;
@@ -27,6 +28,8 @@ public class MessageSendService{
     private MessageTemplateService messageTemplateService;
     @Autowired
     private ReceiverTemplateService receiverTemplateService;
+    @Autowired
+    private Dispatcher dispatcher;
     @Autowired
     Gson gson;
 
@@ -53,22 +56,25 @@ public class MessageSendService{
         setMessageOfMessageSend(messageSend, messageSendVo);
         setReceiverOfMessageSend(messageSend, messageSendVo);
 
+        // TODO: 暂时只入消息发送库
         // 入库
         messageSendMapper.insert(messageSend);
 
         // 启动发送流程
-
+        dispatcher.dispatch(messageSend);
     }
 
     private void paramCheck(MessageSendVo messageSendVo) throws MuseException {
-
+        // TODO: 对参数进行校验
     }
 
     private boolean messageCheck(MessageSendVo messageSendVo) {
+        // TODO: 对消息做校验
         return true;
     }
 
     private boolean receiverCheck(MessageSendVo messageSendVo) {
+        // TODO: 对接收人群做校验
         return true;
     }
 
