@@ -6,6 +6,7 @@ import com.muse.common.threadLocal.UserLocal;
 import com.muse.dispatch.Dispatcher;
 import com.muse.manager.message.mapper.MessageSendMapper;
 import com.muse.manager.message.model.MessageSend;
+import com.muse.manager.message.model.MessageSendHistoryVo;
 import com.muse.manager.message.model.MessageSendVo;
 import com.muse.manager.template.service.MessageTemplateService;
 import com.muse.manager.template.service.ReceiverTemplateService;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.muse.manager.message.model.MessageSendExample;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static com.muse.manager.Constants.*;
 
@@ -39,6 +42,10 @@ public class MessageSendService{
         return !messageSendMapper.selectByExample(example).isEmpty();
     }
 
+    public List<MessageSendHistoryVo> selectAllMessageSendHistory() {
+        return messageSendMapper.selectAllMessageSendHistory(UserLocal.getUserId());
+    }
+
     /**
      * 消息发送
      * @param messageSendVo
@@ -50,15 +57,15 @@ public class MessageSendService{
 
         // VO => Bean的转换
         MessageSend messageSend = new MessageSend();
-        messageSend.setName(messageSendVo.getName());
-        messageSend.setType(messageSendVo.getType());
+        messageSend.setName(messageSendVo.getMessageName());
+        messageSend.setType(1);
         messageSend.setUid(UserLocal.getUserId());
         setMessageOfMessageSend(messageSend, messageSendVo);
         setReceiverOfMessageSend(messageSend, messageSendVo);
 
         // TODO: 暂时只入消息发送库
         // 入库
-        messageSendMapper.insert(messageSend);
+        messageSendMapper.insertSelective(messageSend);
 
         // 启动发送流程
         dispatcher.dispatch(messageSend);
@@ -86,8 +93,7 @@ public class MessageSendService{
         } else {
             messageSend.setMessage((String) messageSendVo.getMessage().get(MESSAGE));
         }
-        String type = (String) messageSendVo.getMessage().get(TYPE);
-        messageSend.setMessageType(Integer.parseInt(type));
+        messageSend.setMessageType(messageSendVo.getMessageType());
     }
 
     public void setReceiverOfMessageSend(MessageSend messageSend, MessageSendVo messageSendVo) {
@@ -98,7 +104,6 @@ public class MessageSendService{
         } else {
             messageSend.setReceiver((String) messageSendVo.getReceiver().get(RECEIVER));
         }
-        String type = (String) messageSendVo.getReceiver().get(TYPE);
-        messageSend.setReceiverType(Integer.parseInt(type));
+        messageSend.setReceiverType((Integer) messageSendVo.getReceiver().get(TYPE));
     }
 }

@@ -93,6 +93,23 @@
     <!--@mbg.generated-->
     message, receiver
   </sql>
+
+  <select id="selectAllMessageSendHistory" parameterType="long" resultType="com.muse.manager.message.model.MessageSendHistoryVo">
+    select ms.name,
+           ms.type,
+           ms.message_type,
+           ms.receiver_type,
+           ms.step,
+           ms.create_time,
+           mss.receiver_size,
+           mss.receiver_success,
+           mss.receiver_fail
+    from muse.message_send ms
+             inner join muse.message_send_statistics mss on ms.id = mss.msid
+    where ms.valid = 1
+      and ms.uid = #{uid}
+  </select>
+
   <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendExample" resultMap="ResultMapWithBLOBs">
     <!--@mbg.generated-->
     select

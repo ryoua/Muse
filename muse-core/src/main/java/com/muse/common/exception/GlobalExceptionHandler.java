@@ -22,12 +22,12 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
 
     @ResponseBody
-    @ExceptionHandler(value = Exception.class)
-    public Object errorHandler(HttpServletRequest request, Exception e) {
+    @ExceptionHandler(value = MuseException.class)
+    public Object errorHandler(HttpServletRequest request, MuseException e) {
         // 登录异常
-        if (e instanceof AuthenticationException) {
-            return new Result<>(ResultCode.USER_NOT_LOGGED_IN);
-        }
+//        if (e instanceof AuthenticationException) {
+//            return new Result<>(ResultCode.USER_NOT_LOGGED_IN);
+//        }
 
         // 自定义异常
         if (e instanceof MuseException) {
@@ -35,11 +35,11 @@ public class GlobalExceptionHandler {
         }
 
         // 错误的请求||参数类型不对||参数输入不全
-        if (e instanceof HttpRequestMethodNotSupportedException ||
-            e instanceof TypeMismatchException ||
-            e instanceof MissingServletRequestParameterException) {
-            return new Result<>(ResultCode.INVALID_PARAM);
-        }
+//        if (e instanceof HttpRequestMethodNotSupportedException ||
+//            e instanceof TypeMismatchException ||
+//            e instanceof MissingServletRequestParameterException) {
+//            return new Result<>(ResultCode.INVALID_PARAM);
+//        }
 
         return Result.FAIL();
     }

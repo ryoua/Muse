@@ -31,7 +31,23 @@ public class MessageSendController {
         return messageSendService.getMessageNameIsExist(messageName) ? Result.SUCCESS(202) : Result.SUCCESS(200);
     }
 
-    @PostMapping("/")
+    @GetMapping("/history/all")
+    @ApiOperation(value = "查看全部历史消息发送", tags = MESSAGE_MANAGER_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public Result<?> getAllMessageSendHistory() {
+        return Result.SUCCESS(messageSendService.selectAllMessageSendHistory());
+    }
+
+    @GetMapping("/history/detail/{id}")
+    @ApiOperation(value = "查看历史消息发送详情", tags = MESSAGE_MANAGER_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public Result<?> getMessageSendHistoryDetail(@PathVariable("id") String id) {
+        return null;
+    }
+
+    @PostMapping("")
     @ApiOperation(value = "发送消息", tags = MESSAGE_MANAGER_TAG, httpMethod = "GET")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "messageName", value = "消息名称", required = true, dataType = "String"),

@@ -3,6 +3,8 @@ package com.muse.manager.message.mapper;
 import com.muse.manager.message.model.MessageSend;
 import com.muse.manager.message.model.MessageSendExample;
 import java.util.List;
+
+import com.muse.manager.message.model.MessageSendHistoryVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,6 +17,8 @@ public interface MessageSendMapper {
     long countByExample(MessageSendExample example);
 
     int deleteByExample(MessageSendExample example);
+
+    List<MessageSendHistoryVo> selectAllMessageSendHistory(long uid);
 
     /**
      * delete by primary key

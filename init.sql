@@ -22,33 +22,33 @@ create table if not exists email_setting
 # 接受者模板
 create table if not exists m_receiver_template
 (
-    id          bigint auto_increment primary key comment '主键',
-    uid         bigint  not null comment '用户id',
-    name        varchar(255) not null comment '模板名称',
+    id            bigint auto_increment primary key comment '主键',
+    uid           bigint       not null comment '用户id',
+    name          varchar(255) not null comment '模板名称',
 
-    template_type int not null comment '模板类型',
-    receiver_type int not null comment '用户id类型',
-    content   text comment '内容',
+    template_type int          not null comment '模板类型',
+    receiver_type int          not null comment '用户id类型',
+    content       text comment '内容',
 
-    status      int     not null default 0 comment '状态, 0为待审核',
-    create_time timestamp        default current_timestamp not null,
-    update_time timestamp        default current_timestamp not null,
-    valid       tinyint not null default 1,
-    remark      varchar(255)
+    status        int          not null default 0 comment '状态, 0为待审核',
+    create_time   timestamp             default current_timestamp not null,
+    update_time   timestamp             default current_timestamp not null,
+    valid         tinyint      not null default 1,
+    remark        varchar(255)
 ) engine = innodb;
 
 # 消息模板
 create table if not exists message_template
 (
-    id             bigint auto_increment primary key comment '主键',
-    uid            bigint       not null comment '用户id',
+    id          bigint auto_increment primary key comment '主键',
+    uid         bigint       not null comment '用户id',
     name        varchar(255) not null comment '模板名称',
-    content   text comment '内容',
-    status         int          not null default 0 comment '状态, 0为待审核',
-    create_time    timestamp             default current_timestamp not null,
-    update_time    timestamp             default current_timestamp not null,
-    valid          tinyint      not null default 1,
-    remark         varchar(255)
+    content     text comment '内容',
+    status      int          not null default 0 comment '状态, 0为待审核',
+    create_time timestamp             default current_timestamp not null,
+    update_time timestamp             default current_timestamp not null,
+    valid       tinyint      not null default 1,
+    remark      varchar(255)
 ) engine = innodb;
 
 create table m_message
@@ -68,6 +68,20 @@ create table m_message
     valid                tinyint      not null default 1,
     remark               varchar(255)
 ) engine = innodb;
+
+create table message_send_statistics
+(
+    id               bigint auto_increment primary key,
+    msid             bigint                              not null,
+    receiver_size    bigint                              not null,
+    receiver_success bigint                              not null,
+    receiver_fail    bigint                              not null,
+    create_time      timestamp default current_timestamp not null,
+    update_time      timestamp default current_timestamp not null,
+    valid            tinyint                             not null default 1,
+    remark           varchar(255)
+)
+
 #
 # # 消息发送详情
 # create table m_send_detail

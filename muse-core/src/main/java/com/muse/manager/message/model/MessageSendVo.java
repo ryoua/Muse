@@ -12,8 +12,9 @@ import java.util.Map;
 @Getter
 @Setter
 public class MessageSendVo {
-    private String name;
+    private String messageName;
     private Integer type;
+    private Integer messageType;
 
     private Map<String, Object> message;
     private Map<String, Object> receiver;
