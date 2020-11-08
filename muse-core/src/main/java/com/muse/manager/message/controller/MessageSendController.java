@@ -1,5 +1,6 @@
 package com.muse.manager.message.controller;
 
+import com.muse.common.exception.MuseException;
 import com.muse.common.model.Result;
 import com.muse.manager.message.model.MessageSendVo;
 import com.muse.manager.message.service.MessageSendService;
@@ -36,7 +37,11 @@ public class MessageSendController {
             @ApiImplicitParam(name = "messageName", value = "消息名称", required = true, dataType = "String"),
     })
     public Result<?> sendMessage(@RequestBody MessageSendVo messageSendVo) {
-        messageSendService.sendMessage(messageSendVo);
+        try {
+            messageSendService.sendMessage(messageSendVo);
+        } catch (MuseException e) {
+            e.printStackTrace();
+        }
         return Result.SUCCESS();
     }
 }

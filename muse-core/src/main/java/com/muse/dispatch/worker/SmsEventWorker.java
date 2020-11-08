@@ -10,6 +10,7 @@ import com.muse.dispatch.consumer.SmsEventConsumer;
 import com.muse.manager.message.model.MessageSend;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
  * * @Author: RyouA
  * * @Date: 2020/10/26
  **/
+@Component
 public class SmsEventWorker extends BaseQueueWorker<MessageData, MessageDataEvent, SmsEventConsumer> implements InitializingBean {
     private static final int QUEUE_SIZE = 2048;
 

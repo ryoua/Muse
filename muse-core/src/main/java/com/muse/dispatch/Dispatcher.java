@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.muse.dispatch.worker.EmailEventWorker;
 import com.muse.dispatch.worker.SmsEventWorker;
 import com.muse.manager.message.model.MessageSend;
-import com.muse.manager.template.model.ReceiverTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +29,4 @@ public class Dispatcher {
 
         // 发送给生产者
     }
-
-
 }
