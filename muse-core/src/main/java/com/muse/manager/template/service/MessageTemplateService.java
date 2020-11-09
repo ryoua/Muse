@@ -67,7 +67,7 @@ public class MessageTemplateService {
     public void updateMessageTemplate(MessageTemplate messageTemplate) {
         long uid = UserLocal.getUserId();
         messageTemplate.setUid(uid);
-        messageTemplateMapper.updateByPrimaryKey(messageTemplate);
+        messageTemplateMapper.updateByPrimaryKeySelective(messageTemplate);
     }
 
     public void addMessageTemplate(MessageTemplate messageTemplate) {

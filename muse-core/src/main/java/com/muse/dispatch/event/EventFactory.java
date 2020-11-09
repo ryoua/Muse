@@ -1,6 +1,5 @@
 package com.muse.dispatch.event;
 
-import com.muse.dispatch.event.MessageDataEvent;
 
 /**
  * * @Author: RyouA
