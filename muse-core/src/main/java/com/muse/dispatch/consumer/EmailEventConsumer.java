@@ -8,6 +8,7 @@ import com.muse.manager.message.model.EmailMessage;
 import com.muse.manager.message.model.EmailType;
 import com.muse.send.email.service.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
 
@@ -23,21 +24,22 @@ public class EmailEventConsumer implements WorkHandler<MessageDataEvent> {
     Gson gson;
 
     @Override
-    public void onEvent(MessageDataEvent event) throws MessagingException {
+    public void onEvent(MessageDataEvent event) {
         MessageData messageData = event.getValue();
         EmailMessage emailMessage = gson.fromJson(messageData.getMessage(), EmailMessage.class);
-        switch (emailMessage.getType()) {
-            case EmailType.NORMAL_EMAIL: {
-                iMailService.sendSimpleMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
-                break;
-            }
-            case EmailType.HTML_EMAIL: {
-                iMailService.sendHtmlMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
-                break;
-            }
-            default: {
-                break;
-            }
-        }
+        iMailService.sendSimpleMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
+//        switch (emailMessage.getType()) {
+//            case EmailType.NORMAL_EMAIL: {
+//                iMailService.sendSimpleMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
+//                break;
+//            }
+//            case EmailType.HTML_EMAIL: {
+//                iMailService.sendHtmlMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
+//                break;
+//            }
+//            default: {
+//                break;
+//            }
+//        }
     }
 }

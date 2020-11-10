@@ -4,45 +4,39 @@ package com.muse.manager.message.model;
  * * @Author: RyouA
  * * @Date: 2020/10/22
  **/
-public enum  MessageType {
+public class MessageType {
     /**
      * 短信
      */
-    SMS(1),
+    public static final int SMS = 1;
 
     /**
      * 邮件
      */
-    EMAIL(2),
+    public static final int EMAIL = 2;
 
     /**
      * QQ
      */
-    QQ(3),
+    public static final int QQ = 3;
 
     /**
      * 微信
      */
-    WX(4),
+    public static final int WX = 4;
 
     /**
      * 小程序
      */
-    APPLETS(5),
+    public static final int APPLETS = 5;
 
     /**
      * 通知消息
      */
-    NOTIFICATE_MSG(6),
+    public static final int NOTIFICATE_MSG = 6;
 
     /**
      * IM
      */
-    IM_MSG(7);
-
-    private int type;
-
-    MessageType(int type) {
-        this.type = type;
-    }
+    public static final int IM_MSG = 7;
 }

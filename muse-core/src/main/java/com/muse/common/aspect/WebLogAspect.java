@@ -17,8 +17,8 @@ import java.util.Arrays;
  * * @Author: RyouA
  * * @Date: 2020/10/24
  **/
-@Aspect
-@Component
+//@Aspect
+//@Component
 @Slf4j
 public class WebLogAspect {
     ThreadLocal<Long> startTime = new ThreadLocal<>();

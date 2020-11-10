@@ -20,11 +20,11 @@ import java.util.List;
 import static com.muse.manager.Constants.*;
 
 /**
-** @Author: RyouA
-** @Date: 2020/10/31
-**/
+ * * @Author: RyouA
+ * * @Date: 2020/10/31
+ **/
 @Service
-public class MessageSendService{
+public class MessageSendService {
     @Autowired
     private MessageSendMapper messageSendMapper;
     @Autowired
@@ -48,10 +48,11 @@ public class MessageSendService{
 
     /**
      * 消息发送
+     *
      * @param messageSendVo
      */
     @Transactional(rollbackFor = Exception.class)
-    public void sendMessage(MessageSendVo messageSendVo) throws MuseException{
+    public void sendMessage(MessageSendVo messageSendVo) throws MuseException {
         // 参数校验
         paramCheck(messageSendVo);
 
@@ -88,22 +89,14 @@ public class MessageSendService{
     public void setMessageOfMessageSend(MessageSend messageSend, MessageSendVo messageSendVo) {
         boolean messageIsTemplate = (boolean) messageSendVo.getMessage().get(CHOSE_TEMPLATE);
         messageSend.setMessageIsTemplate(messageIsTemplate);
-        if (messageIsTemplate) {
-            messageSend.setMessage((String) messageSendVo.getMessage().get(ID));
-        } else {
-            messageSend.setMessage((String) messageSendVo.getMessage().get(MESSAGE));
-        }
+        messageSend.setMessage((String.valueOf(messageSendVo.getMessage().get(MESSAGE))));
         messageSend.setMessageType(messageSendVo.getMessageType());
     }
 
     public void setReceiverOfMessageSend(MessageSend messageSend, MessageSendVo messageSendVo) {
         boolean receiverIsTemplate = (boolean) messageSendVo.getMessage().get(CHOSE_TEMPLATE);
         messageSend.setReceiverIsTemplate(receiverIsTemplate);
-        if (receiverIsTemplate) {
-            messageSend.setReceiver((String) messageSendVo.getReceiver().get(ID));
-        } else {
-            messageSend.setReceiver((String) messageSendVo.getReceiver().get(RECEIVER));
-        }
+        messageSend.setReceiver(String.valueOf(messageSendVo.getReceiver().get(RECEIVER)));
         messageSend.setReceiverType((Integer) messageSendVo.getReceiver().get(TYPE));
     }
 }

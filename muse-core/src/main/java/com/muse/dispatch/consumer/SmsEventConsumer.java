@@ -2,6 +2,7 @@ package com.muse.dispatch.consumer;
 
 import com.lmax.disruptor.WorkHandler;
 import com.muse.dispatch.event.MessageDataEvent;
+import org.springframework.stereotype.Component;
 
 /**
  * * @Author: RyouA
