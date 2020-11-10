@@ -1,5 +1,7 @@
 package com.muse.send.email.service;
 
+import com.google.gson.internal.$Gson$Preconditions;
+import com.muse.common.model.Constants;
 import com.muse.send.email.config.EmailSendThreadPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.concurrent.Callable;
 
 /**
  * 邮件发送实现类
@@ -28,39 +31,49 @@ public class IMailServiceImpl implements IMailService {
 
     @Override
     public void sendSimpleMail(String to, String subject, String content) {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
-                SimpleMailMessage message = new SimpleMailMessage();
-                message.setFrom(from);
-                message.setTo(to);
-                message.setText(content);
-                mailSender.send(message);
+            public String call() {
+                try {
+                    SimpleMailMessage message = new SimpleMailMessage();
+                    message.setFrom(from);
+                    message.setTo(to);
+                    message.setText(content);
+                    mailSender.send(message);
+                    return Constants.SUCCESS;
+                } catch (Exception e) {
+                    return e.getMessage();
+                }
             }
         });
     }
 
     @Override
     public void sendSimpleMail(String to, String subject, String content, String... cc) {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
-                SimpleMailMessage message = new SimpleMailMessage();
-                message.setFrom(from);
-                message.setTo(to);
-                message.setCc(cc);
-                message.setSubject(subject);
-                message.setText(content);
-                mailSender.send(message);
+            public String call() {
+                try {
+                    SimpleMailMessage message = new SimpleMailMessage();
+                    message.setFrom(from);
+                    message.setTo(to);
+                    message.setCc(cc);
+                    message.setSubject(subject);
+                    message.setText(content);
+                    mailSender.send(message);
+                    return Constants.SUCCESS;
+                } catch (Exception e) {
+                    return e.getMessage();
+                }
             }
         });
     }
 
     @Override
     public void sendHtmlMail(String to, String subject, String content) {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
+            public String call() {
                 try {
                     MimeMessage message = mailSender.createMimeMessage();
                     MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -68,10 +81,10 @@ public class IMailServiceImpl implements IMailService {
                     helper.setTo(to);
                     helper.setSubject(subject);
                     helper.setText(content, true);
-
                     mailSender.send(message);
-                } catch (MessagingException e) {
-                    e.printStackTrace();
+                    return Constants.SUCCESS;
+                } catch (Exception e) {
+                    return e.getMessage();
                 }
             }
         });
@@ -79,9 +92,9 @@ public class IMailServiceImpl implements IMailService {
 
     @Override
     public void sendHtmlMail(String to, String subject, String content, String... cc) throws MessagingException {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
+            public String call() {
                 try {
                     MimeMessage message = mailSender.createMimeMessage();
                     MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -90,10 +103,10 @@ public class IMailServiceImpl implements IMailService {
                     helper.setSubject(subject);
                     helper.setText(content, true);
                     helper.setCc(cc);
-
                     mailSender.send(message);
+                    return Constants.SUCCESS;
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    return e.getMessage();
                 }
             }
         });
@@ -101,9 +114,9 @@ public class IMailServiceImpl implements IMailService {
 
     @Override
     public void sendAttachmentsMail(String to, String subject, String content, String filePath) throws MessagingException {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
+            public String call() {
                 try {
                     MimeMessage message = mailSender.createMimeMessage();
 
@@ -118,8 +131,9 @@ public class IMailServiceImpl implements IMailService {
                     helper.addAttachment(fileName, file);
 
                     mailSender.send(message);
+                    return Constants.SUCCESS;
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    return e.getMessage();
                 }
             }
         });
@@ -127,9 +141,9 @@ public class IMailServiceImpl implements IMailService {
 
     @Override
     public void sendAttachmentsMail(String to, String subject, String content, String filePath, String... cc) throws MessagingException {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
+            public String call() {
                 try {
                     MimeMessage message = mailSender.createMimeMessage();
 
@@ -145,8 +159,9 @@ public class IMailServiceImpl implements IMailService {
                     helper.addAttachment(fileName, file);
 
                     mailSender.send(message);
+                    return Constants.SUCCESS;
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    return e.getMessage();
                 }
             }
         });
@@ -154,9 +169,9 @@ public class IMailServiceImpl implements IMailService {
 
     @Override
     public void sendResourceMail(String to, String subject, String content, String rscPath, String rscId) throws MessagingException {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
+            public String call() {
                 try {
                     MimeMessage message = mailSender.createMimeMessage();
 
@@ -170,8 +185,9 @@ public class IMailServiceImpl implements IMailService {
                     helper.addInline(rscId, res);
 
                     mailSender.send(message);
+                    return Constants.SUCCESS;
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    return e.getMessage();
                 }
             }
         });
@@ -179,9 +195,9 @@ public class IMailServiceImpl implements IMailService {
 
     @Override
     public void sendResourceMail(String to, String subject, String content, String rscPath, String rscId, String... cc) throws MessagingException {
-        EmailSendThreadPool.execute(new Runnable() {
+        EmailSendThreadPool.submit(new Callable<String>() {
             @Override
-            public void run() {
+            public String call() {
                 try {
                     MimeMessage message = mailSender.createMimeMessage();
 
@@ -196,8 +212,9 @@ public class IMailServiceImpl implements IMailService {
                     helper.addInline(rscId, res);
 
                     mailSender.send(message);
+                    return Constants.SUCCESS;
                 } catch (MessagingException e) {
-                    e.printStackTrace();
+                    return e.getMessage();
                 }
             }
         });
