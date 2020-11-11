@@ -12,6 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MessageSendHistoryVo {
+    private Long id;
+
     @SerializedName("messageName")
     @ApiModelProperty(value = "消息名称")
     private String name;

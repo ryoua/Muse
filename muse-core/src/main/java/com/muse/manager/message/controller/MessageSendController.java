@@ -1,9 +1,14 @@
 package com.muse.manager.message.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.muse.common.exception.MuseException;
+import com.muse.common.model.PageResult;
 import com.muse.common.model.Result;
+import com.muse.manager.message.model.MessageSend;
+import com.muse.manager.message.model.MessageSendHistoryVo;
 import com.muse.manager.message.model.MessageSendVo;
 import com.muse.manager.message.service.MessageSendService;
+import com.muse.manager.template.model.MessageTemplate;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -31,12 +36,15 @@ public class MessageSendController {
         return messageSendService.getMessageNameIsExist(messageName) ? Result.SUCCESS(202) : Result.SUCCESS(200);
     }
 
-    @GetMapping("/history/all")
-    @ApiOperation(value = "查看全部历史消息发送", tags = MESSAGE_MANAGER_TAG, httpMethod = "GET")
+    @PostMapping("/history/all")
+    @ApiOperation(value = "查看全部历史消息发送", tags = MESSAGE_MANAGER_TAG, httpMethod = "POST")
     @ApiImplicitParams({
     })
-    public Result<?> getAllMessageSendHistory() {
-        return Result.SUCCESS(messageSendService.selectAllMessageSendHistory());
+    public PageResult<?> getAllMessageSendHistory(@RequestParam("pageNo") int pageNo,
+                                                  @RequestParam("pageSize") int pageSize,
+                                                  @RequestBody MessageSend messageSend) {
+        PageInfo<MessageSendHistoryVo> messageSendHistoryVoPageInfo = messageSendService.selectAllMessageSendHistory(pageNo, pageSize, messageSend);
+        return new PageResult<>(200, "ok", messageSendHistoryVoPageInfo);
     }
 
     @GetMapping("/history/detail/{id}")

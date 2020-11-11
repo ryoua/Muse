@@ -1,5 +1,7 @@
 package com.muse.manager.message.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 import com.muse.common.exception.MuseException;
 import com.muse.common.threadLocal.UserLocal;
@@ -8,12 +10,15 @@ import com.muse.manager.message.mapper.MessageSendMapper;
 import com.muse.manager.message.model.MessageSend;
 import com.muse.manager.message.model.MessageSendHistoryVo;
 import com.muse.manager.message.model.MessageSendVo;
+import com.muse.manager.template.model.MessageTemplate;
+import com.muse.manager.template.model.MessageTemplateExample;
 import com.muse.manager.template.service.MessageTemplateService;
 import com.muse.manager.template.service.ReceiverTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.muse.manager.message.model.MessageSendExample;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -42,8 +47,13 @@ public class MessageSendService {
         return !messageSendMapper.selectByExample(example).isEmpty();
     }
 
-    public List<MessageSendHistoryVo> selectAllMessageSendHistory() {
-        return messageSendMapper.selectAllMessageSendHistory(UserLocal.getUserId());
+    public PageInfo<MessageSendHistoryVo> selectAllMessageSendHistory(int pageNo, int pageSize, MessageSend messageSend) {
+        if (!StringUtils.isEmpty(messageSend.getName())) {
+            messageSend.setName("%" + messageSend.getName() + "%");
+        }
+        messageSend.setUid(UserLocal.getUserId());
+        PageHelper.startPage(pageNo, pageSize);
+        return PageInfo.of(messageSendMapper.selectAllMessageSendHistory(messageSend));
     }
 
     /**
@@ -98,5 +108,21 @@ public class MessageSendService {
         messageSend.setReceiverIsTemplate(receiverIsTemplate);
         messageSend.setReceiver(String.valueOf(messageSendVo.getReceiver().get(RECEIVER)));
         messageSend.setReceiverType((Integer) messageSendVo.getReceiver().get(TYPE));
+    }
+
+    public MessageSendExample.Criteria addSelectiveQueryParam (MessageSend messageSend, MessageSendExample.Criteria criteria) {
+        if (!StringUtils.isEmpty((messageSend.getName()))) {
+            criteria.andNameLike("%" + messageSend.getName() + "%");
+        }
+        if (!StringUtils.isEmpty(messageSend.getId())) {
+            criteria.andIdEqualTo(messageSend.getId());
+        }
+        if (!StringUtils.isEmpty(messageSend.getType())) {
+            criteria.andTypeEqualTo(messageSend.getType());
+        }
+        if (!StringUtils.isEmpty(messageSend.getStep())) {
+            criteria.andStepEqualTo(messageSend.getStep());
+        }
+        return criteria;
     }
 }

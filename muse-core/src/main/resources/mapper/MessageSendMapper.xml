@@ -94,8 +94,9 @@
     message, receiver
   </sql>
 
-  <select id="selectAllMessageSendHistory" parameterType="long" resultType="com.muse.manager.message.model.MessageSendHistoryVo">
-    select ms.name,
+  <select id="selectAllMessageSendHistory" parameterType="com.muse.manager.message.model.MessageSend" resultType="com.muse.manager.message.model.MessageSendHistoryVo">
+    select ms.id,
+           ms.name,
            ms.type,
            ms.message_type,
            ms.receiver_type,
@@ -105,9 +106,21 @@
            mss.receiver_success,
            mss.receiver_fail
     from muse.message_send ms
-             inner join muse.message_send_statistics mss on ms.id = mss.msid
+             left join muse.message_send_statistics mss on ms.id = mss.msid
     where ms.valid = 1
       and ms.uid = #{uid}
+    <if test= "name != null and name != ''">
+        and ms.name like #{name,jdbcType=VARCHAR}
+    </if>
+    <if test= "type != null">
+      and ms.type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test= "messageType != null">
+      and ms.message_type = #{messageType,jdbcType=INTEGER}
+    </if>
+    <if test= "step != null">
+      and ms.step = #{step,jdbcType=INTEGER}
+    </if>
   </select>
 
   <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendExample" resultMap="ResultMapWithBLOBs">

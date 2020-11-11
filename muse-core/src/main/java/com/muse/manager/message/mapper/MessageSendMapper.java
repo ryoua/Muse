@@ -18,7 +18,7 @@ public interface MessageSendMapper {
 
     int deleteByExample(MessageSendExample example);
 
-    List<MessageSendHistoryVo> selectAllMessageSendHistory(long uid);
+    List<MessageSendHistoryVo> selectAllMessageSendHistory(MessageSend messageSend);
 
     /**
      * delete by primary key

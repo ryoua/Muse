@@ -35,6 +35,8 @@ server:
       static-path-pattern: classpath:/static/
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 
