@@ -58,7 +58,6 @@ public class MessageSendService {
 
     /**
      * 消息发送
-     *
      * @param messageSendVo
      */
     @Transactional(rollbackFor = Exception.class)
@@ -74,7 +73,6 @@ public class MessageSendService {
         setMessageOfMessageSend(messageSend, messageSendVo);
         setReceiverOfMessageSend(messageSend, messageSendVo);
 
-        // TODO: 暂时只入消息发送库
         // 入库
         messageSendMapper.insertSelective(messageSend);
 
@@ -84,18 +82,25 @@ public class MessageSendService {
 
     private void paramCheck(MessageSendVo messageSendVo) throws MuseException {
         // TODO: 对参数进行校验
+        messageCheck(messageSendVo);
+        receiverCheck(messageSendVo);
     }
 
-    private boolean messageCheck(MessageSendVo messageSendVo) {
+    private boolean messageCheck(MessageSendVo messageSendVo) throws MuseException{
         // TODO: 对消息做校验
         return true;
     }
 
-    private boolean receiverCheck(MessageSendVo messageSendVo) {
+    private boolean receiverCheck(MessageSendVo messageSendVo) throws MuseException{
         // TODO: 对接收人群做校验
         return true;
     }
 
+    /**
+     * 设置消息发送的消息体
+     * @param messageSend
+     * @param messageSendVo
+     */
     public void setMessageOfMessageSend(MessageSend messageSend, MessageSendVo messageSendVo) {
         boolean messageIsTemplate = (boolean) messageSendVo.getMessage().get(CHOSE_TEMPLATE);
         messageSend.setMessageIsTemplate(messageIsTemplate);
@@ -103,6 +108,11 @@ public class MessageSendService {
         messageSend.setMessageType(messageSendVo.getMessageType());
     }
 
+    /**
+     * 设置消息发送的接收人群
+     * @param messageSend
+     * @param messageSendVo
+     */
     public void setReceiverOfMessageSend(MessageSend messageSend, MessageSendVo messageSendVo) {
         boolean receiverIsTemplate = (boolean) messageSendVo.getMessage().get(CHOSE_TEMPLATE);
         messageSend.setReceiverIsTemplate(receiverIsTemplate);

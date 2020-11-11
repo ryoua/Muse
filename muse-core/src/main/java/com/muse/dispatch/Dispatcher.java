@@ -64,6 +64,10 @@ public class Dispatcher {
         }
     }
 
+    /**
+     * 将email发到队列
+     * @param messageSend
+     */
     public void dispatchEmail(MessageSend messageSend) {
         getReceivers(messageSend).forEach(receiver -> {
             messageSend.setReceiver(receiver);
@@ -74,6 +78,10 @@ public class Dispatcher {
         });
     }
 
+    /**
+     * 将发送消息入库
+     * @param messageSend
+     */
     public void addMessageSendDetail(MessageSend messageSend) {
         MessageSendDetail messageSendDetail = new MessageSendDetail();
         messageSendDetail.setMid(messageSend.getId());
