@@ -5,6 +5,7 @@
     <!--@mbg.generated-->
     <!--@Table muse.message_send_detail-->
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="mid" jdbcType="BIGINT" property="mid" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -14,8 +15,8 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
     <!--@Table muse.message_send_detail-->
-    <result column="message" jdbcType="LONGVARCHAR" property="message" />
     <result column="receiver" jdbcType="LONGVARCHAR" property="receiver" />
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,11 +80,11 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, `status`, create_time, update_time, `valid`, description
+    id, mid, `status`, create_time, update_time, `valid`, description
   </sql>
   <sql id="Blob_Column_List">
     <!--@mbg.generated-->
-    message, receiver
+    receiver, message
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendDetailExample" resultMap="ResultMapWithBLOBs">
     <!--@mbg.generated-->
@@ -140,12 +141,14 @@
   </delete>
   <insert id="insert" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
-    insert into muse.message_send_detail (id, `status`, create_time, 
-      update_time, `valid`, description, 
-      message, receiver)
-    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
-      #{message,jdbcType=LONGVARCHAR}, #{receiver,jdbcType=LONGVARCHAR})
+    insert into muse.message_send_detail (id, mid, `status`, 
+      create_time, update_time, `valid`, 
+      description, receiver, message
+      )
+    values (#{id,jdbcType=BIGINT}, #{mid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, 
+      #{description,jdbcType=VARCHAR}, #{receiver,jdbcType=LONGVARCHAR}, #{message,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
@@ -153,6 +156,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="mid != null">
+        mid,
       </if>
       <if test="status != null">
         `status`,
@@ -169,16 +175,19 @@
       <if test="description != null">
         description,
       </if>
-      <if test="message != null">
-        message,
-      </if>
       <if test="receiver != null">
         receiver,
+      </if>
+      <if test="message != null">
+        message,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=BIGINT},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -195,11 +204,11 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        #{message,jdbcType=LONGVARCHAR},
-      </if>
       <if test="receiver != null">
         #{receiver,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -217,6 +226,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.mid != null">
+        mid = #{record.mid,jdbcType=BIGINT},
+      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
       </if>
@@ -232,11 +244,11 @@
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.message != null">
-        message = #{record.message,jdbcType=LONGVARCHAR},
-      </if>
       <if test="record.receiver != null">
         receiver = #{record.receiver,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.message != null">
+        message = #{record.message,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -247,13 +259,14 @@
     <!--@mbg.generated-->
     update muse.message_send_detail
     set id = #{record.id,jdbcType=BIGINT},
+      mid = #{record.mid,jdbcType=BIGINT},
       `status` = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       `valid` = #{record.valid,jdbcType=BIT},
       description = #{record.description,jdbcType=VARCHAR},
-      message = #{record.message,jdbcType=LONGVARCHAR},
-      receiver = #{record.receiver,jdbcType=LONGVARCHAR}
+      receiver = #{record.receiver,jdbcType=LONGVARCHAR},
+      message = #{record.message,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -262,6 +275,7 @@
     <!--@mbg.generated-->
     update muse.message_send_detail
     set id = #{record.id,jdbcType=BIGINT},
+      mid = #{record.mid,jdbcType=BIGINT},
       `status` = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -275,6 +289,9 @@
     <!--@mbg.generated-->
     update muse.message_send_detail
     <set>
+      <if test="mid != null">
+        mid = #{mid,jdbcType=BIGINT},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
@@ -290,11 +307,11 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        message = #{message,jdbcType=LONGVARCHAR},
-      </if>
       <if test="receiver != null">
         receiver = #{receiver,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -302,19 +319,21 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
     update muse.message_send_detail
-    set `status` = #{status,jdbcType=INTEGER},
+    set mid = #{mid,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
       description = #{description,jdbcType=VARCHAR},
-      message = #{message,jdbcType=LONGVARCHAR},
-      receiver = #{receiver,jdbcType=LONGVARCHAR}
+      receiver = #{receiver,jdbcType=LONGVARCHAR},
+      message = #{message,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
     update muse.message_send_detail
-    set `status` = #{status,jdbcType=INTEGER},
+    set mid = #{mid,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       `valid` = #{valid,jdbcType=BIT},
@@ -325,6 +344,11 @@
     <!--@mbg.generated-->
     update muse.message_send_detail
     <trim prefix="set" suffixOverrides=",">
+      <trim prefix="mid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.mid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
       <trim prefix="`status` = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=INTEGER}
@@ -350,14 +374,14 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.description,jdbcType=VARCHAR}
         </foreach>
       </trim>
-      <trim prefix="message = case" suffix="end,">
-        <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.message,jdbcType=LONGVARCHAR}
-        </foreach>
-      </trim>
       <trim prefix="receiver = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
           when id = #{item.id,jdbcType=BIGINT} then #{item.receiver,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="message = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.message,jdbcType=LONGVARCHAR}
         </foreach>
       </trim>
     </trim>
@@ -369,24 +393,27 @@
   <insert id="batchInsert" parameterType="map">
     <!--@mbg.generated-->
     insert into muse.message_send_detail
-    (id, `status`, create_time, update_time, `valid`, description, message, receiver)
+    (id, mid, `status`, create_time, update_time, `valid`, description, receiver, message
+      )
     values
     <foreach collection="list" item="item" separator=",">
-      (#{item.id,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
-        #{item.updateTime,jdbcType=TIMESTAMP}, #{item.valid,jdbcType=BIT}, #{item.description,jdbcType=VARCHAR}, 
-        #{item.message,jdbcType=LONGVARCHAR}, #{item.receiver,jdbcType=LONGVARCHAR})
+      (#{item.id,jdbcType=BIGINT}, #{item.mid,jdbcType=BIGINT}, #{item.status,jdbcType=INTEGER}, 
+        #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.valid,jdbcType=BIT}, 
+        #{item.description,jdbcType=VARCHAR}, #{item.receiver,jdbcType=LONGVARCHAR}, #{item.message,jdbcType=LONGVARCHAR}
+        )
     </foreach>
   </insert>
   <insert id="insertOrUpdate" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
     insert into muse.message_send_detail
-    (id, `status`, create_time, update_time, `valid`, description)
+    (id, mid, `status`, create_time, update_time, `valid`, description)
     values
-    (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+    (#{id,jdbcType=BIGINT}, #{mid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}
       )
     on duplicate key update 
     id = #{id,jdbcType=BIGINT}, 
+    mid = #{mid,jdbcType=BIGINT}, 
     `status` = #{status,jdbcType=INTEGER}, 
     create_time = #{createTime,jdbcType=TIMESTAMP}, 
     update_time = #{updateTime,jdbcType=TIMESTAMP}, 
@@ -396,20 +423,22 @@
   <insert id="insertOrUpdateWithBLOBs" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
     insert into muse.message_send_detail
-    (id, `status`, create_time, update_time, `valid`, description, message, receiver)
+    (id, mid, `status`, create_time, update_time, `valid`, description, receiver, message
+      )
     values
-    (#{id,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+    (#{id,jdbcType=BIGINT}, #{mid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{valid,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
-      #{message,jdbcType=LONGVARCHAR}, #{receiver,jdbcType=LONGVARCHAR})
+      #{receiver,jdbcType=LONGVARCHAR}, #{message,jdbcType=LONGVARCHAR})
     on duplicate key update 
     id = #{id,jdbcType=BIGINT}, 
+    mid = #{mid,jdbcType=BIGINT}, 
     `status` = #{status,jdbcType=INTEGER}, 
     create_time = #{createTime,jdbcType=TIMESTAMP}, 
     update_time = #{updateTime,jdbcType=TIMESTAMP}, 
     `valid` = #{valid,jdbcType=BIT}, 
     description = #{description,jdbcType=VARCHAR}, 
-    message = #{message,jdbcType=LONGVARCHAR}, 
-    receiver = #{receiver,jdbcType=LONGVARCHAR}
+    receiver = #{receiver,jdbcType=LONGVARCHAR}, 
+    message = #{message,jdbcType=LONGVARCHAR}
   </insert>
   <insert id="insertOrUpdateSelective" parameterType="com.muse.manager.message.model.MessageSendDetail">
     <!--@mbg.generated-->
@@ -417,6 +446,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="mid != null">
+        mid,
       </if>
       <if test="status != null">
         `status`,
@@ -433,17 +465,20 @@
       <if test="description != null">
         description,
       </if>
-      <if test="message != null">
-        message,
-      </if>
       <if test="receiver != null">
         receiver,
+      </if>
+      <if test="message != null">
+        message,
       </if>
     </trim>
     values
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mid != null">
+        #{mid,jdbcType=BIGINT},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -460,17 +495,20 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        #{message,jdbcType=LONGVARCHAR},
-      </if>
       <if test="receiver != null">
         #{receiver,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=LONGVARCHAR},
       </if>
     </trim>
     on duplicate key update 
     <trim suffixOverrides=",">
       <if test="id != null">
         id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mid != null">
+        mid = #{mid,jdbcType=BIGINT},
       </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
@@ -487,11 +525,11 @@
       <if test="description != null">
         description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        message = #{message,jdbcType=LONGVARCHAR},
-      </if>
       <if test="receiver != null">
         receiver = #{receiver,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>

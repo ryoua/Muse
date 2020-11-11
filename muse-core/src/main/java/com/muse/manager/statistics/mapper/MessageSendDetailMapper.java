@@ -1,15 +1,15 @@
-package com.muse.manager.message.mapper;
+package com.muse.manager.statistics.mapper;
 
-import com.muse.manager.message.model.MessageSendDetail;
-import com.muse.manager.message.model.MessageSendDetailExample;
+import com.muse.manager.mee.model.MessageSendDetail;
+import com.muse.manager.mee.model.MessageSendDetailExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * * @Author: RyouA
- * * @Date: 2020/11/11
- **/
+** @Author: RyouA
+** @Date: 2020/11/11
+**/
 @Mapper
 public interface MessageSendDetailMapper {
     long countByExample(MessageSendDetailExample example);
@@ -18,7 +18,6 @@ public interface MessageSendDetailMapper {
 
     /**
      * delete by primary key
-     *
      * @param id primaryKey
      * @return deleteCount
      */
@@ -26,7 +25,6 @@ public interface MessageSendDetailMapper {
 
     /**
      * insert record to table
-     *
      * @param record the record
      * @return insert count
      */
@@ -40,7 +38,6 @@ public interface MessageSendDetailMapper {
 
     /**
      * insert record to table selective
-     *
      * @param record the record
      * @return insert count
      */
@@ -52,7 +49,6 @@ public interface MessageSendDetailMapper {
 
     /**
      * select by primary key
-     *
      * @param id primary key
      * @return object by primary key
      */
@@ -66,7 +62,6 @@ public interface MessageSendDetailMapper {
 
     /**
      * update record selective
-     *
      * @param record the updated record
      * @return update count
      */
@@ -76,7 +71,6 @@ public interface MessageSendDetailMapper {
 
     /**
      * update record
-     *
      * @param record the updated record
      * @return update count
      */

@@ -1,16 +1,20 @@
 package com.muse.dispatch;
 
 import com.google.gson.Gson;
+import com.muse.common.util.FileUtil;
 import com.muse.dispatch.event.MessageData;
 import com.muse.dispatch.worker.EmailEventWorker;
 import com.muse.dispatch.worker.SmsEventWorker;
+import com.muse.manager.message.mapper.MessageSendDetailMapper;
 import com.muse.manager.message.model.MessageSend;
+import com.muse.manager.message.model.MessageSendDetail;
 import com.muse.manager.message.model.MessageType;
 import com.muse.manager.template.mapper.MessageTemplateMapper;
 import com.muse.manager.template.mapper.ReceiverTemplateMapper;
 import com.muse.manager.template.model.MessageTemplate;
 import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +27,7 @@ import java.util.stream.Collectors;
  * * @Author: RyouA
  * * @Date: 2020/11/1
  **/
+@Slf4j
 @Component
 public class Dispatcher {
     @Autowired
@@ -35,6 +40,8 @@ public class Dispatcher {
     ReceiverTemplateMapper receiverTemplateMapper;
     @Autowired
     MessageTemplateMapper messageTemplateMapper;
+    @Autowired
+    MessageSendDetailMapper messageSendDetailMapper;
 
     public void dispatch(MessageSend messageSend) {
         // 提取参数
@@ -58,21 +65,80 @@ public class Dispatcher {
     }
 
     public void dispatchEmail(MessageSend messageSend) {
-        List<String> receivers = new ArrayList<>();
-
-        if (messageSend.getReceiverIsTemplate()) {
-            ReceiverTemplate receiverTemplate = receiverTemplateMapper.selectByPrimaryKey(Long.parseLong(messageSend.getReceiver()));
-            if (receiverTemplate.getType().equals(ReceiverType.STRING)) {
-                receivers = Arrays.stream(receiverTemplate.getContent().split(",")).collect(Collectors.toList());
-            }
-        }
-
-        receivers.forEach(receiver -> {
+        getReceivers(messageSend).forEach(receiver -> {
             messageSend.setReceiver(receiver);
             MessageData messageData = changeMessageSendToEvent(messageSend);
-            System.out.println(messageData);
             emailEventWorker.publishEvent(messageData);
+            addMessageSendDetail(messageSend);
+            log.debug("add email task: " + gson.toJson(messageSend) + " to worker");
         });
+    }
+
+    public void addMessageSendDetail(MessageSend messageSend) {
+        MessageSendDetail messageSendDetail = new MessageSendDetail();
+        messageSendDetail.setMid(messageSend.getId());
+        messageSendDetail.setMessage(messageSend.getMessage());
+        messageSendDetail.setDescription(messageSend.getDescription());
+        messageSendDetail.setReceiver(messageSend.getReceiver());
+        messageSendDetailMapper.insertSelective(messageSendDetail);
+    }
+
+    /**
+     * 获取接收人群
+     * @param messageSend
+     * @return
+     */
+    public List<String> getReceivers(MessageSend messageSend) {
+        if (messageSend.getReceiverIsTemplate()) {
+            return getReceiversFromTemplate(messageSend.getReceiver());
+        } else {
+            return getReceiversFromContent(messageSend.getReceiverType(), messageSend.getReceiver());
+        }
+    }
+
+    /**
+     * 从模板中获取接收人群
+     * @param templateId
+     * @return
+     */
+    public List<String> getReceiversFromTemplate(String templateId) {
+        ReceiverTemplate receiverTemplate = receiverTemplateMapper.selectByPrimaryKey(Long.parseLong(templateId));
+        switch (receiverTemplate.getType()) {
+            case ReceiverType.STRING: {
+                return Arrays.stream(receiverTemplate.getContent().split(",")).collect(Collectors.toList());
+            }
+            case ReceiverType.FILE: {
+                String receiver = FileUtil.readContentFromFile(receiverTemplate.getContent());
+                return Arrays.stream(receiver.split(",")).collect(Collectors.toList());
+            }
+            case ReceiverType.SQL: {
+                return new ArrayList<>();
+            }
+            default:
+                return new ArrayList<>();
+        }
+    }
+
+    /**
+     * 直接从前端的参数中获取接收人群
+     * @param receiverType
+     * @param content
+     * @return
+     */
+    public List<String> getReceiversFromContent(Integer receiverType, String content) {
+        switch (receiverType) {
+            case ReceiverType.STRING: {
+                return Arrays.stream(content.split(",")).collect(Collectors.toList());
+            }
+            case ReceiverType.FILE: {
+                return Arrays.stream(FileUtil.readContentFromFile(content).split(",")).collect(Collectors.toList());
+            }
+            case ReceiverType.SQL: {
+                return new ArrayList<>();
+            }
+            default:
+                return new ArrayList<>();
+        }
     }
 
     /**

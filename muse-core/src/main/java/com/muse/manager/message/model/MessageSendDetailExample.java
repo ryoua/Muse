@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
 ** @Author: RyouA
-** @Date: 2020/11/5
+** @Date: 2020/11/11
 **/
 public class MessageSendDetailExample {
     protected String orderByClause;
@@ -166,6 +166,66 @@ public class MessageSendDetailExample {
 
         public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidIsNull() {
+            addCriterion("mid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidIsNotNull() {
+            addCriterion("mid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidEqualTo(Long value) {
+            addCriterion("mid =", value, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidNotEqualTo(Long value) {
+            addCriterion("mid <>", value, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidGreaterThan(Long value) {
+            addCriterion("mid >", value, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidGreaterThanOrEqualTo(Long value) {
+            addCriterion("mid >=", value, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidLessThan(Long value) {
+            addCriterion("mid <", value, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidLessThanOrEqualTo(Long value) {
+            addCriterion("mid <=", value, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidIn(List<Long> values) {
+            addCriterion("mid in", values, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidNotIn(List<Long> values) {
+            addCriterion("mid not in", values, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidBetween(Long value1, Long value2) {
+            addCriterion("mid between", value1, value2, "mid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMidNotBetween(Long value1, Long value2) {
+            addCriterion("mid not between", value1, value2, "mid");
             return (Criteria) this;
         }
 
