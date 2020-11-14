@@ -19,7 +19,7 @@ import java.util.List;
  * * @Date: 2020/10/24
  **/
 @RestController
-@RequestMapping("/manager/template/receiver")
+@RequestMapping("api/manager/template/receiver")
 public class ReceiverTemplateController {
     private static final String RECEIVER_TEMPLATE_TAG = "接收人群模板设置";
 

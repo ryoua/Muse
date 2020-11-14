@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * * @Date: 2020/10/22
  **/
 @RestController
-@RequestMapping("/setting/email")
+@RequestMapping("api/setting/email")
 public class EmailSettingController {
     private static final String EMAIL_SETTING_TAG = "邮箱设置";
 

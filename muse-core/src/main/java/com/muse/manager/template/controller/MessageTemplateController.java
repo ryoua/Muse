@@ -19,7 +19,7 @@ import java.util.List;
  * * @Date: 2020/11/5
  **/
 @RestController
-@RequestMapping("/manager/template/message")
+@RequestMapping("api/manager/template/message")
 public class MessageTemplateController {
     private static final String MESSAGE_TEMPLATE_TAG = "消息模板设置";
 

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * * @Date: 2020/10/31
  **/
 @RestController
-@RequestMapping("/manager/message/send")
+@RequestMapping("api/manager/message/send")
 public class MessageSendController {
     private static final String MESSAGE_MANAGER_TAG = "消息管理";
 
