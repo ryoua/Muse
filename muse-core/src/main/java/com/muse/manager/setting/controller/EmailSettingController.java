@@ -23,20 +23,10 @@ public class EmailSettingController {
     EmailSettingService emailSettingService;
 
     @GetMapping("/")
-    @ApiOperation(value = "获取全部邮箱设置", tags = EMAIL_SETTING_TAG, httpMethod = "GET")
-    @ApiImplicitParams({})
-    public Result<?> getAllEmailSetting() {
-        return new Result<>(200, "ok", emailSettingService.getAllEmailSetting());
-    }
-
-    @GetMapping("/{id}")
     @ApiOperation(value = "获取邮箱设置", tags = EMAIL_SETTING_TAG, httpMethod = "GET")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "邮箱设置的id", required = true, dataType = "String"),
-    })
-    public Result<?> getEmailSettingById(@PathVariable("id") String id) {
-        emailSettingService.getEmailSettingById(Long.parseLong(id));
-        return Result.SUCCESS();
+    @ApiImplicitParams({})
+    public Result<?> getEmailSetting() {
+        return new Result<>(200, "ok", emailSettingService.getEmailSetting());
     }
 
     @DeleteMapping("/{id}")
@@ -45,7 +35,7 @@ public class EmailSettingController {
             @ApiImplicitParam(name = "id", value = "邮箱设置的id", required = true, dataType = "String"),
     })
     public Result<?> deleteEmailSettingById(@PathVariable("id") String id) {
-        emailSettingService.deleteEmailSettingById(Long.parseLong(id));
+        emailSettingService.deleteEmailSetting(Long.parseLong(id));
         return Result.SUCCESS();
     }
 
@@ -57,14 +47,14 @@ public class EmailSettingController {
 
     })
     public Result<?> updateEmailSettingById(@PathVariable("id") String id, @RequestBody EmailSetting emailSetting) {
-        emailSettingService.updateEmailSettingById(emailSetting);
+        emailSetting.setId(Long.parseLong(id));
+        emailSettingService.updateEmailSetting(emailSetting);
         return Result.SUCCESS();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{")
     @ApiOperation(value = "新增邮箱设置", tags = EMAIL_SETTING_TAG, httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "邮箱设置的参数", required = true, dataType = "EmailSetting"),
     })
     public Result<?> addEmailSetting(@RequestBody EmailSetting emailSetting) {
         emailSettingService.addEmailSetting(emailSetting);
