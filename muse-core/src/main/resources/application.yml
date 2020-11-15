@@ -16,6 +16,7 @@ spring:
         max-wait: 1
         max-idle: 8
         min-idle: 0
+    password: XBHxbh123123
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/?useUnicode=true&characterEncoding=UTF-8&useSSL=false
