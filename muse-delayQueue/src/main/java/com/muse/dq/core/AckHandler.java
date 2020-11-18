@@ -28,4 +28,9 @@ public class AckHandler implements Handler {
 
         }
     }
+
+    @Override
+    public void handle(Object task) {
+
+    }
 }
