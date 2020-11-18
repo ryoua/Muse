@@ -98,13 +98,13 @@
     select ms.id,
            ms.name,
            ms.type,
-           ms.message_type,
-           ms.receiver_type,
+           ms.message_type as messageType,
+           ms.receiver_type as receiverType,
            ms.step,
-           ms.create_time,
-           mss.receiver_size,
-           mss.receiver_success,
-           mss.receiver_fail
+           ms.create_time as createTime,
+           mss.receiver_size as receiverSize,
+           mss.receiver_success as receiverSuccess,
+           mss.receiver_fail as receiverFail
     from muse.message_send ms
              left join muse.message_send_statistics mss on ms.id = mss.msid
     where ms.valid = 1
