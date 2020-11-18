@@ -5,7 +5,6 @@ import com.muse.dq.model.Job;
 import com.muse.dq.model.RedisConstants;
 import com.muse.dq.util.RedisUtil;
 import com.muse.dq.util.SpringUtil;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +12,6 @@ import java.util.concurrent.TimeUnit;
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
-@Component
 public class AckHandler implements Handler {
     public static final int MESSAGE_ACK_WAIT_OUT_TIME = 10;
 

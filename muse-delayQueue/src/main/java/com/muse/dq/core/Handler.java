@@ -9,4 +9,10 @@ public interface Handler {
      * 任务处理
      */
     public void handle();
+
+    /**
+     * 任务处理
+     * @param task
+     */
+    public void handle(Object task);
 }
