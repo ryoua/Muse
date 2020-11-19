@@ -24,13 +24,6 @@ public class AckHandler implements Handler {
             // 获取确认失败的消息
             String failAck = redisUtil.lBLeftPop(RedisConstants.MESSAGE_ACK_FAIL_LIST, MESSAGE_ACK_WAIT_OUT_TIME, TimeUnit.SECONDS);
             Job job = gson.fromJson(failAck, Job.class);
-
-
         }
-    }
-
-    @Override
-    public void handle(Object task) {
-
     }
 }
