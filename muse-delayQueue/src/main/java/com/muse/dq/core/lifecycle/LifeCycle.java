@@ -8,10 +8,10 @@ public interface LifeCycle {
     /**
      * 启动
      */
-     public void start();
+    void start();
 
     /**
      * 销毁
      */
-    public void destroy();
+    void destroy();
 }

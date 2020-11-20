@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * 任务池 只存放任务的JSON格式数据
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
@@ -21,16 +22,37 @@ public class JobPool {
 
     private static final String JOB_POOL = "job:pool:";
 
+    /**
+     * 新增任务
+     * @param job
+     */
     public void add(Job job) {
+        redisUtil.set(job.getId(), gson.toJson(job));
     }
 
+    /**
+     * 批量新增任务
+     * @param jobs
+     */
     public void batchAdd(List<Job> jobs) {
-
+        jobs.forEach(job -> {
+            redisUtil.set(job.getId(), gson.toJson(job));
+        });
     }
 
+    /**
+     * 删除单个任务
+     * @param id
+     */
     public void delete(String id) {
+        redisUtil.delete(id);
     }
 
+    /**
+     * 批量删除任务
+     * @param ids
+     */
     public void batchDelete(List<String> ids) {
+        redisUtil.delete(ids);
     }
 }

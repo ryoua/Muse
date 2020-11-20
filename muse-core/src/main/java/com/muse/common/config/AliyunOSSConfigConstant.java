@@ -13,10 +13,16 @@ public class AliyunOSSConfigConstant {
     public static final String BUCKET_NAME = "ryoua";
 
     public static final String END_POINT = "oss-cn-shanghai.aliyuncs.com";
-    // AccessKey ID
+    /**
+     * AccessKey ID
+     */
     public static final String AccessKey_ID = "LTAI4FeJduE45dWT7B4xfEsf";
-    // Access Key Secret
+    /**
+     * Access Key Secret
+     */
     public static final String AccessKey_Secret = "AKd9r6CkOBAbPk2h8aSy9kK9mH6A3x";
-    // 仓库中的某个文件夹
+    /**
+     * 仓库中的某个文件夹
+     */
     public static final String FILE_HOST = "muse";
 }

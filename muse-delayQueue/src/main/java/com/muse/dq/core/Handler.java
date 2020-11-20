@@ -8,5 +8,5 @@ public interface Handler {
     /**
      * 任务处理
      */
-    public void handle();
+    void handle();
 }
