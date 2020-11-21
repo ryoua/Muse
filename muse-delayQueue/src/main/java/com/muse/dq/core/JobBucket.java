@@ -35,13 +35,13 @@ public class JobBucket {
         redisUtil.zAdd(bucket, id, changeDelayTimeToAbsTime(job.getDelay()));
     }
 
-    public void batchAddJobToBucket(List<Job> jobs) {
+    public void addJobsToBucket(List<Job> jobs) {
         if (!jobs.isEmpty()) {
             Set<TypedTuple<String>> jobSet = new HashSet<>();
             String id = jobs.get(0).getId();
             jobs.forEach(job -> {
                 Double score = TypeUtil.reverseLongToDouble(changeDelayTimeToAbsTime(job.getDelay()));
-                TypedTuple<String> typedTuple = new DefaultTypedTuple<String>(job.getId(), score);
+                TypedTuple<String> typedTuple = new DefaultTypedTuple<>(job.getId(), score);
                 jobSet.add(typedTuple);
             });
             redisUtil.zAdd(id, jobSet);

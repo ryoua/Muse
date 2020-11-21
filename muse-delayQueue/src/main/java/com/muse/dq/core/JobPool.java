@@ -27,7 +27,7 @@ public class JobPool {
      * @param job
      */
     public void add(Job job) {
-        redisUtil.set(job.getId(), gson.toJson(job));
+        redisUtil.set(JOB_POOL + job.getId(), gson.toJson(job));
     }
 
     /**
@@ -36,7 +36,7 @@ public class JobPool {
      */
     public void batchAdd(List<Job> jobs) {
         jobs.forEach(job -> {
-            redisUtil.set(job.getId(), gson.toJson(job));
+            redisUtil.set(JOB_POOL + job.getId(), gson.toJson(job));
         });
     }
 
@@ -45,7 +45,7 @@ public class JobPool {
      * @param id
      */
     public void delete(String id) {
-        redisUtil.delete(id);
+        redisUtil.delete(JOB_POOL + id);
     }
 
     /**
@@ -53,6 +53,7 @@ public class JobPool {
      * @param ids
      */
     public void batchDelete(List<String> ids) {
+        ids.stream().map(id -> id += JOB_POOL);
         redisUtil.delete(ids);
     }
 }

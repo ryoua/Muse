@@ -5,9 +5,9 @@ import com.muse.dq.core.JobPool;
 import com.muse.dq.model.Job;
 import com.muse.dq.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * * @Author: RyouA
@@ -22,9 +22,29 @@ public class ApiController {
     private JobBucket jobBucket;
 
     @PostMapping("/job")
-    public Result addJob(@RequestBody Job job) {
+    public Result add(@RequestBody Job job) {
         jobPool.add(job);
         jobBucket.addJobToBucket(job);
         return Result.SUCCESS();
     }
+
+    @PostMapping("/jobs")
+    public Result adds(@RequestBody List<Job> jobs) {
+        jobs.forEach(job -> {
+            jobPool.add(job);
+        });
+        jobBucket.addJobsToBucket(jobs);
+        return Result.SUCCESS();
+    }
+
+    @DeleteMapping("/job/{id}")
+    public Result delete(@PathVariable("id") String id) {
+        jobPool.delete(id);
+        return Result.SUCCESS();
+    }
+//
+//    @PostMapping("/ack/{id}")
+//    public Result<String> getAck(@PathVariable("id") String id, @RequestParam("ack") boolean ack) {
+//        if ()
+//    }
 }

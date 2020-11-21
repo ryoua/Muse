@@ -3,7 +3,6 @@ package com.muse.dq.core.timer;
 
 import com.google.gson.Gson;
 import com.muse.dq.core.HashNode;
-import com.muse.dq.model.Job;
 import com.muse.dq.util.RedisUtil;
 import com.muse.dq.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -15,13 +14,13 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
+ * 定时扫描器
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
 @Slf4j
 @Component
 public class StandardTimer extends BaseTimer {
-    public static final String STANDARD_TIMER = "standard:timer:";
 
     public static final String CONSUME_LIST = "consume:list";
 
@@ -40,6 +39,7 @@ public class StandardTimer extends BaseTimer {
             jobIds.forEach(jobId -> {
                 if (currentTime >= Objects.requireNonNull(jobId.getScore()).longValue()) {
                     String jobStr = redisUtil.get(jobId.getValue());
+                    redisUtil.zRemove(realNode, jobId.getValue());
                     log.info("job: " + jobStr + " is ok, waiting to consume");
                     moveJobToConsumeList(jobId.getValue());
                 }

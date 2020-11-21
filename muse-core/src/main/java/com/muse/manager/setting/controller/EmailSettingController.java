@@ -52,7 +52,7 @@ public class EmailSettingController {
         return Result.SUCCESS();
     }
 
-    @PostMapping("/{")
+    @PostMapping("/")
     @ApiOperation(value = "新增邮箱设置", tags = EMAIL_SETTING_TAG, httpMethod = "POST")
     @ApiImplicitParams({
     })

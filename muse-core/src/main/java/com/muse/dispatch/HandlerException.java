@@ -4,6 +4,7 @@ import com.lmax.disruptor.ExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 队列异常处理
  * * @Author: RyouA
  * * @Date: 2020/10/26
  **/

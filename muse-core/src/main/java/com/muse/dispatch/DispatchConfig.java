@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 内存队列配置
  * * @Author: RyouA
  * * @Date: 2020/10/26
  **/
