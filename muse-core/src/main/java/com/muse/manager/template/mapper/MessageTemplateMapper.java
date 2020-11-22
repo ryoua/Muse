@@ -49,7 +49,9 @@ public interface MessageTemplateMapper {
 
     List<MessageTemplate> selectByExample(MessageTemplateExample example);
 
-    List<TemplateShort> selectTemplateShort(long uid);
+    List<TemplateShort> selectTemplateShort(MessageTemplate messageTemplate);
+
+    List<TemplateShort> searchTemplateShort(MessageTemplate messageTemplate);
 
     List<TemplateShort> selectMessageTemplateNameLike(MessageTemplate template);
 

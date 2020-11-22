@@ -142,8 +142,12 @@
   </delete>
 
 
-  <select id="selectTemplateShort" parameterType="long" resultType="com.muse.manager.template.model.TemplateShort">
-    select id, name from muse.message_template where uid = #{uid} and valid = 1 order by id desc
+  <select id="selectTemplateShort" parameterType="com.muse.manager.template.model.MessageTemplate" resultType="com.muse.manager.template.model.TemplateShort">
+    select id, name from muse.message_template where uid = #{uid} and valid = 1 and type = #{type,jdbcType=INTEGER} order by id desc limit 100
+  </select>
+
+  <select id="searchTemplateShort" parameterType="com.muse.manager.template.model.MessageTemplate" resultType="com.muse.manager.template.model.TemplateShort">
+    select id, name from muse.message_template where uid = #{uid} and type = #{type,jdbcType=INTEGER} and valid = 1 and name like #{name,jdbcType=VARCHAR}  order by id desc
   </select>
 
   <select id="selectMessageTemplateNameLike"  parameterType="com.muse.manager.template.model.MessageTemplate" resultType="com.muse.manager.template.model.TemplateShort">

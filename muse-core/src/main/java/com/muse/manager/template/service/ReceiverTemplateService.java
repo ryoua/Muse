@@ -2,7 +2,9 @@ package com.muse.manager.template.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
 import com.muse.common.threadLocal.UserLocal;
+import com.muse.common.util.RedisUtil;
 import com.muse.manager.template.mapper.ReceiverTemplateMapper;
 import com.muse.manager.template.model.ReceiverTemplate;
 import com.muse.manager.template.model.ReceiverTemplateExample;
@@ -22,6 +24,12 @@ import java.util.List;
 public class ReceiverTemplateService {
     @Autowired
     ReceiverTemplateMapper receiverTemplateMapper;
+    @Autowired
+    RedisUtil redisUtil;
+    @Autowired
+    Gson gson;
+
+    private static final String RECEIVER_TEMPLATE_SHORT_NAME = "template:receiver:shortname:";
 
     public List<TemplateShort> selectParamTemplateNameLike(String likeName) {
         ReceiverTemplate receiverTemplate = new ReceiverTemplate();

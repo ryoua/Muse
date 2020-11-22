@@ -20,7 +20,7 @@ public class JobPool {
     @Autowired
     Gson gson;
 
-    private static final String JOB_POOL = "job:pool:";
+    public static final String JOB_POOL = "job:pool:";
 
     /**
      * 新增任务

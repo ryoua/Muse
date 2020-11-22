@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * * @Author: RyouA
@@ -35,8 +37,19 @@ public class MessageTemplateService {
         return messageTemplateMapper.selectByPrimaryKey(id);
     }
 
-    public List<TemplateShort> getAllMessageTemplateName() {
-        return messageTemplateMapper.selectTemplateShort(UserLocal.getUserId());
+    public List<TemplateShort> getAllMessageTemplateName(Integer messageType) {
+        MessageTemplate messageTemplate = new MessageTemplate();
+        messageTemplate.setUid(UserLocal.getUserId());
+        messageTemplate.setType(messageType);
+        return messageTemplateMapper.selectTemplateShort(messageTemplate);
+    }
+
+    public List<TemplateShort> searchMessageTemplateName(Integer messageType, String messageName) {
+        MessageTemplate messageTemplate = new MessageTemplate();
+        messageTemplate.setUid(UserLocal.getUserId());
+        messageTemplate.setName("%" + messageName + "%");
+        messageTemplate.setType(messageType);
+        return messageTemplateMapper.searchTemplateShort(messageTemplate);
     }
 
     public PageInfo<MessageTemplate> getAllMessageTemplate(int pageNo, int pageSize, MessageTemplate messageTemplate) {

@@ -7,16 +7,15 @@ spring:
       max-file-size: 100MB
       max-request-size: 1000MB
   redis:
-    host: 115.159.98.172
+    host: 127.0.0.1
     port: 6379
-    timeout: 3000
+    timeout: 10000
     lettuce:
       pool:
         max-active: 8
         max-wait: 1
         max-idle: 8
         min-idle: 0
-    password: XBHxbh123123
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/?useUnicode=true&characterEncoding=UTF-8&useSSL=false

@@ -26,13 +26,22 @@ public class MessageTemplateController {
     @Autowired
     private MessageTemplateService messageTemplateService;
 
-    @GetMapping("/getAllTemplateName")
+    @GetMapping("/getAllTemplateName/{messageType}")
     @ApiOperation(value = "获取全部消息模板名称", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
     @ApiImplicitParams({
     })
-    public Result<?> getAllMessageTemplate() {
-        return new Result<>(200, "ok", messageTemplateService.getAllMessageTemplateName());
+    public Result<?> getAllMessageTemplate(@PathVariable("messageType") Integer messageType) {
+        return new Result<>(200, "ok", messageTemplateService.getAllMessageTemplateName(messageType));
     }
+
+    @GetMapping("/search")
+    @ApiOperation(value = "模糊查询", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
+    @ApiImplicitParams({
+    })
+    public Result<?> getAllMessageTemplate(@RequestParam("messageType") Integer messageType, @RequestParam("search") String messageName) {
+        return new Result<>(200, "ok", messageTemplateService.searchMessageTemplateName(messageType, messageName));
+    }
+
 
     @GetMapping("/getTemplateNameLike")
     @ApiOperation(value = "模糊查询消息模板名称", tags = MESSAGE_TEMPLATE_TAG, httpMethod = "GET")
