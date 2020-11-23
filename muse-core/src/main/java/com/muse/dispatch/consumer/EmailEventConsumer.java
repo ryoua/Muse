@@ -25,21 +25,12 @@ public class EmailEventConsumer implements WorkHandler<MessageDataEvent> {
 
     @Override
     public void onEvent(MessageDataEvent event) {
-        MessageData messageData = event.getValue();
-        EmailMessage emailMessage = gson.fromJson(messageData.getMessage(), EmailMessage.class);
-        iMailService.sendSimpleMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
-//        switch (emailMessage.getType()) {
-//            case EmailType.NORMAL_EMAIL: {
-//                iMailService.sendSimpleMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
-//                break;
-//            }
-//            case EmailType.HTML_EMAIL: {
-//                iMailService.sendHtmlMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
-//                break;
-//            }
-//            default: {
-//                break;
-//            }
-//        }
+        try {
+            MessageData messageData = event.getValue();
+            EmailMessage emailMessage = gson.fromJson(messageData.getMessage(), EmailMessage.class);
+            iMailService.sendSimpleMail(messageData.getReceiver(), emailMessage.getTitle(), emailMessage.getContent());
+        } catch (Exception e) {
+
+        }
     }
 }

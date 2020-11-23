@@ -10,6 +10,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
+ * 哈希节点：总共1000个虚拟节点，默认100个物理节点，支持动态扩容
  * * @Author: RyouA
  * * @Date: 2020/11/19
  **/
@@ -25,7 +26,7 @@ public class HashNode {
 
     private static final int REAL_NODES = 10;
 
-    private static final int VIRTUAL_NODES = 10;
+    private static final int VIRTUAL_NODES = 50000;
 
     public static List<String> getRealNodes() {
         return realNodes;

@@ -81,13 +81,12 @@ public class MessageSendService {
     }
 
     private void paramCheck(MessageSendVo messageSendVo) throws MuseException {
-        // TODO: 对参数进行校验
         messageCheck(messageSendVo);
         receiverCheck(messageSendVo);
     }
 
     private boolean messageCheck(MessageSendVo messageSendVo) throws MuseException{
-        // TODO: 对消息做校验
+
         return true;
     }
 
@@ -114,7 +113,7 @@ public class MessageSendService {
      * @param messageSendVo
      */
     public void setReceiverOfMessageSend(MessageSend messageSend, MessageSendVo messageSendVo) {
-        boolean receiverIsTemplate = (boolean) messageSendVo.getMessage().get(CHOSE_TEMPLATE);
+        boolean receiverIsTemplate = (boolean) messageSendVo.getReceiver().get(CHOSE_TEMPLATE);
         messageSend.setReceiverIsTemplate(receiverIsTemplate);
         messageSend.setReceiver(String.valueOf(messageSendVo.getReceiver().get(RECEIVER)));
         messageSend.setReceiverType((Integer) messageSendVo.getReceiver().get(TYPE));

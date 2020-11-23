@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,6 +44,7 @@ public class JobBucket {
                 Double score = TypeUtil.reverseLongToDouble(changeDelayTimeToAbsTime(job.getDelay()));
                 TypedTuple<String> typedTuple = new DefaultTypedTuple<>(job.getId(), score);
                 jobSet.add(typedTuple);
+
             });
             redisUtil.zAdd(id, jobSet);
         }

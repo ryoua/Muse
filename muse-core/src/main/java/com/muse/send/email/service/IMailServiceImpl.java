@@ -36,6 +36,7 @@ public class IMailServiceImpl implements IMailService {
             public String call() {
                 try {
                     SimpleMailMessage message = new SimpleMailMessage();
+                    message.setSubject(subject);
                     message.setFrom(from);
                     message.setTo(to);
                     message.setText(content);

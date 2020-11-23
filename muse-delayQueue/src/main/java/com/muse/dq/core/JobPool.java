@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 import com.muse.dq.model.Job;
 import com.muse.dq.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -31,12 +35,21 @@ public class JobPool {
     }
 
     /**
-     * 批量新增任务
+     * 使用Pipeline批量新增任务
      * @param jobs
      */
     public void batchAdd(List<Job> jobs) {
-        jobs.forEach(job -> {
-            redisUtil.set(JOB_POOL + job.getId(), gson.toJson(job));
+        StringRedisTemplate redisTemplate = redisUtil.getRedisTemplate();
+        redisTemplate.executePipelined(new RedisCallback<Long>() {
+            @Override
+            public Long doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.openPipeline();
+                jobs.forEach(job -> {
+                    redisUtil.set(JOB_POOL + job.getId(), gson.toJson(job));
+                });
+                redisConnection.closePipeline();
+                return null;
+            }
         });
     }
 

@@ -55,12 +55,8 @@ public class Dispatcher {
     }
 
     public void sendToWorker(MessageSend messageSend) {
-        switch (messageSend.getMessageType()) {
-            case MessageType.EMAIL: {
-                dispatchEmail(messageSend);
-                break;
-            }
-            default:
+        if (messageSend.getMessageType() == MessageType.EMAIL) {
+            dispatchEmail(messageSend);
         }
     }
 

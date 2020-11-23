@@ -11,9 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import static com.muse.dq.core.JobPool.JOB_POOL;
 
@@ -27,6 +25,7 @@ import static com.muse.dq.core.JobPool.JOB_POOL;
 public class StandardTimer extends BaseTimer {
 
     public static final String CONSUME_LIST = "consume:list";
+    private List list = new ArrayList();
 
     StandardTimer() {
         super("standard-timer");
@@ -48,6 +47,7 @@ public class StandardTimer extends BaseTimer {
                     redisUtil.zRemove(realNode, jobId.getValue());
                     log.info("job: " + jobId.getValue() + " is ok, waiting to consume");
                     moveJobToConsumeList(jobId.getValue());
+                    list.addAll(Collections.singleton(jobId.getValue()));
                 }
             });
         });
