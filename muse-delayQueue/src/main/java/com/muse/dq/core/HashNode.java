@@ -26,7 +26,7 @@ public class HashNode {
 
     private static final int REAL_NODES = 10;
 
-    private static final int VIRTUAL_NODES = 50000;
+    private static final int VIRTUAL_NODES = 10;
 
     public static List<String> getRealNodes() {
         return realNodes;
@@ -78,13 +78,20 @@ public class HashNode {
         return hash;
     }
 
-    public static String getBucket(String node) {
+    public static String getBucket(String node) throws InterruptedException {
         // 得到带路由的节点的hash值
         int hash = getHash(node);
         // 得到大于该hash值的所有Map
         SortedMap<Integer, String> subMap = virtualNodes.tailMap(hash);
         // 第一个Key就是顺时针过去离node最近的那个节点
-        Integer i = subMap.firstKey();
+        Integer i = 0;
+        try {
+            i = subMap.firstKey();
+        } catch (Exception e) {
+            log.info("=-===============");
+            Thread.sleep(5000);
+            i = subMap.firstKey();
+        }
         // 返回对应的虚拟节点名称，这里字符串稍微截取一下
         String virtualNode = subMap.get(i);
         return virtualNode.substring(0, virtualNode.indexOf("&&"));

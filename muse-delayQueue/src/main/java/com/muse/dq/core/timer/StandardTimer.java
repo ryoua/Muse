@@ -7,10 +7,18 @@ import com.muse.dq.model.Job;
 import com.muse.dq.model.JobStatus;
 import com.muse.dq.util.RedisUtil;
 import com.muse.dq.util.SpringUtil;
+import com.muse.dq.util.TypeUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+import reactor.util.annotation.NonNullApi;
 
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.muse.dq.core.JobPool.JOB_POOL;
@@ -25,37 +33,76 @@ import static com.muse.dq.core.JobPool.JOB_POOL;
 public class StandardTimer extends BaseTimer {
 
     public static final String CONSUME_LIST = "consume:list";
-    private List list = new ArrayList();
 
     StandardTimer() {
         super("standard-timer");
     }
 
+    /**
+     * 每秒扫描
+     */
     @Override
     public void scan() {
-        RedisUtil redisUtil = SpringUtil.getBean(RedisUtil.class);
-        List<String> realNodes = HashNode.getRealNodes();
-        // 对每个Node做一个循环
-        realNodes.forEach(realNode -> {
-            // 拿到Node里时间最早的节点
-            long currentTime = System.currentTimeMillis();
-            Set<ZSetOperations.TypedTuple<String>> jobIds = redisUtil.zRangeByScoreWithScores(realNode, 0, currentTime + 1000);
-            jobIds.forEach(jobId -> {
-                // 检查时间是否到了
-                if (currentTime >= Objects.requireNonNull(jobId.getScore())) {
-                    // 将任务从zSet移到消费列表
-                    redisUtil.zRemove(realNode, jobId.getValue());
-                    log.info("job: " + jobId.getValue() + " is ok, waiting to consume");
-                    moveJobToConsumeList(jobId.getValue());
-                    list.addAll(Collections.singleton(jobId.getValue()));
+        double current = TypeUtil.reverseLongToDouble(System.currentTimeMillis());
+        List<String> delayList = new ArrayList<>();
+        // 对每个bucket尾部数据做一个循环, 拿出时间到的
+        List<Set<ZSetOperations.TypedTuple<String>>> lastData = getLastData();
+        lastData.forEach(data -> {
+            data.forEach(item -> {
+                Double score = item.getScore();
+                assert score != null;
+                if (score <= current) {
+                    delayList.add(item.getValue());
+                    log.info("job id: " + item.getValue() + " is ok, time lost[" + (current - item.getScore()) + "]");
                 }
             });
         });
+
+        if (!delayList.isEmpty()) {
+            moveDelayJob(delayList);
+        }
     }
 
-    public void moveJobToConsumeList(String jobId) {
+    public void moveDelayJob(List<String> jobs) {
         RedisUtil redisUtil = SpringUtil.getBean(RedisUtil.class);
-        redisUtil.lLeftPush(CONSUME_LIST, jobId);
+        StringRedisTemplate redisTemplate = redisUtil.getRedisTemplate();
+        // 对每个Node做一个循环
+        redisTemplate.executePipelined(new RedisCallback<Long>() {
+            @Override
+            public Long doInRedis( RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.openPipeline();
+                jobs.forEach(jobId -> {
+                    redisUtil.lLeftPush(CONSUME_LIST, jobId);
+                });
+                redisConnection.closePipeline();
+                return null;
+            }
+        });
+    }
+
+    /**
+     * 获取每个Node Bucket的最后一个数据
+     * @return
+     */
+    public List<Set<ZSetOperations.TypedTuple<String>>> getLastData() {
+        RedisUtil redisUtil = SpringUtil.getBean(RedisUtil.class);
+        List<String> realNodes = HashNode.getRealNodes();
+        StringRedisTemplate redisTemplate = redisUtil.getRedisTemplate();
+        List<Set<ZSetOperations.TypedTuple<String>>> data = new ArrayList<>();
+        // 对每个Node做一个循环
+        redisTemplate.executePipelined(new RedisCallback<Long>() {
+            @Override
+            public Long doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.openPipeline();
+                realNodes.forEach(realNode -> {
+                    Set<ZSetOperations.TypedTuple<String>> typedTuples = redisUtil.zRangeWithScores(realNode, 0, 1);
+                    data.add(typedTuples);
+                });
+                redisConnection.closePipeline();
+                return null;
+            }
+        });
+        return data;
     }
 
     public boolean checkStatus(String jobId) {

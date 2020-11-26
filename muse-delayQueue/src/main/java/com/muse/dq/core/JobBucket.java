@@ -30,7 +30,7 @@ public class JobBucket {
     @Autowired
     RedisUtil redisUtil;
 
-    public void addJobToBucket(Job job) {
+    public void addJobToBucket(Job job) throws InterruptedException {
         String id = job.getId();
         String bucket = HashNode.getBucket(id);
         redisUtil.zAdd(bucket, id, changeDelayTimeToAbsTime(job.getDelay()));

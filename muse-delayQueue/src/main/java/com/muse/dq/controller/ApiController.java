@@ -22,7 +22,7 @@ public class ApiController {
     private JobBucket jobBucket;
 
     @PostMapping("/job")
-    public Result add(@RequestBody Job job) {
+    public Result add(@RequestBody Job job) throws InterruptedException {
         jobPool.add(job);
         jobBucket.addJobToBucket(job);
         return Result.SUCCESS();

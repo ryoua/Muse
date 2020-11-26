@@ -16,6 +16,8 @@ import org.apache.ibatis.annotations.Param;
 public interface MessageSendMapper {
     long countByExample(MessageSendExample example);
 
+    long countSendToday();
+
     int deleteByExample(MessageSendExample example);
 
     List<MessageSendHistoryVo> selectAllMessageSendHistory(MessageSend messageSend);

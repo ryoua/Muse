@@ -830,4 +830,8 @@
       </if>
     </trim>
   </insert>
+
+  <select id="countSendToday" resultType="long">
+     select count(1) from message_send where date_format(create_time,'%Y-%m-%d')= date_format(now(),'%Y-%m-%d')
+  </select>
 </mapper>

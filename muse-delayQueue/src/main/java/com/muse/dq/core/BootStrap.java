@@ -33,8 +33,8 @@ public class BootStrap implements CommandLineRunner {
         }
 
         Thread.sleep(5000);
-        while (true) {
-            timer.scan();
-        }
+//        while (true) {
+//            timer.scan();
+//        }
     }
 }
