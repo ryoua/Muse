@@ -9,7 +9,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="port" jdbcType="VARCHAR" property="port" />
-    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="from" jdbcType="VARCHAR" property="from" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="is_tls" jdbcType="BIT" property="isTls" />
     <result column="is_ssl" jdbcType="BIT" property="isSsl" />
@@ -81,8 +81,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, `uid`, `name`, address, port, account, username, is_tls, is_ssl, `password`, 
-    `valid`, create_time, update_time, description
+    id, `uid`, `name`, address, port, `from`, username, is_tls, is_ssl, `password`, `valid`, 
+    create_time, update_time, description
   </sql>
   <select id="selectByExample" parameterType="com.muse.manager.setting.model.EmailSettingExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -121,12 +121,12 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.muse.manager.setting.model.EmailSetting" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into muse.email_setting (`uid`, `name`, address, 
-      port, account, username, 
+      port, `from`, username, 
       is_tls, is_ssl, `password`, `valid`, 
       create_time, update_time, description
       )
     values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{port,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{port,jdbcType=VARCHAR}, #{from,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{isTls,jdbcType=BIT}, #{isSsl,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, #{valid,jdbcType=BIT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
       )
@@ -147,8 +147,8 @@
       <if test="port != null">
         port,
       </if>
-      <if test="account != null">
-        account,
+      <if test="from != null">
+        `from`,
       </if>
       <if test="username != null">
         username,
@@ -188,8 +188,8 @@
       <if test="port != null">
         #{port,jdbcType=VARCHAR},
       </if>
-      <if test="account != null">
-        #{account,jdbcType=VARCHAR},
+      <if test="from != null">
+        #{from,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -243,8 +243,8 @@
       <if test="record.port != null">
         port = #{record.port,jdbcType=VARCHAR},
       </if>
-      <if test="record.account != null">
-        account = #{record.account,jdbcType=VARCHAR},
+      <if test="record.from != null">
+        `from` = #{record.from,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -283,7 +283,7 @@
       `name` = #{record.name,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       port = #{record.port,jdbcType=VARCHAR},
-      account = #{record.account,jdbcType=VARCHAR},
+      `from` = #{record.from,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
       is_tls = #{record.isTls,jdbcType=BIT},
       is_ssl = #{record.isSsl,jdbcType=BIT},
@@ -312,8 +312,8 @@
       <if test="port != null">
         port = #{port,jdbcType=VARCHAR},
       </if>
-      <if test="account != null">
-        account = #{account,jdbcType=VARCHAR},
+      <if test="from != null">
+        `from` = #{from,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
@@ -349,7 +349,7 @@
       `name` = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       port = #{port,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
+      `from` = #{from,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       is_tls = #{isTls,jdbcType=BIT},
       is_ssl = #{isSsl,jdbcType=BIT},
@@ -384,9 +384,9 @@
           when id = #{item.id,jdbcType=BIGINT} then #{item.port,jdbcType=VARCHAR}
         </foreach>
       </trim>
-      <trim prefix="account = case" suffix="end,">
+      <trim prefix="`from` = case" suffix="end,">
         <foreach collection="list" index="index" item="item">
-          when id = #{item.id,jdbcType=BIGINT} then #{item.account,jdbcType=VARCHAR}
+          when id = #{item.id,jdbcType=BIGINT} then #{item.from,jdbcType=VARCHAR}
         </foreach>
       </trim>
       <trim prefix="username = case" suffix="end,">
@@ -438,12 +438,12 @@
   <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into muse.email_setting
-    (`uid`, `name`, address, port, account, username, is_tls, is_ssl, `password`, `valid`, 
+    (`uid`, `name`, address, port, `from`, username, is_tls, is_ssl, `password`, `valid`, 
       create_time, update_time, description)
     values
     <foreach collection="list" item="item" separator=",">
       (#{item.uid,jdbcType=BIGINT}, #{item.name,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, 
-        #{item.port,jdbcType=VARCHAR}, #{item.account,jdbcType=VARCHAR}, #{item.username,jdbcType=VARCHAR}, 
+        #{item.port,jdbcType=VARCHAR}, #{item.from,jdbcType=VARCHAR}, #{item.username,jdbcType=VARCHAR}, 
         #{item.isTls,jdbcType=BIT}, #{item.isSsl,jdbcType=BIT}, #{item.password,jdbcType=VARCHAR}, 
         #{item.valid,jdbcType=BIT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateTime,jdbcType=TIMESTAMP}, 
         #{item.description,jdbcType=VARCHAR})
@@ -460,7 +460,7 @@
       `name`,
       address,
       port,
-      account,
+      `from`,
       username,
       is_tls,
       is_ssl,
@@ -479,7 +479,7 @@
       #{name,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR},
       #{port,jdbcType=VARCHAR},
-      #{account,jdbcType=VARCHAR},
+      #{from,jdbcType=VARCHAR},
       #{username,jdbcType=VARCHAR},
       #{isTls,jdbcType=BIT},
       #{isSsl,jdbcType=BIT},
@@ -498,7 +498,7 @@
       `name` = #{name,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       port = #{port,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
+      `from` = #{from,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       is_tls = #{isTls,jdbcType=BIT},
       is_ssl = #{isSsl,jdbcType=BIT},
@@ -528,8 +528,8 @@
       <if test="port != null">
         port,
       </if>
-      <if test="account != null">
-        account,
+      <if test="from != null">
+        `from`,
       </if>
       <if test="username != null">
         username,
@@ -573,8 +573,8 @@
       <if test="port != null">
         #{port,jdbcType=VARCHAR},
       </if>
-      <if test="account != null">
-        #{account,jdbcType=VARCHAR},
+      <if test="from != null">
+        #{from,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -618,8 +618,8 @@
       <if test="port != null">
         port = #{port,jdbcType=VARCHAR},
       </if>
-      <if test="account != null">
-        account = #{account,jdbcType=VARCHAR},
+      <if test="from != null">
+        `from` = #{from,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},

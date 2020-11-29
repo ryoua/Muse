@@ -7,6 +7,7 @@ import com.muse.manager.setting.model.EmailSettingExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -21,11 +22,12 @@ public class EmailSettingService {
     public EmailSetting getEmailSetting() {
         EmailSettingExample emailSettingExample = new EmailSettingExample();
         emailSettingExample.or().andUidEqualTo(UserLocal.getUserId()).andValidEqualTo(true);
-        return emailSettingMapper.selectByExample(emailSettingExample).get(0);
+        List<EmailSetting> emailSettings = emailSettingMapper.selectByExample(emailSettingExample);
+        return emailSettings.isEmpty() ? null : emailSettings.get(0);
     }
 
     public void addEmailSetting(EmailSetting emailSetting) {
-        if (getEmailSetting() == null) {
+        if (getEmailSetting() != null) {
             emailSetting.setId(getEmailSetting().getId());
             updateEmailSetting(emailSetting);
         } else {

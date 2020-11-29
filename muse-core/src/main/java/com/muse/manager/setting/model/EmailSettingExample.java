@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
 ** @Author: RyouA
-** @Date: 2020/11/15
+** @Date: 2020/11/27
 **/
 public class EmailSettingExample {
     protected String orderByClause;
@@ -439,73 +439,73 @@ public class EmailSettingExample {
             return (Criteria) this;
         }
 
-        public Criteria andAccountIsNull() {
-            addCriterion("account is null");
+        public Criteria andFromIsNull() {
+            addCriterion("`from` is null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIsNotNull() {
-            addCriterion("account is not null");
+        public Criteria andFromIsNotNull() {
+            addCriterion("`from` is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountEqualTo(String value) {
-            addCriterion("account =", value, "account");
+        public Criteria andFromEqualTo(String value) {
+            addCriterion("`from` =", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotEqualTo(String value) {
-            addCriterion("account <>", value, "account");
+        public Criteria andFromNotEqualTo(String value) {
+            addCriterion("`from` <>", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThan(String value) {
-            addCriterion("account >", value, "account");
+        public Criteria andFromGreaterThan(String value) {
+            addCriterion("`from` >", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThanOrEqualTo(String value) {
-            addCriterion("account >=", value, "account");
+        public Criteria andFromGreaterThanOrEqualTo(String value) {
+            addCriterion("`from` >=", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThan(String value) {
-            addCriterion("account <", value, "account");
+        public Criteria andFromLessThan(String value) {
+            addCriterion("`from` <", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThanOrEqualTo(String value) {
-            addCriterion("account <=", value, "account");
+        public Criteria andFromLessThanOrEqualTo(String value) {
+            addCriterion("`from` <=", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLike(String value) {
-            addCriterion("account like", value, "account");
+        public Criteria andFromLike(String value) {
+            addCriterion("`from` like", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotLike(String value) {
-            addCriterion("account not like", value, "account");
+        public Criteria andFromNotLike(String value) {
+            addCriterion("`from` not like", value, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIn(List<String> values) {
-            addCriterion("account in", values, "account");
+        public Criteria andFromIn(List<String> values) {
+            addCriterion("`from` in", values, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotIn(List<String> values) {
-            addCriterion("account not in", values, "account");
+        public Criteria andFromNotIn(List<String> values) {
+            addCriterion("`from` not in", values, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountBetween(String value1, String value2) {
-            addCriterion("account between", value1, value2, "account");
+        public Criteria andFromBetween(String value1, String value2) {
+            addCriterion("`from` between", value1, value2, "from");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotBetween(String value1, String value2) {
-            addCriterion("account not between", value1, value2, "account");
+        public Criteria andFromNotBetween(String value1, String value2) {
+            addCriterion("`from` not between", value1, value2, "from");
             return (Criteria) this;
         }
 
