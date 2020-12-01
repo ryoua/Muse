@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 import com.muse.dq.core.HashNode;
 import com.muse.dq.model.Job;
 import com.muse.dq.model.JobStatus;
-import com.muse.dq.util.RedisUtil;
-import com.muse.dq.util.SpringUtil;
-import com.muse.dq.util.TypeUtil;
+import com.muse.utils.RedisUtil;
+import com.muse.utils.SpringUtil;
+import com.muse.utils.TypeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -15,10 +15,6 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
-import reactor.util.annotation.NonNullApi;
-
-import javax.validation.constraints.NotNull;
 import java.util.*;
 
 import static com.muse.dq.core.JobPool.JOB_POOL;

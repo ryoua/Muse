@@ -2,7 +2,8 @@ package com.muse.dq.core;
 
 import com.google.gson.Gson;
 import com.muse.dq.model.Job;
-import com.muse.dq.util.RedisUtil;
+import com.muse.dq.model.JobStatus;
+import com.muse.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -25,6 +26,15 @@ public class JobPool {
     Gson gson;
 
     public static final String JOB_POOL = "job:pool:";
+
+    public Job getJobDetail(String jobId) {
+        String job = redisUtil.get(jobId);
+        return gson.fromJson(job, Job.class);
+    }
+
+    public boolean isJobDelete(Job job) {
+        return job.getStatus() == JobStatus.DELETE;
+    }
 
     /**
      * 新增任务

@@ -10,7 +10,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * 哈希节点：总共1000个虚拟节点，默认100个物理节点，支持动态扩容
+ * 一致性哈希算法实现：
  * * @Author: RyouA
  * * @Date: 2020/11/19
  **/
@@ -24,8 +24,14 @@ public class HashNode {
 
     private static SortedMap<Integer, String> virtualNodes = new TreeMap<>();
 
+    /**
+     * 默认10个物理节点
+     */
     private static final int REAL_NODES = 10;
 
+    /**
+     * 默认100个虚拟节点
+     */
     private static final int VIRTUAL_NODES = 10;
 
     public static List<String> getRealNodes() {
@@ -56,6 +62,7 @@ public class HashNode {
 
     /**
      * 使用FNV1_32_HASH算法计算服务器的Hash值
+     *
      * @param str
      * @return
      */
@@ -85,15 +92,14 @@ public class HashNode {
         SortedMap<Integer, String> subMap = virtualNodes.tailMap(hash);
         // 第一个Key就是顺时针过去离node最近的那个节点
         Integer i = 0;
-        try {
+        String virtualNode;
+        if (subMap.isEmpty()) {
+            i = virtualNodes.firstKey();
+            virtualNode = virtualNodes.get(i);
+        } else {
             i = subMap.firstKey();
-        } catch (Exception e) {
-            log.info("=-===============");
-            Thread.sleep(5000);
-            i = subMap.firstKey();
+            virtualNode = subMap.get(i);
         }
-        // 返回对应的虚拟节点名称，这里字符串稍微截取一下
-        String virtualNode = subMap.get(i);
         return virtualNode.substring(0, virtualNode.indexOf("&&"));
     }
 

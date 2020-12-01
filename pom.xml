@@ -21,6 +21,7 @@
         <module>muse-auth</module>
         <module>muse-config</module>
         <module>muse-send</module>
+        <module>muse-manager</module>
     </modules>
 
     <repositories>

@@ -44,4 +44,9 @@ public class Job {
      * 状态
      */
     private int status;
+
+    /**
+     * 是否需要消息确认机制
+     */
+    private boolean needAck;
 }
