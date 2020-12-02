@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.muse.dispatch.filter.whitelist.mapper.WhiteListItemMapper">
+  <resultMap id="BaseResultMap" type="com.muse.dispatch.filter.whitelist.model.WhiteListItem">
+    <!--@mbg.generated-->
+    <!--@Table muse.white_list_item-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="item" jdbcType="VARCHAR" property="item" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.muse.dispatch.filter.whitelist.model.WhiteListItem">
+    <!--@mbg.generated-->
+    <!--@Table muse.white_list_item-->
+    <result column="wid" jdbcType="LONGVARCHAR" property="wid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, item
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--@mbg.generated-->
+    wid
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItemExample" resultMap="ResultMapWithBLOBs">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from muse.white_list_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItemExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from muse.white_list_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from muse.white_list_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from muse.white_list_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItemExample">
+    <!--@mbg.generated-->
+    delete from muse.white_list_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into muse.white_list_item (item, wid)
+    values (#{item,jdbcType=VARCHAR}, #{wid,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into muse.white_list_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="item != null">
+        item,
+      </if>
+      <if test="wid != null">
+        wid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="item != null">
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItemExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from muse.white_list_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.item != null">
+        item = #{record.item,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wid != null">
+        wid = #{record.wid,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    set id = #{record.id,jdbcType=BIGINT},
+      item = #{record.item,jdbcType=VARCHAR},
+      wid = #{record.wid,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    set id = #{record.id,jdbcType=BIGINT},
+      item = #{record.item,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    <set>
+      <if test="item != null">
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        wid = #{wid,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    set item = #{item,jdbcType=VARCHAR},
+      wid = #{wid,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    set item = #{item,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update muse.white_list_item
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="item = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.item,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="wid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.wid,jdbcType=LONGVARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into muse.white_list_item
+    (item, wid)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.item,jdbcType=VARCHAR}, #{item.wid,jdbcType=LONGVARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into muse.white_list_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      item,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{item,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      item = #{item,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateWithBLOBs" keyColumn="id" keyProperty="id" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into muse.white_list_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      item,
+      wid,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      #{item,jdbcType=VARCHAR},
+      #{wid,jdbcType=LONGVARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      item = #{item,jdbcType=VARCHAR},
+      wid = #{wid,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.muse.dispatch.filter.whitelist.model.WhiteListItem" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into muse.white_list_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="item != null">
+        item,
+      </if>
+      <if test="wid != null">
+        wid,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="item != null">
+        #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="item != null">
+        item = #{item,jdbcType=VARCHAR},
+      </if>
+      <if test="wid != null">
+        wid = #{wid,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
