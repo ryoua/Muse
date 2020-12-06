@@ -22,19 +22,26 @@ import java.util.Set;
 @Slf4j
 @Component
 public class JobBucket {
-    private static final String JOB_BUCKET = "job_bucket:";
 
     @Autowired
     Gson gson;
     @Autowired
     RedisUtil redisUtil;
 
-    public void addJobToBucket(Job job) throws InterruptedException {
+    /**
+     * 添加任务到Bucket中
+     * @param job
+     */
+    public void addJobToBucket(Job job) {
         String id = job.getId();
         String bucket = HashNode.getBucket(id);
         redisUtil.zAdd(bucket, id, changeDelayTimeToAbsTime(job.getDelay()));
     }
 
+    /**
+     * 批量添加任务到Bucket中
+     * @param jobs
+     */
     public void addJobsToBucket(List<Job> jobs) {
         if (!jobs.isEmpty()) {
             Set<TypedTuple<String>> jobSet = new HashSet<>();
@@ -49,7 +56,11 @@ public class JobBucket {
         }
     }
 
-
+    /**
+     * 将延迟时间转为绝对时间
+     * @param delay
+     * @return
+     */
     public Long changeDelayTimeToAbsTime(Long delay) {
         return System.currentTimeMillis() + delay * 1000;
     }

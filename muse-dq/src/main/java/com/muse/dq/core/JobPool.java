@@ -11,30 +11,24 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.List;
+
+import static com.muse.dq.model.RedisConstants.JOB_POOL;
 
 /**
  * 任务池 只存放任务的JSON格式数据
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
+@ThreadSafe
 @Component
 public class JobPool {
+
     @Autowired
     RedisUtil redisUtil;
     @Autowired
     Gson gson;
-
-    public static final String JOB_POOL = "job:pool:";
-
-    public Job getJobDetail(String jobId) {
-        String job = redisUtil.get(jobId);
-        return gson.fromJson(job, Job.class);
-    }
-
-    public boolean isJobDelete(Job job) {
-        return job.getStatus() == JobStatus.DELETE;
-    }
 
     /**
      * 新增任务
@@ -78,5 +72,14 @@ public class JobPool {
     public void batchDelete(List<String> ids) {
         ids.stream().map(id -> id += JOB_POOL);
         redisUtil.delete(ids);
+    }
+
+    public Job getJobDetail(String jobId) {
+        String job = redisUtil.get(jobId);
+        return gson.fromJson(job, Job.class);
+    }
+
+    public boolean isJobDelete(Job job) {
+        return job.getStatus() == JobStatus.DELETE;
     }
 }

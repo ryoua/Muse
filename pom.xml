@@ -10,18 +10,15 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>muse-core</module>
-        <module>muse-delayQueue</module>
-        <module>muse-zk</module>
-        <module>muse-monitor</module>
         <module>muse-test</module>
         <module>muse-api</module>
-        <module>muse-common</module>
         <module>muse-dispatch</module>
         <module>muse-statistics</module>
         <module>muse-auth</module>
         <module>muse-config</module>
         <module>muse-send</module>
         <module>muse-manager</module>
+        <module>muse-common</module>
     </modules>
 
     <repositories>
@@ -46,6 +43,10 @@
     </parent>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>

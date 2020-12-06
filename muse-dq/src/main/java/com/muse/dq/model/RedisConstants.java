@@ -6,4 +6,9 @@ package com.muse.dq.model;
  **/
 public class RedisConstants {
     public static final String MESSAGE_ACK_FAIL_LIST = "message:ack:fail:list";
+
+    public static final String JOB_POOL = "job:pool:";
+
+    private static final String JOB_BUCKET = "job_bucket:";
+
 }

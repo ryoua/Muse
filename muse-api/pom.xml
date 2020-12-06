@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>com.muse</groupId>
-            <artifactId>muse-common</artifactId>
+            <artifactId>muse-com.muse.common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

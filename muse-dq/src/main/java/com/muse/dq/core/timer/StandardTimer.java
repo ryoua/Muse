@@ -15,15 +15,18 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.*;
 
-import static com.muse.dq.core.JobPool.JOB_POOL;
+import static com.muse.dq.model.RedisConstants.JOB_POOL;
 
 /**
  * 定时扫描器
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
+@ThreadSafe
 @Slf4j
 @Component
 public class StandardTimer extends BaseTimer {

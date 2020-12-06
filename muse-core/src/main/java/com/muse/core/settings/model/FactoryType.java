@@ -6,4 +6,6 @@ package com.muse.core.settings.model;
  **/
 public class FactoryType {
     public static final String QQ_EMAIL = "1";
+    public static final String ALIYUN_SMS = "2";
+    public static final String TENCENT_SMS = "3";
 }

@@ -56,4 +56,35 @@ public class ServiceSettingService {
             serviceSettingMapper.updateByPrimaryKeySelective(serviceSetting);
         }
     }
+
+
+    public List<ServiceSetting> getSmsSettingByFactory(String factory) {
+        ServiceSettingExample serviceSettingExample = new ServiceSettingExample();
+        serviceSettingExample.or()
+                .andUidEqualTo(UserLocal.getUserId())
+                .andValidEqualTo(true)
+                .andTypeEqualTo(ServiceType.SMS)
+                .andFactoryEqualTo(factory);
+        return serviceSettingMapper.selectByExample(serviceSettingExample);
+    }
+
+    public void addSmsSetting(ServiceSetting serviceSetting) {
+        ServiceSettingExample serviceSettingExample = new ServiceSettingExample();
+        serviceSettingExample.or()
+                .andUidEqualTo(UserLocal.getUserId())
+                .andValidEqualTo(true)
+                .andTypeEqualTo(ServiceType.SMS)
+                .andFactoryEqualTo(serviceSetting.getFactory());
+        List<ServiceSetting> serviceSettings = serviceSettingMapper.selectByExample(serviceSettingExample);
+        if (serviceSettings.isEmpty()) {
+            serviceSetting.setType(ServiceType.SMS);
+            serviceSetting.setUid(UserLocal.getUserId());
+            serviceSettingMapper.insertSelective(serviceSetting);
+        } else {
+            serviceSetting.setId(serviceSettings.get(0).getId());
+            serviceSetting.setType(ServiceType.SMS);
+            serviceSetting.setUid(UserLocal.getUserId());
+            serviceSettingMapper.updateByPrimaryKeySelective(serviceSetting);
+        }
+    }
 }

@@ -3,9 +3,6 @@ package com.muse.core.settings.controller;
 import com.muse.common.model.Result;
 import com.muse.core.settings.model.ServiceSetting;
 import com.muse.core.settings.service.ServiceSettingService;
-import com.muse.manager.setting.model.EmailSetting;
-import com.muse.manager.setting.service.EmailSettingService;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,13 @@ public class ServiceSettingController {
     @ApiImplicitParams({})
     public Result<?> getEmailSetting(@PathVariable("factory") String factory) {
         return new Result<>(200, "ok", serviceSettingService.getEmailSettingByFactory(factory));
+    }
+
+    @GetMapping("/sms/{factory}")
+    @ApiOperation(value = "获取短信设置", tags = SERVICE_SETTING_TAG, httpMethod = "GET")
+    @ApiImplicitParams({})
+    public Result<?> getSmsSetting(@PathVariable("factory") String factory) {
+        return new Result<>(200, "ok", serviceSettingService.getSmsSettingByFactory(factory));
     }
 
 //    @DeleteMapping("/{id}")
@@ -60,6 +64,15 @@ public class ServiceSettingController {
     })
     public Result<?> addEmailSetting(@RequestBody ServiceSetting serviceSetting) {
         serviceSettingService.addEmailSetting(serviceSetting);
+        return Result.SUCCESS();
+    }
+
+    @PostMapping("/sms")
+    @ApiOperation(value = "新增短信设置", tags = SERVICE_SETTING_TAG, httpMethod = "POST")
+    @ApiImplicitParams({
+    })
+    public Result<?> addSmsSetting(@RequestBody ServiceSetting serviceSetting) {
+        serviceSettingService.addSmsSetting(serviceSetting);
         return Result.SUCCESS();
     }
 }

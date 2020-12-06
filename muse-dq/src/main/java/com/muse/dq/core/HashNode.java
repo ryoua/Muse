@@ -10,7 +10,8 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
- * 一致性哈希算法实现：
+ * 一致性哈希算法实现
+ * 主要用于对Bucket分区
  * * @Author: RyouA
  * * @Date: 2020/11/19
  **/
@@ -85,7 +86,7 @@ public class HashNode {
         return hash;
     }
 
-    public static String getBucket(String node) throws InterruptedException {
+    public static String getBucket(String node) {
         // 得到带路由的节点的hash值
         int hash = getHash(node);
         // 得到大于该hash值的所有Map

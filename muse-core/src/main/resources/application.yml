@@ -1,6 +1,5 @@
 web:
   upload-path: /home/
-
 spring:
   servlet:
     multipart:
@@ -18,7 +17,7 @@ spring:
         min-idle: 0
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/m?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
   mail:
@@ -42,18 +41,20 @@ spring:
         display:
           sendmail: Javen
           sendname: Spring Boot
-server:
-  port: 8083
+
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
   spring:
     mvc:
       view:
         prefix: classpath:/static/
         suffix: .html
       static-path-pattern: classpath:/static/
-mybatis:
-  mapper-locations: classpath*:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8443
 
 
 

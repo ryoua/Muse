@@ -31,11 +31,6 @@ public class Job {
     private String ttr;
 
     /**
-     * cron表达式
-     */
-    private String cron;
-
-    /**
      * 消息体
      */
     private String body;

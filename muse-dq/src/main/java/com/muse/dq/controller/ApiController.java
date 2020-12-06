@@ -42,9 +42,4 @@ public class ApiController {
         jobPool.delete(id);
         return Result.SUCCESS();
     }
-//
-//    @PostMapping("/ack/{id}")
-//    public Result<String> getAck(@PathVariable("id") String id, @RequestParam("ack") boolean ack) {
-//        if ()
-//    }
 }
