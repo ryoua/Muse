@@ -13,5 +13,4 @@
         <result property="createDate" column="create_date"/>
     </resultMap>
 
-
 </mapper>

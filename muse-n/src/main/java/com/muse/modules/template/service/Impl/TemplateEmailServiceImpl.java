@@ -25,7 +25,6 @@ public class TemplateEmailServiceImpl extends ServiceImpl<TemplateEmailDao, Temp
                 new Query<TemplateEmailEntity>().getPage(params),
                 new QueryWrapper<TemplateEmailEntity>()
         );
-
         return new PageUtils(page);
     }
 

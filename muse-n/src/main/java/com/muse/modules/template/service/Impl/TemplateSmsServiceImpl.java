@@ -10,6 +10,7 @@ import com.muse.modules.template.entity.TemplateSmsEntity;
 import com.muse.modules.template.service.TemplateSmsService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +28,13 @@ public class TemplateSmsServiceImpl extends ServiceImpl<TemplateSmsDao, Template
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryNames() {
+        QueryWrapper queryWrapper = new QueryWrapper<>();;
+        queryWrapper.select("id", "name");
+        return this.baseMapper.selectMaps(queryWrapper);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.muse.modules.template.controller;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.muse.common.utils.PageUtils;
 import com.muse.common.utils.R;
 import com.muse.modules.template.entity.TemplateSmsEntity;
@@ -19,6 +20,11 @@ import java.util.Map;
 public class TemplateSmsController {
     @Autowired
     private TemplateSmsService templateSmsService;
+
+    @RequestMapping("/list/name")
+    public R listName() {
+        return R.ok().put("data", templateSmsService.queryNames());
+    }
 
     /**
      * 列表
