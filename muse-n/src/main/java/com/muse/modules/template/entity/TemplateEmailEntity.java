@@ -24,7 +24,7 @@ public class TemplateEmailEntity implements Serializable {
     /**
      *
      */
-    private Integer userId;
+    private Long userId;
     /**
      * 模板名称
      */

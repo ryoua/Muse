@@ -2,18 +2,18 @@ package com.muse.modules.template.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
- * * @Author: RyouA
- * * @Date: 2020/12/6
- **/
+ * 人群模板
+ *
+ */
 @Data
-@TableName("template_sms")
-public class TemplateSmsEntity implements Serializable {
+@TableName("template_people")
+public class TemplatePeopleEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -30,18 +30,16 @@ public class TemplateSmsEntity implements Serializable {
      */
     private String name;
     /**
-     * 服务商
+     * 模板类型
      */
-    private Integer cp;
+    private Integer type;
     /**
-     * 模板id
-
+     * 内容
      */
-    private String templateId;
+    private String content;
     /**
-     *
+     * 创建时间
      */
     private Date createDate;
 
 }
-

@@ -1,5 +1,6 @@
  package com.muse.modules.sys.oauth2;
 
+import com.muse.common.local.UserLocal;
 import com.muse.modules.sys.entity.SysUserTokenEntity;
 import com.muse.modules.sys.service.ShiroService;
 import com.muse.modules.sys.entity.SysUserEntity;
@@ -58,6 +59,7 @@ public class OAuth2Realm extends AuthorizingRealm {
 
         //查询用户信息
         SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
+        UserLocal.setUserId(user.getUserId());
         //账号锁定
         if(user.getStatus() == 0){
             throw new LockedAccountException("账号已被锁定,请联系管理员");

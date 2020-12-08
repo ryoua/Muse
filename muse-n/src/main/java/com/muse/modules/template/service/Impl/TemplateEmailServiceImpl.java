@@ -10,6 +10,7 @@ import com.muse.modules.template.entity.TemplateEmailEntity;
 import com.muse.modules.template.service.TemplateEmailService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +27,13 @@ public class TemplateEmailServiceImpl extends ServiceImpl<TemplateEmailDao, Temp
                 new QueryWrapper<TemplateEmailEntity>()
         );
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryNames() {
+        QueryWrapper queryWrapper = new QueryWrapper<>();;
+        queryWrapper.select("id", "name");
+        return this.baseMapper.selectMaps(queryWrapper);
     }
 
 }

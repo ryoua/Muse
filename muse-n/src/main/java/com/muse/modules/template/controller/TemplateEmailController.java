@@ -1,5 +1,6 @@
 package com.muse.modules.template.controller;
 
+import com.muse.common.local.UserLocal;
 import com.muse.common.utils.PageUtils;
 import com.muse.common.utils.R;
 import com.muse.modules.template.entity.TemplateEmailEntity;
@@ -19,6 +20,12 @@ import java.util.Map;
 public class TemplateEmailController {
     @Autowired
     private TemplateEmailService templateEmailService;
+
+    @RequestMapping("/list/name")
+    public R listName() {
+        return R.ok().put("data", templateEmailService.queryNames());
+    }
+
 
     /**
      * 列表
@@ -45,6 +52,7 @@ public class TemplateEmailController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody TemplateEmailEntity templateEmail){
+        templateEmail.setUserId(UserLocal.getUserId());
         templateEmailService.save(templateEmail);
 
         return R.ok();
@@ -55,6 +63,7 @@ public class TemplateEmailController {
      */
     @RequestMapping("/update")
     public R update(@RequestBody TemplateEmailEntity templateEmail){
+        templateEmail.setUserId(UserLocal.getUserId());
         templateEmailService.updateById(templateEmail);
 
         return R.ok();

@@ -2,6 +2,7 @@ package com.muse.modules.app.interceptor;
 
 
 import com.muse.common.exception.MuseException;
+import com.muse.common.local.UserLocal;
 import com.muse.modules.app.annotation.Login;
 import io.jsonwebtoken.Claims;
 import com.muse.modules.app.utils.JwtUtils;
@@ -56,7 +57,6 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //设置userId到request里，后续根据userId，获取用户信息
         request.setAttribute(USER_KEY, Long.parseLong(claims.getSubject()));
-
         return true;
     }
 }
