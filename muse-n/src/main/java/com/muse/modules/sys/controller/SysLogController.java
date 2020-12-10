@@ -1,6 +1,5 @@
  package com.muse.modules.sys.controller;
 
-import com.muse.common.utils.PageUtils;
 import com.muse.common.utils.R;
 import com.muse.modules.sys.service.SysLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

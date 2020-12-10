@@ -1,6 +1,5 @@
 package com.muse.modules.template.service.Impl;
 
-import com.muse.common.utils.PageUtils;
 import com.muse.common.utils.Query;
 import com.muse.modules.template.dao.TemplatePeopleDao;
 import com.muse.modules.template.entity.TemplatePeopleEntity;

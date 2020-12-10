@@ -1,7 +1,6 @@
  package com.muse.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.muse.common.utils.PageUtils;
 import com.muse.modules.sys.entity.SysConfigEntity;
 
 import java.util.Map;

@@ -30,18 +30,20 @@ public class BootStrap implements CommandLineRunner {
 
         Set<Job> set = new HashSet<>();
 
-//        int counter = 0;
-//        for (int i = 0; i < 50; i++) {
-//            for (int j = 0; j < 10000; j++) {
-//                counter++;
-//                Job job = new Job();
-//                job.setId(String.valueOf(counter));
-//                job.setBody("===" + counter + "===");
-//                job.setDelay((long) i);
-//                apiController.add(job);
-//                set.add(job);
-//            }
-//        }
+        int counter = 0;
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 100; j++) {
+                counter++;
+                Job job = new Job();
+                job.setId(String.valueOf(counter));
+                job.setBody("===" + counter + "===");
+                job.setDelay((long) i);
+                apiController.add(job);
+                set.add(job);
+            }
+        }
+
+        Thread.sleep(1000);
 
         timer.scan();
 

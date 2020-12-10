@@ -18,7 +18,7 @@ import java.util.TreeMap;
 @Slf4j
 @Getter
 @Setter
-public class HashNode {
+public class HashNode implements Info {
     private static final String JOB_BUCKET = "job:bucket:";
 
     private static List<String> realNodes = new LinkedList<String>();
@@ -105,4 +105,8 @@ public class HashNode {
     }
 
 
+    @Override
+    public String info() {
+        return "Virtual Hash Node";
+    }
 }

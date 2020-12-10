@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.muse.dq.core.JobPool;
 import com.muse.dq.model.Job;
 import com.muse.dq.model.RedisConstants;
-import com.muse.utils.RedisUtil;
+import com.muse.dq.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

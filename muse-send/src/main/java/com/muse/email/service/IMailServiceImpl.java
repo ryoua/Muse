@@ -1,7 +1,6 @@
 package com.muse.email.service;
 
-import com.muse.constants.CommonConstants;
-import com.muse.threadpool.EmailSendThreadPool;
+import com.muse.email.config.EmailSendThreadPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -14,6 +13,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.concurrent.Callable;
+
+import static com.muse.email.model.Constants.SUCCESS;
 
 /**
  * 邮件发送实现类
@@ -40,7 +41,7 @@ public class IMailServiceImpl implements IMailService {
                     message.setTo(to);
                     message.setText(content);
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (Exception e) {
                     return e.getMessage();
                 }
@@ -61,7 +62,7 @@ public class IMailServiceImpl implements IMailService {
                     message.setSubject(subject);
                     message.setText(content);
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (Exception e) {
                     return e.getMessage();
                 }
@@ -82,7 +83,7 @@ public class IMailServiceImpl implements IMailService {
                     helper.setSubject(subject);
                     helper.setText(content, true);
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (Exception e) {
                     return e.getMessage();
                 }
@@ -104,7 +105,7 @@ public class IMailServiceImpl implements IMailService {
                     helper.setText(content, true);
                     helper.setCc(cc);
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (MessagingException e) {
                     return e.getMessage();
                 }
@@ -131,7 +132,7 @@ public class IMailServiceImpl implements IMailService {
                     helper.addAttachment(fileName, file);
 
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (MessagingException e) {
                     return e.getMessage();
                 }
@@ -159,7 +160,7 @@ public class IMailServiceImpl implements IMailService {
                     helper.addAttachment(fileName, file);
 
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (MessagingException e) {
                     return e.getMessage();
                 }
@@ -185,7 +186,7 @@ public class IMailServiceImpl implements IMailService {
                     helper.addInline(rscId, res);
 
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (MessagingException e) {
                     return e.getMessage();
                 }
@@ -212,7 +213,7 @@ public class IMailServiceImpl implements IMailService {
                     helper.addInline(rscId, res);
 
                     mailSender.send(message);
-                    return CommonConstants.SUCCESS;
+                    return SUCCESS;
                 } catch (MessagingException e) {
                     return e.getMessage();
                 }

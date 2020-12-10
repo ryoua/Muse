@@ -2,7 +2,6 @@
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.muse.common.utils.PageUtils;
 import com.muse.common.utils.Query;
 import com.muse.modules.oss.dao.SysOssDao;
 import com.muse.modules.oss.entity.SysOssEntity;

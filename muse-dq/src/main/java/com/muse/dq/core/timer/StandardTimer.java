@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 import com.muse.dq.core.HashNode;
 import com.muse.dq.model.Job;
 import com.muse.dq.model.JobStatus;
-import com.muse.utils.RedisUtil;
-import com.muse.utils.SpringUtil;
-import com.muse.utils.TypeUtil;
+import com.muse.dq.utils.RedisUtil;
+import com.muse.dq.utils.SpringUtil;
+import com.muse.dq.utils.TypeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -16,7 +16,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.concurrent.ThreadSafe;
 import java.util.*;
 
 import static com.muse.dq.model.RedisConstants.JOB_POOL;
@@ -26,7 +25,6 @@ import static com.muse.dq.model.RedisConstants.JOB_POOL;
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
-@ThreadSafe
 @Slf4j
 @Component
 public class StandardTimer extends BaseTimer {

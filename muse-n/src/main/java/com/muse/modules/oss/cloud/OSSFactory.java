@@ -1,7 +1,6 @@
  package com.muse.modules.oss.cloud;
 
 
-import com.muse.common.utils.ConfigConstant;
 import com.muse.common.utils.Constant;
 import com.muse.common.utils.SpringContextUtils;
 import com.muse.modules.sys.service.SysConfigService;

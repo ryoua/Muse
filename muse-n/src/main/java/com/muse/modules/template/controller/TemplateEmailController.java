@@ -1,7 +1,6 @@
 package com.muse.modules.template.controller;
 
 import com.muse.common.local.UserLocal;
-import com.muse.common.utils.PageUtils;
 import com.muse.common.utils.R;
 import com.muse.modules.template.entity.TemplateEmailEntity;
 import com.muse.modules.template.service.TemplateEmailService;

@@ -1,7 +1,6 @@
 package com.muse.modules.template.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.muse.common.utils.PageUtils;
 import com.muse.modules.template.entity.TemplateSmsEntity;
 
 import java.util.List;

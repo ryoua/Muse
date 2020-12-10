@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
  * * @Author: RyouA
  * * @Date: 2020/11/18
  **/
-@ComponentScan("com.muse.*")
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {

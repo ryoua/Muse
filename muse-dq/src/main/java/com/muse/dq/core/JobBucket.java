@@ -2,8 +2,8 @@ package com.muse.dq.core;
 
 import com.google.gson.Gson;
 import com.muse.dq.model.Job;
-import com.muse.utils.RedisUtil;
-import com.muse.utils.TypeUtil;
+import com.muse.dq.utils.RedisUtil;
+import com.muse.dq.utils.TypeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.DefaultTypedTuple;

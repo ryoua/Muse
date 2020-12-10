@@ -1,7 +1,6 @@
  package com.muse.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.muse.common.utils.MapUtils;
 import com.muse.modules.sys.dao.SysUserRoleDao;
 import com.muse.modules.sys.entity.SysUserRoleEntity;
 import com.muse.modules.sys.service.SysUserRoleService;
