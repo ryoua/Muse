@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.muse.message.dao.MessageSendDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.muse.message.entity.MessageSendEntity" id="messageSendMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="delay" column="delay"/>
+        <result property="delayTime" column="delay_time"/>
+        <result property="contentType" column="content_type"/>
+        <result property="contentIsTemplate" column="content_is_template"/>
+        <result property="contentTid" column="content_tid"/>
+        <result property="contentMscId" column="content_msc_id"/>
+        <result property="receiverIsTemplate" column="receiver_is_template"/>
+        <result property="receiverTid" column="receiver_tid"/>
+        <result property="receiverMsrId" column="receiver_msr_id"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+
+</mapper>

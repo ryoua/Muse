@@ -36,7 +36,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="muse-config" />
-    <orderEntry type="library" name="Maven: com.muse:muse-com.muse.common:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="muse-auth" />
+    <orderEntry type="module" module-name="muse-common" />
     <orderEntry type="library" name="Maven: cn.javaer.aliyun:aliyun-spring-boot-starter-sms:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: cn.javaer.aliyun:aliyun-sms:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.aliyun:aliyun-java-sdk-core:4.3.8" level="project" />

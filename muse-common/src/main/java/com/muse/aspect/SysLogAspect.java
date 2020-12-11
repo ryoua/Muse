@@ -6,6 +6,11 @@ package com.muse.aspect;
  **/
 
 import com.google.gson.Gson;
+import com.muse.annotation.SysLog;
+import com.muse.entity.SysLogEntity;
+import com.muse.entity.SysUser;
+import com.muse.service.SysLogService;
+import com.muse.utils.HttpContextUtils;
 import com.muse.utils.IPUtils;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -79,7 +84,7 @@ public class SysLogAspect {
         sysLog.setIp(IPUtils.getIpAddr(request));
 
         //用户名
-        String username = ((SysUserEntity) SecurityUtils.getSubject().getPrincipal()).getUsername();
+        String username = ((SysUser) SecurityUtils.getSubject().getPrincipal()).getUsername();
         sysLog.setUsername(username);
 
         sysLog.setTime(time);

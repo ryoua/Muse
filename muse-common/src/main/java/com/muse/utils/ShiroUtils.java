@@ -1,7 +1,7 @@
 package com.muse.utils;
 
-import com.muse.common.exception.MuseException;
-import com.muse.modules.sys.entity.SysUserEntity;
+import com.muse.entity.SysUser;
+import com.muse.exception.MuseException;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -19,8 +19,8 @@ public class ShiroUtils {
 		return SecurityUtils.getSubject();
 	}
 
-	public static SysUserEntity getUserEntity() {
-		return (SysUserEntity)SecurityUtils.getSubject().getPrincipal();
+	public static SysUser getUserEntity() {
+		return (SysUser)SecurityUtils.getSubject().getPrincipal();
 	}
 
 	public static Long getUserId() {
