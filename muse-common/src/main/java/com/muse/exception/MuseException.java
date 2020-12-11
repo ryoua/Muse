@@ -1,38 +1,51 @@
 package com.muse.exception;
 
-import com.muse.model.ResultCode;
-
-import java.text.MessageFormat;
-
 /**
- * * @Author: RyouA
- * * @Date: 2020/10/16
- **/
+ * 自定义异常
+ */
 public class MuseException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+	
+    private String msg;
+    private int code = 500;
+    
+    public MuseException(String msg) {
+		super(msg);
+		this.msg = msg;
+	}
+	
+	public MuseException(String msg, Throwable e) {
+		super(msg, e);
+		this.msg = msg;
+	}
+	
+	public MuseException(String msg, int code) {
+		super(msg);
+		this.msg = msg;
+		this.code = code;
+	}
+	
+	public MuseException(String msg, int code, Throwable e) {
+		super(msg, e);
+		this.msg = msg;
+		this.code = code;
+	}
 
-    /**
-     * 错误代码
-     */
-    ResultCode resultCode;
+	public String getMsg() {
+		return msg;
+	}
 
-    public MuseException(String message) {
-        super(message);
-    }
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
-    public MuseException(ResultCode resultCode){
-        super(resultCode.message());
-        this.resultCode = resultCode;
-    }
+	public int getCode() {
+		return code;
+	}
 
-    public MuseException(ResultCode resultCode, Object... args){
-        super(resultCode.message());
-        String message = MessageFormat.format(resultCode.message(), args);
-        resultCode.setMessage(message);
-        this.resultCode = resultCode;
-    }
-
-    public ResultCode getResultCode(){
-        return resultCode;
-    }
-
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
+	
 }

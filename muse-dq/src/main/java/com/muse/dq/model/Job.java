@@ -1,48 +1,47 @@
 package com.muse.dq.model;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * * @Author: RyouA
- * * @Date: 2020/9/27
+ * * @Date: 2020/11/18
  **/
-@Data
-@ToString
+@Getter
+@Setter
 public class Job {
     /**
-     * Job唯一Id
+     * 任务ID，全局唯一
      */
     private String id;
 
     /**
-     * 业务名称
+     * 任务类型，也就是业务名称
      */
     private String topic;
 
     /**
-     * 延迟时间
+     * 需要延迟的时间，单位秒
      */
     private Long delay;
 
     /**
-     * 绝对时间
+     * 超时时间
      */
-    private Long absTime;
+    private String ttr;
 
     /**
-     * 执行超时时间
-     */
-    private Long ttr;
-
-    /**
-     * 消息体, JSON格式
+     * 消息体
      */
     private String body;
 
     /**
      * 状态
      */
-    private JobStatus status;
-}
+    private int status;
 
+    /**
+     * 是否需要消息确认机制
+     */
+    private boolean needAck;
+}

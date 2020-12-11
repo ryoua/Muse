@@ -1,0 +1,61 @@
+web:
+  upload-path: /home/
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 1
+        max-idle: 8
+        min-idle: 0
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/m?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  mail:
+    host: smtp.qq.com
+    port: 465     #qq邮箱465、587
+    from: 1794970183@qq.com
+    default-encoding: UTF-8  #qq邮箱
+    protocol: smtp
+    username: 1794970183@qq.com
+    password: qarpomwppvfxdbcd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 25000
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+        display:
+          sendmail: Javen
+          sendname: Spring Boot
+
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+  spring:
+    mvc:
+      view:
+        prefix: classpath:/static/
+        suffix: .html
+      static-path-pattern: classpath:/static/
+server:
+  port: 8443
+
+
+
+

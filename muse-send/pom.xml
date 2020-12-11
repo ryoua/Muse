@@ -2,25 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>Muse</artifactId>
+        <groupId>com.muse</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.muse</groupId>
     <artifactId>muse-send</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <parent>
-        <groupId>com.muse</groupId>
-        <artifactId>Muse</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath/>
-    </parent>
-
 
     <dependencies>
         <dependency>
             <groupId>com.muse</groupId>
-            <artifactId>muse-common</artifactId>
+            <artifactId>muse-config</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.javaer.aliyun</groupId>
+            <artifactId>aliyun-spring-boot-starter-sms</artifactId>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 

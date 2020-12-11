@@ -1,29 +1,21 @@
 package com.muse.service;
 
-import com.muse.exception.MuseException;
-import com.muse.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.muse.modules.app.entity.UserEntity;
+import com.muse.modules.app.form.LoginForm;
 
 /**
- * 用户service类
- * * @Author: RyouA
- * * @Date: 2020/10/16
- **/
-@Service
-@Slf4j
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+ * 用户
+ */
+public interface UserService extends IService<UserEntity> {
 
-    public void login(User user) throws MuseException {
+	UserEntity queryByMobile(String mobile);
 
-    }
-
-
-    public void register(User user) throws MuseException {
-
-    }
+	/**
+	 * 用户登录
+	 * @param form    登录表单
+	 * @return        返回用户ID
+	 */
+	long login(LoginForm form);
 }

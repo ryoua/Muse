@@ -1,24 +1,18 @@
 package com.muse.dq.model;
 
+
 /**
  * * @Author: RyouA
- * * @Date: 2020/9/27
+ * * @Date: 2020/11/22
  **/
-public enum JobStatus {
-    /**
-     * 已经就绪
-     */
-    READY,
-    /**
-     * 被延迟
-     */
-    DELAY,
-    /**
-     * 已被消费
-     */
-    RESERVED,
-    /**
-     * 已被删除
-     */
-    DELETED;
+public class JobStatus {
+    public static final int NEW = 0;
+
+    public static final int DELAY = 1;
+
+    public static final int READY = 2;
+
+    public static final int RESERVED = 3;
+
+    public static final int DELETE = 4;
 }

@@ -1,8 +1,9 @@
 package com.muse.dq.model;
 
+
 /**
  * * @Author: RyouA
- * * @Date: 2020/9/27
+ * * @Date: 2020/10/6
  **/
 public enum ResultCode {
 
@@ -35,5 +36,12 @@ public enum ResultCode {
     public void setMessage(String message) {
         this.message = message;
     }
-}
 
+    public int getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
